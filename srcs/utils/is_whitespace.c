@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   funct.h                                            :+:      :+:    :+:   */
+/*   is_whitespace.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 19:04:14 by lbastien         ###   ########.fr       */
+/*   Created: 2024/01/24 19:03:23 by lbastien          #+#    #+#             */
+/*   Updated: 2024/01/24 19:29:06 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FUNCT_H
-# define FUNCT_H
-
-//Main
-void	launch_shell(void);
-
-//Lexer
-void	ft_lexer(char *input);
-void	ft_lexer_reader(t_token **item_list, char *input);
-void	add_item(t_item **item_list, char *str);
-t_item	*create_item(char *str);
-void	ft_tokenise(t_token *item);
-t_token	identify_token(char *str);
-
-//Utils 
-int		ft_strlen(const char *str);
-int		is_whitespace(char c);
-
-#endif
+int	is_whitespace(char c)
+{
+	if (c == 32)
+		return (1);
+	if (c >= 9 || c <= 13)
+		return (1);
+	return (0);
+}
