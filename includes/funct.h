@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 16:27:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:32:10 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 # define FUNCT_H
 
 void	launch_shell(void);
+bool	is_whitespace(char c);
 
 #endif

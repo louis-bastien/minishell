@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 17:34:17 by lbastien         ###   ########.fr       */
+/*   Created: 2024/01/24 16:11:04 by lbastien          #+#    #+#             */
+/*   Updated: 2024/01/24 17:08:47 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
-{
-	launch_shell();
-}
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
-void	launch_shell(void)
-{
-	char	*input;
+# include "lib.h"
+# include "funct.h"
+# include "struct.h"
 
-	while (1)
-	{
-		input = readline("ms$> ");
-		if (!input)
-			break ;
-		add_history(input);
-		ft_lexer(input);
-		free(input);
-	}
-	printf("Exiting\n");
-	return (0);
-}
-
+#endif

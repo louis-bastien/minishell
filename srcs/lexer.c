@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 17:34:17 by lbastien         ###   ########.fr       */
+/*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
+/*   Updated: 2024/01/24 17:33:16 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
-{
-	launch_shell();
-}
+#include "../includes/lib.h"
 
-void	launch_shell(void)
+ft_lexer(char  *input)
 {
-	char	*input;
+	int	i;
 
-	while (1)
+	i =  0;
+	while (input[i])
 	{
-		input = readline("ms$> ");
-		if (!input)
-			break ;
-		add_history(input);
-		ft_lexer(input);
-		free(input);
+		while (is_whitespace(input[i]))
+			i++;
 	}
-	printf("Exiting\n");
-	return (0);
 }
 
+bool	is_whitespace(char c)
+{
+	if (c == 32)
+		return true;
+	if (c >= 9 || c <= 13)
+		return true;
+	return false;
+
+}
