@@ -1,9 +1,15 @@
 ###Git Useful Commands###
 
 
-#Updating the main repository directly
+#Updating the local main repository
 
-git clone <repository-url>
+git clone <repository-url>              //To download the remote repository
+or
+git checkout main                       //Make sure to switch to main
+git pull                                //Apply changes made in remote repository to local main
+
+#Making changes and updating remote repository
+
 git add *
 git commit -m "descrition of changes"
 git push origin main                    //Origin = Github repository, Main = Branch name
@@ -14,15 +20,22 @@ git checkout -b <branch-name>           //Switch to branch (and create if does n
 git add *
 git commit -m "descrition of changes"
 git push origin <branch-name>           //Update the branch on remote repository (Github)
-                                        //Then you can make a pull request on Github to ask to merge the branch into  main
+                                        //Then you can make a pull request on Github to ask to merge the branch into main
 
-#Merging a branch changes into the Main branch (without pull request)
+#Merging a branch into main (without pull request)
 
 git checkout -b <branch-name>           //Switch to branch
 git add *
 git commit -m "descrition of changes"
 git checkout main //Switch to main
 git merge <branch-name>                 //Apply branch changes to the current branch (main)
+
+#Update branch with changes from main (to be done regularly)
+
+git checkout main
+git pull
+git checkout <branch-name>
+git merge main
 
 #Deleting branch
 
