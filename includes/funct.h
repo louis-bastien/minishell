@@ -6,13 +6,14 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 23:09:46 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/24 23:10:22 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCT_H
 # define FUNCT_H
 # include "minishell.h"
+
 //Main
 void	ru_shell(t_state *state);
 
