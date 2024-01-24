@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 23:05:06 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/24 23:09:46 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(void)
 	launch_shell(state);
 }
 
-void	launch_shell(t_state *state)
+void	run_shell(t_state *state)
 {
 	char	*input;
 

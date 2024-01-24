@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 22:48:30 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/24 23:09:46 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FUNCT_H
 # include "minishell.h"
 //Main
-void	launch_shell(t_state *state);
+void	ru_shell(t_state *state);
 
 //Lexer
 void	ft_lexer(char *input, t_state *state);
