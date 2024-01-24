@@ -6,20 +6,20 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 19:04:14 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:48:30 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCT_H
 # define FUNCT_H
-
+# include "minishell.h"
 //Main
-void	launch_shell(void);
+void	launch_shell(t_state *state);
 
 //Lexer
-void	ft_lexer(char *input);
-void	ft_lexer_reader(t_token **item_list, char *input);
-void	add_item(t_item **item_list, char *str);
+void	ft_lexer(char *input, t_state *state);
+void	ft_lexer_reader(t_token **item_list, char *input, t_state *state);
+int		add_item(t_item **item_list, char *str);
 t_item	*create_item(char *str);
 void	ft_tokenise(t_token *item);
 t_token	identify_token(char *str);

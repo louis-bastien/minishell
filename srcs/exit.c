@@ -1,45 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 23:05:06 by lbastien         ###   ########.fr       */
+/*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
+/*   Updated: 2024/01/24 22:52:51 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(void)
+void	ft_exit(char *str, t_state *state)
 {
-	t_state	*state;
-
-	state = init_state();
-	launch_shell(state);
+	printf("Error: %s\n", str);
+	if (state)
+	{
+		if (state->item_list)
+			free_items (state->item_list);
+		free (state);
+	}
+	printf("Exiting\n", str);
+	exit(1);
 }
 
-void	launch_shell(t_state *state)
+void	free_items(t_item	*items)
 {
-	char	*input;
+	t_item	*tmp;
 
-	while (1)
+	tmp = items;
+	while (tmp)
 	{
-		input = readline("ms$> ");
-		if (!input)
-			ft_exit("(Input) returned an error or EOF");
-		add_history(input);
-		ft_lexer(input, state);
-		free(input);
+		items = items->next;
+		free_node(tmp);
+		tmp = items;
 	}
 }
 
-t_state	*init_state(void)
+void	free_node(t_item *node)
 {
-	t_state	*new_state;
-
-	new_state = malloc(sizeof(t_state));
-	new_state->should_terminate = false;
-	new_state->item_list = NULL;
+	if (node)
+	{
+		free(node->str);
+		free(node);
+		node = NULL;
+	}
 }

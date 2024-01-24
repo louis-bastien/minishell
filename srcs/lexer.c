@@ -6,19 +6,19 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 19:48:07 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/24 23:04:43 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_lexer(char *input)
+void	ft_lexer(char *input, t_state *state)
 {
 	t_item	*item_list;
 	t_item	*tmp;
 
 	item_list = NULL;
-	ft_lexer_reader(&item_list, input);
+	ft_lexer_reader(&item_list, input, state);
 	tmp = item_list;
 	while (tmp)
 	{
@@ -27,7 +27,7 @@ void	ft_lexer(char *input)
 	}
 }
 
-void	ft_lexer_reader(t_item **item_list, char *input)
+void	ft_lexer_reader(t_item **item_list, char *input, t_state *state)
 {
 	int		length;
 	char	*item_str;
@@ -45,20 +45,23 @@ void	ft_lexer_reader(t_item **item_list, char *input)
 			length++;
 		item_str = strndup(reader, length);
 		if (!item_str)
-			printf("Error mallocing item_str");
-		add_item(&item_list, item_str);
+			ft_exit("(Lexer) Failed to malloc item_str\n", state);
+		if (!add_item(&item_list, item_str))
+			ft_exit("(Lexer) Failed to add item");
 		reader += length;
 		length = 0;
 	}
 }
 
-void	add_item(t_item **item_list, char *str)
+int	add_item(t_item **item_list, char *str)
 {
 	t_item	*tmp;
 	t_item	*new_item;
 
 	tmp = *item_list;
 	new_item = create_item(str);
+	if (!new_item)
+		return (1);
 	if (!tmp)
 		*item_list = new_item;
 	else
@@ -67,6 +70,7 @@ void	add_item(t_item **item_list, char *str)
 			tmp = tmp->next;
 		tmp->next = new_item;
 	}
+	return (0);
 }
 
 t_item	*create_item(char *str)
@@ -75,7 +79,7 @@ t_item	*create_item(char *str)
 
 	item = malloc(sizeof(t_item));
 	if (!item)
-		printf("Failed to malloc item");
+		return (NULL);
 	item->str = (str);
 	item->next = NULL;
 	return (item);

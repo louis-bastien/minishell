@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 19:11:06 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:29:46 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,12 @@ typedef struct s_item
 	char			*str;
 	t_token			token;
 	int				index;
-	int				legth;
 	struct s_item	*next;
 }	t_item;
 
+typedef struct s_state
+{
+	bool	should_terminate;
+	t_item	*item_list;
+}	t_state;
 #endif
