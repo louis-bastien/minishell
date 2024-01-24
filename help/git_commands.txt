@@ -3,10 +3,10 @@
 
 #Updating the local main repository
 
-git clone <repository-url>              //To download the remote repository
+git clone <repository-url>              //Download the remote repository
 or
-git checkout main                       //Make sure to switch to main
-git pull                                //Apply changes made in remote repository to local main
+git checkout main                       //Switch to main branch
+git pull                                //Fetch changes from remote repository
 
 #Making changes and updating remote repository
 
@@ -16,7 +16,7 @@ git push origin main                    //Origin = Github repository, Main = Bra
 
 #Creating and updating a branch
 
-git checkout -b <branch-name>           //Switch to branch (and create if does not exist)
+git checkout -b <branch-name>           //Switch to branch (or create if does not exist)
 git add *
 git commit -m "descrition of changes"
 git push origin <branch-name>           //Update the branch on remote repository (Github)
@@ -27,8 +27,8 @@ git push origin <branch-name>           //Update the branch on remote repository
 git checkout -b <branch-name>           //Switch to branch
 git add *
 git commit -m "descrition of changes"
-git checkout main //Switch to main
-git merge <branch-name>                 //Apply branch changes to the current branch (main)
+git checkout main                       //Switch to main
+git merge <branch-name>                 //Merge branch into main
 
 #Update branch with changes from main (to be done regularly)
 
