@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 16:48:40 by lbastien         ###   ########.fr       */
+/*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
+/*   Updated: 2024/01/24 16:47:45 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
-{
-	launch_shell();
-}
+#ifndef STRUCT_H
+# define STRUCT_H
 
-void	launch_shell(void)
+typedef enum s_token
 {
-	char	*input;
+	INPUT,
+	OUTPUT,
+	HEREDOC,
+	APPEND,
+	PIPE,
+}	t_token;
 
-	while (1)
-	{
-		input = readline("ms$> ");
-		if (!input)
-			break ;
-		add_history(input);
-		free(input);
-	}
-	printf("Exiting\n");
-	return (0);
-}
+typedef struct s_item
+{
+	char			*str;
+	t_token			token;
+	int				index;
+	struct s_item	*next;
+}	t_item;
+
+#endif

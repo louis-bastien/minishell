@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lib.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 16:48:40 by lbastien         ###   ########.fr       */
+/*   Created: 2024/01/24 16:11:04 by lbastien          #+#    #+#             */
+/*   Updated: 2024/01/24 16:26:09 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
-{
-	launch_shell();
-}
+#ifndef LIB_H
+# define LIB_H
 
-void	launch_shell(void)
-{
-	char	*input;
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
-	while (1)
-	{
-		input = readline("ms$> ");
-		if (!input)
-			break ;
-		add_history(input);
-		free(input);
-	}
-	printf("Exiting\n");
-	return (0);
-}
+#endif

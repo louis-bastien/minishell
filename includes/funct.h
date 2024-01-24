@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 16:48:40 by lbastien         ###   ########.fr       */
+/*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
+/*   Updated: 2024/01/24 16:27:59 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
-{
-	launch_shell();
-}
+#ifndef FUNCT_H
+# define FUNCT_H
 
-void	launch_shell(void)
-{
-	char	*input;
+void	launch_shell(void);
 
-	while (1)
-	{
-		input = readline("ms$> ");
-		if (!input)
-			break ;
-		add_history(input);
-		free(input);
-	}
-	printf("Exiting\n");
-	return (0);
-}
+#endif
