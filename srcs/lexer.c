@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 23:09:46 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/24 23:13:14 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	add_item(t_item **item_list, char *str)
 	else
 	{
 		while (tmp->next)
-		tmp = tmp->next;
+			tmp = tmp->next;
 		tmp->next = new_item;
 	}
 	return (0);
