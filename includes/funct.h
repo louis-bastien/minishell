@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 23:10:22 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/24 23:12:24 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 # include "minishell.h"
 
 //Main
-void	ru_shell(t_state *state);
+void	run_shell(t_state *state);
+
+//Exit
+void	ft_exit(char *str, t_state *state);
+void	free_items(t_item	*items);
+void	free_node(t_item *node);
 
 //Lexer
 void	ft_lexer(char *input, t_state *state);
