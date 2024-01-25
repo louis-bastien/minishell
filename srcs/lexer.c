@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 23:13:14 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:02:46 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_lexer(char *input, t_state *state)
 		ft_tokenise(tmp);
 		tmp = tmp->next;
 	}
+	state->item_list = item_list;
 }
 
 void	ft_lexer_reader(t_item **item_list, char *input, t_state *state)
@@ -46,43 +47,11 @@ void	ft_lexer_reader(t_item **item_list, char *input, t_state *state)
 		item_str = strndup(reader, length);
 		if (!item_str)
 			ft_exit("(Lexer) Failed to malloc item_str\n", state);
-		if (!add_item(&item_list, item_str))
-			ft_exit("(Lexer) Failed to add item");
+		if (add_item(&item_list, item_str))
+			ft_exit("(Lexer) Failed to add item", state);
 		reader += length;
 		length = 0;
 	}
-}
-
-int	add_item(t_item **item_list, char *str)
-{
-	t_item	*tmp;
-	t_item	*new_item;
-
-	tmp = *item_list;
-	new_item = create_item(str);
-	if (!new_item)
-		return (1);
-	if (!tmp)
-		*item_list = new_item;
-	else
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new_item;
-	}
-	return (0);
-}
-
-t_item	*create_item(char *str)
-{
-	t_item	*item;
-
-	item = malloc(sizeof(t_item));
-	if (!item)
-		return (NULL);
-	item->str = (str);
-	item->next = NULL;
-	return (item);
 }
 
 void	tokenise(t_item *item)

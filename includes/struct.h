@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 22:29:46 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:02:46 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,19 @@ typedef struct s_item
 
 typedef struct s_state
 {
-	bool	should_terminate;
-	t_item	*item_list;
+	bool		should_terminate;
+	t_item		*item_list;
+	t_command	*cmds;
 }	t_state;
+
+typedef struct s_command
+{
+	char	*command;
+	char	**args;
+	int		args_count;
+	t_item	*items;
+	char	*infile;
+	char	*outfile;
+	struct s_command *next;
+}	t_command;
 #endif

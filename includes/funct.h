@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 23:12:24 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:02:39 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ int		add_item(t_item **item_list, char *str);
 t_item	*create_item(char *str);
 void	ft_tokenise(t_token *item);
 t_token	identify_token(char *str);
+
+//Parser
+
 
 //Utils 
 int		ft_strlen(const char *str);
