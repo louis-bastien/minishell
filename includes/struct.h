@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 11:32:54 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:13:36 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct s_token
 {
 	char			*str;
 	t_ttype			token;
-	int				index;
 	struct s_token	*next;
 }	t_token;
 
@@ -44,8 +43,8 @@ typedef struct s_command
 	char	**args;
 	int		args_count;
 	t_token	*items;
-	char	*infile;
-	char	*outfile;
+	int		fd_in;
+	int		fd_out;
 	struct s_command *next;
 }	t_command;
 #endif

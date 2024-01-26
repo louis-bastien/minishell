@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 11:46:15 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:18:14 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_lexer_reader(t_token **token_list, char *input, t_state *state)
 		item_str = strndup(reader, length);
 		if (!item_str)
 			ft_exit("(Lexer) Failed to malloc item_str\n", state);
-		if (add_item(&token_list, item_str))
+		if (add_token(&token_list, item_str))
 			ft_exit("(Lexer) Failed to add item", state);
 		reader += length;
 		length = 0;
