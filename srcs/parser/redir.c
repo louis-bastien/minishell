@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 17:44:42 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:44:54 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_parse_tokens(t_state *state)
 	while (command)
 	{
 		handle_redirections(command, state);
-		handle_heredoc(commmand, state);
+		handle_heredoc(command, state);
 		command = command->next;
 	}
 }
