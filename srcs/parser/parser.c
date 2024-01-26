@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 11:56:44 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:25:02 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,9 @@ t_command	*create_cmd(t_token *tokens, int item_counter)
 	new_cmd = malloc(sizeof(t_command));
 	if (!new_cmd)
 		return (NULL);
-	new_cmd->items = import_tokens(tokens, item_counter);
+	new_cmd->tokens = import_tokens(tokens, item_counter);
 	new_cmd->command = NULL;
 	new_cmd->args = NULL;
-	new_cmd->infile = NULL;
-	new_cmd->outfile = NULL;
 	new_cmd->next = NULL;
 	return (new_cmd);
 }

@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 12:13:36 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:25:00 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_command
 	char	*command;
 	char	**args;
 	int		args_count;
-	t_token	*items;
+	t_token	*tokens;
 	int		fd_in;
 	int		fd_out;
 	struct s_command *next;
