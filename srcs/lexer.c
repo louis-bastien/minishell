@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/25 17:02:46 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:46:15 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 void	ft_lexer(char *input, t_state *state)
 {
-	t_item	*item_list;
-	t_item	*tmp;
+	t_token	*token_list;
+	t_token	*tmp;
 
-	item_list = NULL;
-	ft_lexer_reader(&item_list, input, state);
-	tmp = item_list;
+	token_list = NULL;
+	ft_lexer_reader(&token_list, input, state);
+	tmp = token_list;
 	while (tmp)
 	{
-		ft_tokenise(tmp);
+		tokenise(tmp);
 		tmp = tmp->next;
 	}
-	state->item_list = item_list;
+	state->token_list = token_list;
 }
 
-void	ft_lexer_reader(t_item **item_list, char *input, t_state *state)
+void	ft_lexer_reader(t_token **token_list, char *input, t_state *state)
 {
 	int		length;
 	char	*item_str;
@@ -44,17 +44,19 @@ void	ft_lexer_reader(t_item **item_list, char *input, t_state *state)
 			reader++;
 		while (*reader && !is_whitespace(reader[length]))
 			length++;
+		if (!*reader)
+			break ;
 		item_str = strndup(reader, length);
 		if (!item_str)
 			ft_exit("(Lexer) Failed to malloc item_str\n", state);
-		if (add_item(&item_list, item_str))
+		if (add_item(&token_list, item_str))
 			ft_exit("(Lexer) Failed to add item", state);
 		reader += length;
 		length = 0;
 	}
 }
 
-void	tokenise(t_item *item)
+void	tokenise(t_token *item)
 {
 	char	*str;
 

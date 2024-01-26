@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/25 16:40:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:56:44 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	ft_parser(t_state *state)
 {
-	t_item		*tokens;
+	t_token		*tokens;
 
-	ft_init_cmds(state->item_list, state);
+	ft_init_cmds(state->token_list, state);
 }
 
-void	ft_init_cmds(t_item *tokens, t_state *state)
+void	init_cmds(t_token *tokens, t_state *state)
 {
 	int		item_counter;
 
@@ -29,10 +29,10 @@ void	ft_init_cmds(t_item *tokens, t_state *state)
 	while (tokens && tokens->token != PIPE)
 		tokens = tokens->next;
 	if (tokens)
-		ft_init_cmds(tokens->next, state);
+		init_cmds(tokens->next, state);
 }
 
-int	add_cmd(t_command **cmds, t_item *tokens, int item_counter)
+int	add_cmd(t_command **cmds, t_token *tokens, int item_counter)
 {
 	t_command	*new_cmd;
 	t_command	*tmp;
@@ -52,14 +52,14 @@ int	add_cmd(t_command **cmds, t_item *tokens, int item_counter)
 	return (0);
 }
 
-t_command	*create_cmd(t_item *tokens, int item_counter)
+t_command	*create_cmd(t_token *tokens, int item_counter)
 {
 	t_command	*new_cmd;
 
 	new_cmd = malloc(sizeof(t_command));
 	if (!new_cmd)
 		return (NULL);
-	new_cmd->items = import_items(tokens, item_counter);
+	new_cmd->items = import_tokens(tokens, item_counter);
 	new_cmd->command = NULL;
 	new_cmd->args = NULL;
 	new_cmd->infile = NULL;
@@ -68,7 +68,7 @@ t_command	*create_cmd(t_item *tokens, int item_counter)
 	return (new_cmd);
 }
 
-int	count_upto_pipe(t_item *tokens)
+int	count_upto_pipe(t_token *tokens)
 {
 	int	count;
 

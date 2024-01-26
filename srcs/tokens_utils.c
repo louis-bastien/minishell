@@ -1,62 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lex_utils.c                                        :+:      :+:    :+:   */
+/*   tokens_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:29:59 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/25 16:31:46 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:53:16 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	add_item(t_item **item_list, char *str)
+int	add_token(t_token **token_list, char *str)
 {
-	t_item	*tmp;
-	t_item	*new_item;
+	t_token	*tmp;
+	t_token	*new_token;
 
-	tmp = *item_list;
-	new_item = create_item(str);
-	if (!new_item)
+	tmp = *token_list;
+	new_token = create_token(str);
+	if (!new_token)
 		return (1);
 	if (!tmp)
-		*item_list = new_item;
+		*token_list = new_token;
 	else
 	{
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = new_item;
+		tmp->next = new_token;
 	}
 	return (0);
 }
 
-t_item	*create_item(char *str)
+t_token	*create_token(char *str)
 {
-	t_item	*item;
+	t_token	*token;
 
-	item = malloc(sizeof(t_item));
-	if (!item)
+	token = malloc(sizeof(t_token));
+	if (!token)
 		return (NULL);
-	item->str = (str);
-	item->next = NULL;
-	return (item);
+	token->str = str;
+	token->next = NULL;
+	return (token);
 }
 
-t_item	*import_items(t_item *tokens, int item_counter)
+t_token	*import_tokens(t_token *tokens, int item_counter)
 {
-	t_item	*items_list;
-	t_item	*tmp;
+	t_token	*items_list;
 	int		i;
 
 	i = 0;
-	tmp = tokens;
 	items_list = NULL;
 	while (i < item_counter)
 	{
-		add_item(&items_list, strdup(tmp->str));
-		tmp = tmp->next;
+		add_item(&items_list, strdup(tokens->str));
+		tokens = tokens->next;
 		i++;
 	}
 	return (items_list);

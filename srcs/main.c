@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/25 16:42:50 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:33:05 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(void)
 	t_state	*state;
 
 	state = init_state();
-	launch_shell(state);
+	run_shell(state);
 }
 
 void	run_shell(t_state *state)
@@ -42,6 +42,6 @@ t_state	*init_state(void)
 
 	new_state = malloc(sizeof(t_state));
 	new_state->should_terminate = false;
-	new_state->item_list = NULL;
+	new_state->token_list = NULL;
 	new_state->cmds = NULL;
 }
