@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 16:02:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:44:42 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef enum s_ttype
 typedef struct s_token
 {
 	char			*str;
-	t_ttype			token;
+	t_ttype			type;
 	struct s_token	*next;
 	struct s_token	*prev;
 }	t_token;

@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:00:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 16:02:22 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:13:02 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ void	free_cmd(t_command *cmd)
 			free_args(cmd);
 		if (cmd->tokens)
 			free_tokens(cmd->tokens);
-		if (cmd->infile)
-			free(cmd->infile);
-		if (cmd->outfile)
-			free(cmd->outfile);
 		free(cmd);
 		cmd = NULL;
 	}

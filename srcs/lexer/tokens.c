@@ -6,11 +6,11 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:29:59 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 15:48:52 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:44:42 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 int	add_token(t_token **token_list, char *str)
 {

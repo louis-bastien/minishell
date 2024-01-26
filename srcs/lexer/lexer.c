@@ -6,11 +6,11 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 15:48:52 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:44:42 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	ft_lexer(char *input, t_state *state)
 {
@@ -64,23 +64,23 @@ void	tokenise(t_token *token)
 	if (ft_strlen(str) == 1)
 	{
 		if (*str == '|')
-			token->token = PIPE;
+			token->type = PIPE;
 		else if (*str == '<')
-			token->token = INPUT;
+			token->type = INPUT;
 		else if (*str == '>')
-			token->token = OUTPUT;
+			token->type = OUTPUT;
 		else
-			token->token = WORD;
+			token->type = WORD;
 	}
 	else if (ft_strlen(str) == 2)
 	{
 		if (*str == '<' && *(str + 1) == '<')
-			token->token = HEREDOC;
+			token->type = HEREDOC;
 		else if (*str == '>' && *(str + 1) == '>')
-			token->token = APPEND;
+			token->type = APPEND;
 		else
-			token->token = WORD;
+			token->type = WORD;
 	}
 	else
-		token->token = WORD;
+		token->type = WORD;
 }
