@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 15:58:57 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:03:46 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_handle_redirects(t_state *state)
 {
-	
+	t_command	*cmd_list;
 }

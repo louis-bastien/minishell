@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 11:33:05 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:03:46 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ t_state	*init_state(void)
 	new_state = malloc(sizeof(t_state));
 	new_state->should_terminate = false;
 	new_state->token_list = NULL;
-	new_state->cmds = NULL;
+	new_state->cmd_list = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 15:42:52 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:02:59 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_state
 {
 	bool		should_terminate;
 	t_token		*token_list;
-	t_command	*cmds;
+	t_command	*cmd_list;
 }	t_state;
 
 typedef struct s_command

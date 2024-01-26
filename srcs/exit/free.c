@@ -6,22 +6,22 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:00:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 15:48:52 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:02:22 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	free_cmds(t_command *cmds)
+void	free_cmds(t_command *cmd_list)
 {
 	t_command	*tmp;
 
-	tmp = cmds;
+	tmp = cmd_list;
 	while (tmp)
 	{
-		cmds = cmds->next;
+		cmd_list = cmd_list->next;
 		free_cmd(tmp);
-		tmp = cmds;
+		tmp = cmd_list;
 	}
 }
 

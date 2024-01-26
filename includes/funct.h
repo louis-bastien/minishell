@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 15:49:31 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:03:30 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void		tokenise(t_token *token);
 
 //Parser
 void		ft_parser(t_state *state);
-void		init_cmds(t_token *tokens, t_state *state);
-int			add_cmd(t_command **cmds, t_token *tokens, int token_counter);
+void		init_cmd_list(t_token *tokens, t_state *state);
+int			add_cmd(t_command **cmd_list, t_token *tokens, int token_counter);
 t_command	*create_cmd(t_token *tokens, int token_counter);
 int			count_upto_pipe(t_token *tokens);
 
