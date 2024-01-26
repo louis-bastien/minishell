@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 12:18:14 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:48:52 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_lexer(char *input, t_state *state)
 void	ft_lexer_reader(t_token **token_list, char *input, t_state *state)
 {
 	int		length;
-	char	*item_str;
+	char	*token_str;
 	char	*reader;
 	int		i;
 
@@ -46,41 +46,41 @@ void	ft_lexer_reader(t_token **token_list, char *input, t_state *state)
 			length++;
 		if (!*reader)
 			break ;
-		item_str = strndup(reader, length);
-		if (!item_str)
-			ft_exit("(Lexer) Failed to malloc item_str\n", state);
-		if (add_token(&token_list, item_str))
-			ft_exit("(Lexer) Failed to add item", state);
+		token_str = strndup(reader, length);
+		if (!token_str)
+			ft_exit("(Lexer) Failed to malloc token_str\n", state);
+		if (add_token(&token_list, token_str))
+			ft_exit("(Lexer) Failed to add token", state);
 		reader += length;
 		length = 0;
 	}
 }
 
-void	tokenise(t_token *item)
+void	tokenise(t_token *token)
 {
 	char	*str;
 
-	str = item->str;
+	str = token->str;
 	if (ft_strlen(str) == 1)
 	{
 		if (*str == '|')
-			item->token = PIPE;
+			token->token = PIPE;
 		else if (*str == '<')
-			item->token = INPUT;
+			token->token = INPUT;
 		else if (*str == '>')
-			item->token = OUTPUT;
+			token->token = OUTPUT;
 		else
-			item->token = WORD;
+			token->token = WORD;
 	}
 	else if (ft_strlen(str) == 2)
 	{
 		if (*str == '<' && *(str + 1) == '<')
-			item->token = HEREDOC;
+			token->token = HEREDOC;
 		else if (*str == '>' && *(str + 1) == '>')
-			item->token = APPEND;
+			token->token = APPEND;
 		else
-			item->token = WORD;
+			token->token = WORD;
 	}
 	else
-		item->token = WORD;
+		token->token = WORD;
 }

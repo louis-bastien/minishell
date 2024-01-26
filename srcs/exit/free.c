@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:00:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 11:56:25 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:48:52 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	free_cmd(t_command *cmd)
 			free(cmd->command);
 		if (cmd->args)
 			free_args(cmd);
-		if (cmd->items)
-			free_items(cmd->items);
+		if (cmd->tokens)
+			free_tokens(cmd->tokens);
 		if (cmd->infile)
 			free(cmd->infile);
 		if (cmd->outfile)
@@ -44,16 +44,16 @@ void	free_cmd(t_command *cmd)
 	}
 }
 
-void	free_tokens(t_token	*items)
+void	free_tokens(t_token	*tokens)
 {
 	t_token	*tmp;
 
-	tmp = items;
+	tmp = tokens;
 	while (tmp)
 	{
-		items = items->next;
+		tokens = tokens->next;
 		free_token(tmp);
-		tmp = items;
+		tmp = tokens;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 12:00:51 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:48:28 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_exit(char *str, t_state *state)
 	if (state)
 	{
 		if (state->token_list)
-			free_items (state->token_list);
+			free_tokens (state->token_list);
 		if (state->cmds)
 			free_cmds (state->cmds);
 		free (state);
