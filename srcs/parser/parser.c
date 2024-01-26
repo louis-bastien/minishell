@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 14:25:02 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:36:49 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_parser(t_state *state)
 	t_token		*tokens;
 
 	ft_init_cmds(state->token_list, state);
+	ft_handle_redirects(state);
 }
 
 void	init_cmds(t_token *tokens, t_state *state)
