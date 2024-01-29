@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/29 16:03:47 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:47:11 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	run_shell(t_state *state)
 		input = readline("ms$> ");
 		if (!input)
 			ft_exit("(Input) returned an error or EOF", state);
-		add_history(input);
+//		add_history(input);
 		ft_lexer(input, state);
 		ft_parser(state);
 		free(input);
