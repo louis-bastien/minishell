@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 17:44:42 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:44:27 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ typedef struct s_state
 
 typedef struct s_command
 {
-	char	*command;
-	char	**args;
-	int		args_count;
-	t_token	*tokens;
-	int		fd_in;
-	int		fd_out;
-	struct s_command *next;
+	char				*command;
+	char				**args;
+	int					args_count;
+	t_token				*tokens;
+	int					fd_in;
+	int					fd_out;
+	struct s_command	*next;
 }	t_command;
 #endif
