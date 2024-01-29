@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/29 18:02:28 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:18:35 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	ft_lexer_reader(t_token **token_list, char *input, t_state *state)
 	{
 		while (*reader && is_whitespace(*reader))
 			reader++;
-		while (*reader && !is_whitespace(reader[length]))
+		while (reader[length] && !is_whitespace(reader[length]))
 			length++;
-		if (!*reader)
+		if (length == 0)
 			break ;
 		token_str = strndup(reader, length);
 		printf("%s tokenised\n", token_str);

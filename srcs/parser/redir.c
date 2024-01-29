@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/29 17:32:21 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:47:42 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void	ft_parse_tokens(t_state *state)
 	command = state->cmd_list;
 	while (command)
 	{
+		printf("command passed\n");
 		handle_redirections(command, state);
 //		handle_heredoc(command, state);
 		command = command->next;
 	}
+	printf("exited loop\n");
 }
 
 void	handle_redirections(t_command *cmd, t_state *state)
@@ -47,17 +49,18 @@ void	handle_redirections(t_command *cmd, t_state *state)
 			else if (current->type == APPEND)
 				cmd->fd_out = open(file_token->str, \
 				O_WRONLY | O_CREAT | O_APPEND, 0644);
-			remove_token(&cmd->tokens, current);
-			remove_token(&cmd->tokens, file_token);
+			current = file_token->next;
 		}
+		else
+			current = current->next;
 	}
 }
 
-void	remove_token(t_token **token_list, t_token *token)
-{
-	if (token->prev)
-		token->prev->next = token->next;
-	else
-		*token_list = token->next;
-	free_token(token);
-}
+// void	remove_token(t_token **token_list, t_token *token)
+// {
+// 	if (token->prev)
+// 		token->prev->next = token->next;
+// 	else
+// 		*token_list = token->next;
+// 	free_token(token);
+// }

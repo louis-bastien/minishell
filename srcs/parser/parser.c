@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/29 16:26:21 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:37:59 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_cmd_list(t_token *tokens, t_state *state)
 	int		token_counter;
 
 	token_counter = count_upto_pipe(tokens);
+	printf("%d elements counted\n", token_counter);
 	if (add_cmd(&state->cmd_list, tokens, token_counter))
 		ft_exit("(parser) Failed to add new cmd", state);
 	while (tokens && tokens->type != PIPE)
@@ -75,5 +76,6 @@ int	count_upto_pipe(t_token *tokens)
 		count++;
 		tokens = tokens ->next;
 	}
+
 	return (count);
 }
