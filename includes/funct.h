@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/29 15:52:09 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/29 16:29:48 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,22 @@ t_state		*init_state(void);
 //Lexer
 void		ft_lexer(char *input, t_state *state);
 void		ft_lexer_reader(t_token **token_list, char *input, t_state *state);
-int			add_token(t_token **token_list, char *str);
-t_token		*create_token(char *str);
 void		tokenise(t_token *token);
 
 //Parser
-int			ft_parser(t_state *state);
+void		ft_parser(t_state *state);
 void		init_cmd_list(t_token *tokens, t_state *state);
 int			add_cmd(t_command **cmd_list, t_token *tokens, int token_counter);
 t_command	*create_cmd(t_token *tokens, int token_counter);
 int			count_upto_pipe(t_token *tokens);
-void		ft_parse_tokens(t_state *state);
+void		handle_redirections(t_command *cmd, t_state *state);
 
+//Token Management
+void		ft_parse_tokens(t_state *state);
+t_token		*import_tokens(t_token *tokens, int token_counter);
+void		remove_token(t_token **token_list, t_token *token);
+int			add_token(t_token **token_list, char *str);
+t_token		*create_token(char *str);
 
 //Utils 
 int			ft_strlen(const char *str);

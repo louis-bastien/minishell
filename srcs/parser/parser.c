@@ -6,19 +6,16 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 17:19:01 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/29 16:26:21 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_parser(t_state *state)
+void	ft_parser(t_state *state)
 {
-	t_token		*tokens;
-
-	ft_init_cmd_list(state->token_list, state);
-	if (ft_parse_tokens(state))
-		return(1);
+	init_cmd_list(state->token_list, state);
+	ft_parse_tokens(state);
 }
 
 void	init_cmd_list(t_token *tokens, t_state *state)

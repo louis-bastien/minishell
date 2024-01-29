@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 19:03:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/24 19:29:06 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/29 16:31:24 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@ int	is_whitespace(char c)
 {
 	if (c == 32)
 		return (1);
-	if (c >= 9 || c <= 13)
+	if (c >= 9 && c <= 13)
 		return (1);
 	return (0);
 }

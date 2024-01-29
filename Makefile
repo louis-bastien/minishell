@@ -6,7 +6,7 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/01/29 16:18:17 by lbastien         ###   ########.fr        #
+#    Updated: 2024/01/29 17:35:15 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,22 +24,30 @@ SRC = srcs/minishell.c \
 	srcs/utils/ft_strlen.c 
 
 CC = gcc
+
+#Local libraries
 LIBFT_PATH = libft/
-LIBFT_LIB = $(LIBFT_PATH)libft.a
+READLINE_PATH = readline-8.1/
+LIBFT_LIB = -lft
+READLINE_LIB = -lreadline -lhistory
+LDFLAGS = -L$(LIBFT_PATH) -L$(READLINE_PATH)
+LIBS = $(LIBFT_LIB) $(READLINE_LIB) -lncurses
+
+#Objects
 OBJ_DIR = obj
 OBJECTS = $(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.c=.o)))
+
+#Headers
 HEADER = includes/minishell.h \
 		includes/funct.h \
 		includes/lib.h \
 		includes/struct.h 
 
-READLINE_DIR = $(shell brew --prefix readline)
-READLINE_LIB = -lreadline -lhistory -L $(READLINE_DIR)/lib
-INCLUDES =-Iincludes -I$(OBJ_DIR) -I$(LIBFT_PATH) -I$(READLINE_DIR)/include 
+INCLUDES =-Iincludes -I$(LIBFT_PATH)
 
 # Colors
 GREEN = \033[0;32m
-YELLOW = \033[1;33m
+YELLOW = \033[1;33m-lncurses
 RED = \033[0;31m
 DEFAULT = \033[0m
 
@@ -69,13 +77,18 @@ $(OBJ_DIR)/%.o: srcs/utils/%.c $(HEADER) Makefile
 
 subsystems:
 	@make -C $(LIBFT_PATH) all
+	@make -C $(READLINE_PATH) static
+
+init-readline:
+	cd $(READLINE_PATH) && ./configure
 
 $(NAME): $(OBJECTS)
-	@$(CC) $(FLAGS) $(OBJECTS) $(LIBFT_LIB) $(READLINE_LIB) -o $(NAME)
+	@$(CC) $(FLAGS) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(NAME)
 	@echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 clean:
 	@make -C $(LIBFT_PATH) clean
+	@make -C $(READLINE_PATH) clean
 	@rm -rf $(OBJ_DIR)
 	@echo -e "$(YELLOW)object files deleted!$(DEFAULT)"
 
