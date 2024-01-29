@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
+#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/01/29 15:50:40 by agheredi         ###   ########.fr        #
+#    Updated: 2024/01/29 16:18:17 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,7 @@ HEADER = includes/minishell.h \
 		includes/struct.h 
 
 READLINE_DIR = $(shell brew --prefix readline)
-
 READLINE_LIB = -lreadline -lhistory -L $(READLINE_DIR)/lib
-
 INCLUDES =-Iincludes -I$(OBJ_DIR) -I$(LIBFT_PATH) -I$(READLINE_DIR)/include 
 
 # Colors
@@ -47,7 +45,25 @@ DEFAULT = \033[0m
 
 all: subsystems $(NAME)
 
+# General rule for files in srcs/
 $(OBJ_DIR)/%.o: srcs/%.c $(HEADER) Makefile
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(FLAGS) $(INCLUDES) -c -o $@ $<
+
+# Specific rules for each subdirectory
+$(OBJ_DIR)/%.o: srcs/error/%.c $(HEADER) Makefile
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(FLAGS) $(INCLUDES) -c -o $@ $<
+
+$(OBJ_DIR)/%.o: srcs/lexer/%.c $(HEADER) Makefile
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(FLAGS) $(INCLUDES) -c -o $@ $<
+
+$(OBJ_DIR)/%.o: srcs/parser/%.c $(HEADER) Makefile
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(FLAGS) $(INCLUDES) -c -o $@ $<
+
+$(OBJ_DIR)/%.o: srcs/utils/%.c $(HEADER) Makefile
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(FLAGS) $(INCLUDES) -c -o $@ $<
 

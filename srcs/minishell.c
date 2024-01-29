@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 17:44:42 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/29 16:03:47 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(void)
 
 	state = init_state();
 	run_shell(state);
+	return (1);
 }
 
 void	run_shell(t_state *state)
@@ -44,4 +45,5 @@ t_state	*init_state(void)
 	new_state->should_terminate = false;
 	new_state->token_list = NULL;
 	new_state->cmd_list = NULL;
+	return (new_state);
 }
