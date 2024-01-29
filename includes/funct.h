@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 17:23:35 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:52:09 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 //Main
 void		run_shell(t_state *state);
+t_state		*init_state(void);
 
 //Lexer
 void		ft_lexer(char *input, t_state *state);

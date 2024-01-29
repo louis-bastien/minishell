@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:11:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 15:34:27 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:49:21 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINISHELL_H
 
 # include "lib.h"
-# include "funct.h"
 # include "struct.h"
+# include "funct.h"
 
 #endif
