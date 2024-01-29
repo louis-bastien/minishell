@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
+#    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/01/29 15:41:50 by lbastien         ###   ########.fr        #
+#    Updated: 2024/01/29 15:50:40 by agheredi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,12 @@ HEADER = includes/minishell.h \
 		includes/lib.h \
 		includes/struct.h 
 
+READLINE_DIR = $(shell brew --prefix readline)
+
+READLINE_LIB = -lreadline -lhistory -L $(READLINE_DIR)/lib
+
+INCLUDES =-Iincludes -I$(OBJ_DIR) -I$(LIBFT_PATH) -I$(READLINE_DIR)/include 
+
 # Colors
 GREEN = \033[0;32m
 YELLOW = \033[1;33m
@@ -43,13 +49,13 @@ all: subsystems $(NAME)
 
 $(OBJ_DIR)/%.o: srcs/%.c $(HEADER) Makefile
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(FLAGS) -c -o $@ $<
+	@$(CC) $(FLAGS) $(INCLUDES) -c -o $@ $<
 
 subsystems:
 	@make -C $(LIBFT_PATH) all
 
 $(NAME): $(OBJECTS)
-	@$(CC) $(FLAGS) $(OBJECTS) $(LIBFT_LIB) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJECTS) $(LIBFT_LIB) $(READLINE_LIB) -o $(NAME)
 	@echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 clean:
