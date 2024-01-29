@@ -6,16 +6,18 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/29 18:00:04 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:11:53 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
 	t_state	*state;
 
+	if (argc != 1 || argv[1])
+		perror("Nummbers arguments no valid\n");
 	state = init_state();
 	run_shell(state);
 	return (1);
@@ -27,7 +29,7 @@ void	run_shell(t_state *state)
 
 	while (1)
 	{
-		input = readline("ms$> ");
+		input = readline("Minishell$> ");
 		if (!input)
 			ft_exit("(Input) returned an error or EOF", state);
 //		add_history(input);
