@@ -6,7 +6,7 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/01/30 17:33:08 by lbastien         ###   ########.fr        #
+#    Updated: 2024/01/30 18:42:18 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC = srcs/minishell.c \
 	srcs/utils/is_whitespace.c \
 	srcs/utils/ft_strlen.c \
 	srcs/utils/ft_init.c \
+	srcs/utils/ft_print_cmds.c \
 	srcs/executor/ft_heredoc.c \
 
 HEADER = includes/minishell.h \

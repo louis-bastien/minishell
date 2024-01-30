@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_print_cmds.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 15:06:59 by agheredi          #+#    #+#             */
-/*   Updated: 2024/01/30 18:09:29 by lbastien         ###   ########.fr       */
+/*   Created: 2024/01/30 18:35:13 by lbastien          #+#    #+#             */
+/*   Updated: 2024/01/30 18:44:11 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/minishell.h"
 
-char	*ft_strndup(const char *s1, size_t len)
+void	ft_print_cmds(t_command *commands)
 {
-	char	*ptr;
-	size_t	i;
+	int	index;
 
-	i = 0;
-	ptr = (char *) malloc(sizeof(char) * len + 1);
-	if (ptr == NULL)
-		return (NULL);
-	while (s1[i] != '\0' && i < len)
+	index = 0;
+	while (commands)
 	{
-		ptr[i] = s1[i];
-		i++;
+		printf("==Command %d:\n", index);
+		print_token(commands->tokens);
+		printf("==\n");
+		index++;
+		commands = commands->next;
 	}
-	ptr[i] = '\0';
-	return (ptr);
 }

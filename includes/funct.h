@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/30 12:47:18 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:41:47 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ t_token		*import_tokens(t_token *tokens, int token_counter);
 void		remove_token(t_token **token_list, t_token *token);
 int			add_token(t_token **token_list, char *str);
 t_token		*create_token(char *str);
+void		print_token(t_token *tokens);
 
 //Utils 
 int			is_whitespace(char c);
+void		ft_print_cmds(t_command *commands);
 
 //Exit
 void		ft_exit(char *str, t_state *state);

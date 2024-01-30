@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redir.c                                            :+:      :+:    :+:   */
+/*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/29 18:47:42 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:33:33 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@ void	ft_parse_tokens(t_state *state)
 	command = state->cmd_list;
 	while (command)
 	{
-		printf("command passed\n");
 		handle_redirections(command, state);
 //		handle_heredoc(command, state);
 		command = command->next;
 	}
-	printf("exited loop\n");
 }
 
 void	handle_redirections(t_command *cmd, t_state *state)

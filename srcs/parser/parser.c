@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/29 18:37:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:42:39 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_parser(t_state *state)
 {
 	init_cmd_list(state->token_list, state);
+	ft_print_cmds(state->cmd_list);
 	ft_parse_tokens(state);
 }
 

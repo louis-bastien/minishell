@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/30 17:34:15 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:32:27 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	ft_lexer_reader(t_token **token_list, char *input, t_state *state)
 	char	*token_str;
 	char	*reader;
 
-	length = 0;
 	reader = input;
 	while (*reader)
 	{
+		length = 0;
 		while (*reader && is_whitespace(*reader))
 			reader++;
 		while (reader[length] && !is_whitespace(reader[length]))
@@ -45,14 +45,13 @@ void	ft_lexer_reader(t_token **token_list, char *input, t_state *state)
 		if (length == 0)
 			break ;
 		token_str = ft_strndup(reader, length);
-		printf("%s tokenised\n", token_str);
 		if (!token_str)
 			ft_exit("(Lexer) Failed to malloc token_str\n", state);
 		if (add_token(token_list, token_str))
 			ft_exit("(Lexer) Failed to add token", state);
 		reader += length;
-		length = 0;
 	}
+	print_token(*token_list);
 }
 
 void	tokenise(t_token *token)
