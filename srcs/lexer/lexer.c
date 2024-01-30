@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/30 12:46:39 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:10:39 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_lexer_reader(t_token **token_list, char *input, t_state *state)
 			length++;
 		if (length == 0)
 			break ;
-		token_str = strndup(reader, length);
+		token_str = ft_strndup(reader, length);
 		printf("%s tokenised\n", token_str);
 		if (!token_str)
 			ft_exit("(Lexer) Failed to malloc token_str\n", state);
