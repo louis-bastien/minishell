@@ -6,7 +6,7 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/01/30 12:49:45 by lbastien         ###   ########.fr        #
+#    Updated: 2024/01/30 15:56:51 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC = srcs/minishell.c \
 	srcs/lexer/lexer.c \
 	srcs/lexer/tokens.c \
 	srcs/parser/parser.c \
-	srcs/parser/redir.c \
+	srcs/parser/redirections.c \
 	srcs/utils/is_whitespace.c \
 	srcs/utils/ft_strlen.c \
 	srcs/utils/ft_init.c \
