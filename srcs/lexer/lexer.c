@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/30 17:32:43 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:34:15 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_lexer_reader(t_token **token_list, char *input, t_state *state)
 	char	*reader;
 
 	length = 0;
-	i = 0;
 	reader = input;
 	while (*reader)
 	{
