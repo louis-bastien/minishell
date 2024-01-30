@@ -6,17 +6,12 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/01/30 17:00:39 by lbastien         ###   ########.fr        #
+#    Updated: 2024/01/30 17:03:14 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-
-#Executer
-CC = gcc
 FLAGS = -Wall -Werror -Wextra -g #-fsanitize='address,undefined'
-
-#source files and headers
 SRC = srcs/minishell.c \
 	srcs/error/error.c \
 	srcs/error/exit.c \

@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/30 13:02:03 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:07:01 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv) //, char **envp)
 {
 	t_state	*state;
 
 	if (argc != 1 || argv[1])
 		perror("The number of arguments is not valid.\n");
 	state = init_state();
-	state->data->env = copy_env(envp);
+	//state->data->env = copy_env(envp);
 	run_shell(state);
 	return (1);
 }
