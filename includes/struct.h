@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/30 11:06:42 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:00:28 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,18 @@ typedef struct s_command
 	struct s_command	*next;
 }	t_command;
 
-typedef struct s_state
-{
-	bool		should_terminate;
-	t_token		*token_list;
-	t_command	*cmd_list;
-}	t_state;
-
 typedef struct s_data
 {
 	char	**env;
 	char	**path;
 }	t_data;
+
+typedef struct s_state
+{
+	bool		should_terminate;
+	t_token		*token_list;
+	t_command	*cmd_list;
+	t_data		*data;
+}	t_state;
 
 #endif

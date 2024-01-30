@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/30 11:27:11 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/01/30 12:47:18 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int			add_token(t_token **token_list, char *str);
 t_token		*create_token(char *str);
 
 //Utils 
-int			ft_strlen(const char *str);
 int			is_whitespace(char c);
 
 //Exit

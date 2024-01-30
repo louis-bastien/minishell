@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/01/30 11:27:15 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/01/30 12:48:36 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**copy_env(char **env)
 		j++;
 	data_env = malloc(sizeof(char *) * (j + 1));
 	if (!data_env)
-		ft_error_sms(strerror(ENOMEN));
+		ft_error_sms("malloc");
 	i = 0;
 	while (i < j)
 	{

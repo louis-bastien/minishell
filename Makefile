@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
+#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/01/30 11:35:28 by agheredi         ###   ########.fr        #
+#    Updated: 2024/01/30 12:49:45 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,10 @@ $(OBJ_DIR)/%.o: srcs/lexer/%.c $(HEADER) Makefile
 	@$(CC) $(FLAGS) $(INCLUDES) -c -o $@ $<
 
 $(OBJ_DIR)/%.o: srcs/parser/%.c $(HEADER) Makefile
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(FLAGS) $(INCLUDES) -c -o $@ $<
+
+$(OBJ_DIR)/%.o: srcs/executor/%.c $(HEADER) Makefile
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(FLAGS) $(INCLUDES) -c -o $@ $<
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/30 11:27:27 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:02:03 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 int	main(int argc, char **argv, char **envp)
 {
 	t_state	*state;
-	t_data	data;
 
 	if (argc != 1 || argv[1])
 		perror("The number of arguments is not valid.\n");
-	data.env = copy_env(envp);
 	state = init_state();
+	state->data->env = copy_env(envp);
 	run_shell(state);
 	return (1);
 }
@@ -37,6 +36,7 @@ void	run_shell(t_state *state)
 //		add_history(input);
 		ft_lexer(input, state);
 		ft_parser(state);
+//
 		free(input);
 	}
 }
@@ -49,5 +49,6 @@ t_state	*init_state(void)
 	new_state->should_terminate = false;
 	new_state->token_list = NULL;
 	new_state->cmd_list = NULL;
+	new_state->data =  NULL;
 	return (new_state);
 }
