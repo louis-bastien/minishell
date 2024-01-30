@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:00:10 by agheredi          #+#    #+#             */
-/*   Updated: 2023/09/08 10:47:44 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:29:20 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char	*ft_move_line(char *stash)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*stash[OPEN_MAX];
+	static char	*stash[FOPEN_MAX];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
