@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/30 17:24:58 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:46:18 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	run_shell(t_state *state)
 	{
 		input = readline("minishell_$> ");
 		if (!input)
-			ft_exit("(Input) returned an error or EOF", state);
+			ft_exit("(Input) EOF reached or input error from Readline", state);
 //		add_history(input);
 		ft_lexer(input, state);
 		ft_parser(state);

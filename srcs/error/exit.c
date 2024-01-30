@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/30 11:19:52 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:44:27 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	ft_exit(char *str, t_state *state)
 		free (state);
 		state = NULL;
 	}
-	printf("Exiting\n");
-	exit(1);
+	printf("Exiting Gracefully\n");
+	exit(0);
 }
 
 void	free_tab(char **tab_str)
