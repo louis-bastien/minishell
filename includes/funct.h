@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/29 16:29:48 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:27:11 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,13 @@ void		free_token(t_token *node);
 void		free_cmds(t_command *cmds);
 void		free_cmd(t_command *cmd);
 void		free_args(t_command *cmd);
+
+//Errors
+void		ft_error(char *str, t_state *state);
+void		ft_error_sms(char *str);
+void		ft_error_perm(int perm, char *str);
+
+//Init
+char		**copy_env(char **env);
 
 #endif

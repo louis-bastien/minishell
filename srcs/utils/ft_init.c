@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/30 11:19:52 by agheredi         ###   ########.fr       */
+/*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
+/*   Updated: 2024/01/30 11:27:15 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
-void	ft_exit(char *str, t_state *state)
+char	**copy_env(char **env)
 {
-	printf("Error: %s\n", str);
-	if (state)
-	{
-		if (state->token_list)
-			free_tokens (state->token_list);
-		if (state->cmd_list)
-			free_cmds (state->cmd_list);
-		free (state);
-		state = NULL;
-	}
-	printf("Exiting\n");
-	exit(1);
-}
+	int		i;
+	int		j;
+	char	**data_env;
 
-void	free_tab(char **tab_str)
-{
-	int	i;
-
+	i = -1;
+	j = 0;
+	while (env[++i])
+		j++;
+	data_env = malloc(sizeof(char *) * (j + 1));
+	if (!data_env)
+		ft_error_sms(strerror(ENOMEN));
 	i = 0;
-	while (tab_str[i])
+	while (i < j)
 	{
-		free(tab_str[i]);
+		data_env[i] = ft_strdup(env[i]);
 		i++;
 	}
-	free(tab_str);
+	data_env[i] = NULL;
+	return (data_env);
 }

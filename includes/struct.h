@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/29 16:02:05 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:06:42 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+# define NOFILE 404
+# define NOREAD 403
+# define NOWRITE 402
+# define NOCMD 127
 
 typedef enum s_ttype
 {
@@ -48,5 +53,11 @@ typedef struct s_state
 	t_token		*token_list;
 	t_command	*cmd_list;
 }	t_state;
+
+typedef struct s_data
+{
+	char	**env;
+	char	**path;
+}	t_data;
 
 #endif

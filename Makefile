@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
+#    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/01/29 17:35:15 by lbastien         ###   ########.fr        #
+#    Updated: 2024/01/30 11:35:28 by agheredi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ SRC = srcs/minishell.c \
 	srcs/parser/parser.c \
 	srcs/parser/redir.c \
 	srcs/utils/is_whitespace.c \
-	srcs/utils/ft_strlen.c 
+	srcs/utils/ft_strlen.c \
+	srcs/utils/ft_init.c \
+	srcs/executor/ft_heredoc.c \
 
 CC = gcc
 
