@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/30 18:41:47 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/31 14:49:34 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void		print_token(t_token *tokens);
 //Utils 
 int			is_whitespace(char c);
 void		ft_print_cmds(t_command *commands);
+char		*get_var_env(char *var, char **envp);
 
 //Exit
 void		ft_exit(char *str, t_state *state);
@@ -58,5 +59,9 @@ void		ft_error_perm(int perm, char *str);
 
 //Init
 char		**copy_env(char **env);
+
+//Builtins
+int			ft_builtins(char **argv, char *envp);
+int			minicd(char **argv, char **envp);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
+#    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/01/30 18:42:18 by lbastien         ###   ########.fr        #
+#    Updated: 2024/01/31 14:32:00 by agheredi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,10 @@ SRC = srcs/minishell.c \
 	srcs/utils/ft_strlen.c \
 	srcs/utils/ft_init.c \
 	srcs/utils/ft_print_cmds.c \
+	srcs/utils/get_var_envp.c \
 	srcs/executor/ft_heredoc.c \
+	srcs/builtins/ft_builtins.c \
+	srcs/builtins/minicd.c \
 
 HEADER = includes/minishell.h \
 		includes/funct.h \
