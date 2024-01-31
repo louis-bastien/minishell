@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/31 14:49:34 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:37:03 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,16 @@ t_state		*init_state(void);
 
 //Lexer
 void		ft_lexer(char *input, t_state *state);
-void		ft_lexer_reader(t_token **token_list, char *input, t_state *state);
-void		tokenise(t_token *token);
+void		create_tokens(t_token **token_list, char *input, t_state *state);
+void		parse_type(t_token *token);
+void		skip_whitespaces(char **str);
+char		*handle_quotes(char **reader, t_state *state);
+char		*handle_regular_expression(char **reader, t_state *state);
+int			is_whitespace(char c);
+int			is_quote(char c);
+int			is_token(char c);
+int			is_single_token(char *str);
+int			is_double_token(char *str);
 
 //Parser
 void		ft_parser(t_state *state);
@@ -40,7 +48,6 @@ t_token		*create_token(char *str);
 void		print_token(t_token *tokens);
 
 //Utils 
-int			is_whitespace(char c);
 void		ft_print_cmds(t_command *commands);
 char		*get_var_env(char *var, char **envp);
 

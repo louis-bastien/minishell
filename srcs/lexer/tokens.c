@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:29:59 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/30 18:30:58 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:15:21 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_token	*create_token(char *str)
 	if (!token)
 		return (NULL);
 	token->str = str;
+	token->to_expand = true;
 	token->next = NULL;
 	token->prev = NULL;
 	return (token);

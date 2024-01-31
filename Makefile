@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
+#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/01/31 14:32:00 by agheredi         ###   ########.fr        #
+#    Updated: 2024/01/31 18:41:39 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,11 @@ SRC = srcs/minishell.c \
 	srcs/error/exit.c \
 	srcs/error/free.c \
 	srcs/lexer/lexer.c \
+	srcs/lexer/char_checker.c \
+	srcs/lexer/char_handler.c \
 	srcs/lexer/tokens.c \
 	srcs/parser/parser.c \
 	srcs/parser/redirections.c \
-	srcs/utils/is_whitespace.c \
 	srcs/utils/ft_strlen.c \
 	srcs/utils/ft_init.c \
 	srcs/utils/ft_print_cmds.c \
@@ -83,6 +84,10 @@ $(OBJ_DIR)/%.o: srcs/executor/%.c $(HEADER) Makefile
 	@$(CC) $(FLAGS) $(INCLUDES) -c -o $@ $<
 
 $(OBJ_DIR)/%.o: srcs/utils/%.c $(HEADER) Makefile
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(FLAGS) $(INCLUDES) -c -o $@ $<
+
+$(OBJ_DIR)/%.o: srcs/builtins/%.c $(HEADER) Makefile
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(FLAGS) $(INCLUDES) -c -o $@ $<
 
