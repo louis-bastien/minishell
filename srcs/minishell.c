@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/31 23:14:35 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:19:03 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,11 @@ void	run_shell(t_state *state)
 			ft_exit("(Input) EOF reached or input error from Readline", state);
 //		add_history(input);
 		ft_lexer(input, state);
-//		ft_expander(state);
+		printf("Raw:\n");
+		print_token(state->token_list);
+		ft_expander(state);
+		printf("Expanded:\n");
+		print_token(state->token_list);
 		ft_parser(state);
 		free(input);
 	}

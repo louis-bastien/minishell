@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/31 18:37:03 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/01 15:58:04 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ int			is_quote(char c);
 int			is_token(char c);
 int			is_single_token(char *str);
 int			is_double_token(char *str);
+
+//Expander
+void		ft_expander(t_state *state);
+char		*expand_env_variables(char *str, t_state *state);
+char		*replace_env(char *str, int env_pos, char *value);
+char		*get_env_value(char *str, t_state *state);
+char		*get_env_name(char *env);
+char		*get_exit_status(char *str);
+int			is_valid_env(char c);
 
 //Parser
 void		ft_parser(t_state *state);

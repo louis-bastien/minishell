@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/31 20:46:02 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:08:31 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	create_tokens(t_token **token_list, char *input, t_state *state)
 		add_token(token_list, token_str);
 		reader += ft_strlen(token_str);
 	}
-	print_token(*token_list);
 }
 
 void	parse_type(t_token *token)

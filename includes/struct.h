@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/31 20:40:08 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/01 11:01:41 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_token
 {
 	char			*str;
 	t_ttype			type;
-	bool			to_expand;
 	struct s_token	*next;
 	struct s_token	*prev;
 }	t_token;
