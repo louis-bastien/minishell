@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:19:28 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/01 16:08:39 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:19:35 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ char	*get_env_value(char *str, t_state *state)
 	if (!name)
 		ft_exit("(Expander) Failed to malloc name", state);
 	else if (ft_strlen(name) == 1 && name[0] == '?')
-	{
 		value = get_exit_status("exit_status");
-		printf("printing1 %s\n", value);
-	}
 	else
 		value = getenv(name);
 	if (!value)

@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:18:17 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/01 16:09:19 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:19:34 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	*expand_env_variables(char *str, t_state *state)
 	{
 		if (*current == '$' && is_valid_env(*(current + 1)))
 		{
-			printf("entering\n");
 			env_pos = current - str;
 			value = get_env_value(current, state);
 			new_str = replace_env(str, env_pos, value);
