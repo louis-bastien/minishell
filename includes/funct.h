@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/01 15:58:04 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:27:34 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,17 @@ t_token		*import_tokens(t_token *tokens, int token_counter);
 void		remove_token(t_token **token_list, t_token *token);
 int			add_token(t_token **token_list, char *str);
 t_token		*create_token(char *str);
-void		print_token(t_token *tokens);
 
 //Utils 
 void		ft_print_cmds(t_command *commands);
-char		*get_var_env(char *var, char **envp);
+void		print_args(t_command *command);
+void		print_token(t_token *tokens);
+char		*print_type(t_ttype type);
+
 
 //Exit
 void		ft_exit(char *str, t_state *state);
+void		reset_all(t_state *state);
 void		free_tokens(t_token	*tokens);
 void		free_token(t_token *node);
 void		free_cmds(t_command *cmds);

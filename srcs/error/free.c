@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 17:00:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/26 16:13:02 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:13:55 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	free_cmds(t_command *cmd_list)
 	t_command	*tmp;
 
 	tmp = cmd_list;
-	while (tmp)
+	while (cmd_list)
 	{
-		cmd_list = cmd_list->next;
-		free_cmd(tmp);
-		tmp = cmd_list;
+		tmp = (cmd_list)->next;
+		free_cmd(cmd_list);
+		cmd_list = tmp;
 	}
 }
 
@@ -45,11 +45,11 @@ void	free_tokens(t_token	*tokens)
 	t_token	*tmp;
 
 	tmp = tokens;
-	while (tmp)
+	while (tokens)
 	{
-		tokens = tokens->next;
-		free_token(tmp);
-		tmp = tokens;
+		tmp = tokens->next;
+		free_token (tokens);
+		tokens = tmp;
 	}
 }
 

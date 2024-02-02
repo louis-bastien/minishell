@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/01 12:08:31 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:13:23 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,10 @@
 void	ft_lexer(char *input, t_state *state)
 {
 	t_token	*token_list;
-	t_token	*tmp;
 
 	token_list = NULL;
 	create_tokens(&token_list, input, state);
-	tmp = token_list;
-	while (tmp)
-	{
-		parse_type(tmp);
-		tmp = tmp->next;
-	}
+	parse_type(token_list);
 	state->token_list = token_list;
 }
 
@@ -56,27 +50,31 @@ void	parse_type(t_token *token)
 {
 	char	*str;
 
-	str = token->str;
-	if (ft_strlen(str) == 1)
+	while (token)
 	{
-		if (*str == '|')
-			token->type = PIPE;
-		else if (*str == '<')
-			token->type = INPUT;
-		else if (*str == '>')
-			token->type = OUTPUT;
+		str = token->str;
+		if (ft_strlen(str) == 1)
+		{
+			if (*str == '|')
+				token->type = PIPE;
+			else if (*str == '<')
+				token->type = INPUT;
+			else if (*str == '>')
+				token->type = OUTPUT;
+			else
+				token->type = WORD;
+		}
+		else if (ft_strlen(str) == 2)
+		{
+			if (*str == '<' && *(str + 1) == '<')
+				token->type = HEREDOC;
+			else if (*str == '>' && *(str + 1) == '>')
+				token->type = APPEND;
+			else
+				token->type = WORD;
+		}
 		else
 			token->type = WORD;
+		token = token->next;
 	}
-	else if (ft_strlen(str) == 2)
-	{
-		if (*str == '<' && *(str + 1) == '<')
-			token->type = HEREDOC;
-		else if (*str == '>' && *(str + 1) == '>')
-			token->type = APPEND;
-		else
-			token->type = WORD;
-	}
-	else
-		token->type = WORD;
 }

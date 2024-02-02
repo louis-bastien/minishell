@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:18:17 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/01 16:19:34 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/02 17:37:26 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ char	*expand_env_variables(char *str, t_state *state)
 				ft_exit("Failed to generate expanded string", state);
 			free(str);
 			str = new_str;
-			current = str + env_pos;
+			current = new_str + env_pos + ft_strlen(value);
 		}
-		current++;
+		else
+			current++;
 	}
 	return (str);
 }
@@ -56,15 +57,15 @@ char	*replace_env(char *str, int env_pos, char *value)
 	int		new_length;
 	int		name_length;
 
-	name_length = ft_strlen(get_env_name(str + env_pos));
+	name_length = ft_strlen(get_env_name(str + env_pos)) + 1;
 	new_length = ft_strlen(str) - (name_length) + ft_strlen(value);
-	new_str = malloc(sizeof(char) * new_length);
+	new_str = malloc(sizeof(char) * new_length + 1);
 	if (!new_str)
 		return (NULL);
 	strncpy(new_str, str, env_pos);
 	new_str[env_pos] = '\0';
 	strcat(new_str, value);
-	strcat(new_str, str + env_pos + (name_length + 1));
+	strcat(new_str, str + env_pos + (name_length));
 	return (new_str);
 }
 

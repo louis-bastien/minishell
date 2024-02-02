@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/01 12:06:51 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:35:59 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	ft_parser(t_state *state)
 {
 	init_cmd_list(state->token_list, state);
-//	ft_print_cmds(state->cmd_list);
 	ft_parse_tokens(state);
 }
 
@@ -60,9 +59,13 @@ t_command	*create_cmd(t_token *tokens, int token_counter)
 	new_cmd = malloc(sizeof(t_command));
 	if (!new_cmd)
 		return (NULL);
-	new_cmd->tokens = import_tokens(tokens, token_counter);
 	new_cmd->command = NULL;
 	new_cmd->args = NULL;
+	new_cmd->args_count = 0;
+	new_cmd->tokens = import_tokens(tokens, token_counter);
+	parse_type(new_cmd->tokens);
+	new_cmd->fd_in = -1;
+	new_cmd->fd_out = -1;
 	new_cmd->next = NULL;
 	return (new_cmd);
 }
@@ -77,6 +80,5 @@ int	count_upto_pipe(t_token *tokens)
 		count++;
 		tokens = tokens ->next;
 	}
-
 	return (count);
 }

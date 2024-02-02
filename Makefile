@@ -6,12 +6,12 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/02/01 15:26:15 by lbastien         ###   ########.fr        #
+#    Updated: 2024/02/02 15:38:06 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-FLAGS = -Wall -Werror -Wextra -g #-fsanitize='address,undefined'
+FLAGS = -Wall -Werror -Wextra -g -fsanitize='address,undefined'
 SRC = srcs/minishell.c \
 	srcs/error/error.c \
 	srcs/error/exit.c \
@@ -26,7 +26,7 @@ SRC = srcs/minishell.c \
 	srcs/parser/redirections.c \
 	srcs/utils/ft_strlen.c \
 	srcs/utils/ft_init.c \
-	srcs/utils/ft_print_cmds.c \
+	srcs/utils/print.c \
 	srcs/utils/get_var_envp.c \
 	srcs/executor/ft_heredoc.c \
 	srcs/builtins/ft_builtins.c \

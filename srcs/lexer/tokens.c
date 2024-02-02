@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:29:59 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/01 12:04:12 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:13:00 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,4 @@ t_token	*import_tokens(t_token *tokens, int token_counter)
 		i++;
 	}
 	return (tokens_list);
-}
-
-void	print_token(t_token *tokens)
-{
-	int	index;
-
-	index = 0;
-	while (tokens)
-	{
-		printf("token %d: %s\n", index, tokens->str);
-		index++;
-		tokens = tokens->next;
-	}
 }

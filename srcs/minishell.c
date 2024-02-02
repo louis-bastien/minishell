@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/01 14:19:03 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:27:26 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main(int argc, char **argv) //, char **envp)
 	state = init_state();
 	//state->data->env = copy_env(envp);
 	run_shell(state);
+	free(state);
+	state = NULL;
 	return (1);
 }
 
@@ -35,12 +37,11 @@ void	run_shell(t_state *state)
 			ft_exit("(Input) EOF reached or input error from Readline", state);
 //		add_history(input);
 		ft_lexer(input, state);
-		printf("Raw:\n");
-		print_token(state->token_list);
 		ft_expander(state);
-		printf("Expanded:\n");
 		print_token(state->token_list);
 		ft_parser(state);
+		ft_print_cmds(state->cmd_list);
+		reset_all(state);
 		free(input);
 	}
 }
@@ -53,6 +54,6 @@ t_state	*init_state(void)
 	new_state->should_terminate = false;
 	new_state->token_list = NULL;
 	new_state->cmd_list = NULL;
-	new_state->data =  NULL;
+	new_state->data = NULL;
 	return (new_state);
 }
