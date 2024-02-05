@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/05 17:56:35 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:59:23 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	open_fd(int *fd, const char *filename, int flags, t_state *state)
 	if (*fd > 1)
 		close(*fd);
 	*fd = open(filename, flags, 0644);
-	if (fd < 0)
+	if (*fd < 0)
 		ft_exit("(parser) could not open tmp file for heredoc", state);
 }
 
