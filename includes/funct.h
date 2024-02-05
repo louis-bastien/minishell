@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/02 16:27:34 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:11:19 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,7 @@ char		**copy_env(char **env);
 //Builtins
 int			ft_builtins(char **argv, char *envp);
 int			minicd(char **argv, char **envp);
+int			mini_pwd(t_state *state, char **env);
+int			mini_env(int outfd, char **env);
 
 #endif

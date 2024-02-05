@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
+#    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/02/02 15:38:06 by lbastien         ###   ########.fr        #
+#    Updated: 2024/02/05 12:10:33 by agheredi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SRC = srcs/minishell.c \
 	srcs/executor/ft_heredoc.c \
 	srcs/builtins/ft_builtins.c \
 	srcs/builtins/minicd.c \
+	srcs/builtins/minipwd.c \
+	srcs/builtins/minienv.c \
 
 HEADER = includes/minishell.h \
 		includes/funct.h \
