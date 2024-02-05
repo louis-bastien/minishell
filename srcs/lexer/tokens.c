@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:29:59 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/05 15:21:42 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:12:12 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,17 @@ void	remove_token(t_token **token_list, t_token *token)
 	if (token->next)
 		token->next->prev = token->prev;
 	free_token(token);
+}
+
+int	count_token(t_token *token)
+{
+	int	i;
+
+	i = 0;
+	while (token)
+	{
+		i++;
+		token = token->next;
+	}
+	return (i);
 }

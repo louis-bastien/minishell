@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/05 17:52:57 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:11:27 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ void		handle_redirections(t_command *cmd, t_state *state);
 void		handle_heredoc(t_token *token, t_command *cmd, t_state *state);
 void		parse_fd(t_token *token, t_command *cmd, t_state *state);
 void		open_fd(int *fd, const char *filename, int flags, t_state *state);
+void		handle_command(t_command *cmd, t_state *state);
+void		handle_args(t_command *cmd, t_state *state);
+
 
 //Token Management
 void		ft_parse_tokens(t_state *state);
@@ -57,13 +60,14 @@ t_token		*import_tokens(t_token *tokens, int token_counter);
 void		remove_token(t_token **token_list, t_token *token);
 int			add_token(t_token **token_list, char *str);
 t_token		*create_token(char *str);
+int			count_token(t_token *token);
+
 
 //Utils 
 void		ft_print_cmds(t_command *commands);
 void		print_args(t_command *command);
 void		print_token(t_token *tokens);
 char		*print_type(t_ttype type);
-
 
 //Exit
 void		ft_exit(char *str, t_state *state);

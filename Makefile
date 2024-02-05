@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
+#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/02/05 12:10:33 by agheredi         ###   ########.fr        #
+#    Updated: 2024/02/05 19:11:05 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC = srcs/minishell.c \
 	srcs/expander/env_variables.c \
 	srcs/parser/parser.c \
 	srcs/parser/redirections.c \
+	srcs/parser/args.c \
 	srcs/utils/ft_strlen.c \
 	srcs/utils/ft_init.c \
 	srcs/utils/print.c \
