@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:34:49 by agheredi          #+#    #+#             */
-/*   Updated: 2024/01/30 11:37:06 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:57:17 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_here_doc(char *argv)
 	int		infile;
 	char	*buf;
 
-	infile = open(".here_doc", O_CREAT | O_RDWR | O_TRUNC, 0644);
+	infile = open(".heredoc", O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (infile < 0)
 		ft_error_sms("Error here_doc\n");
 	while (1)

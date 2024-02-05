@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/05 12:11:19 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:52:57 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ int			add_cmd(t_command **cmd_list, t_token *tokens, int token_counter);
 t_command	*create_cmd(t_token *tokens, int token_counter);
 int			count_upto_pipe(t_token *tokens);
 void		handle_redirections(t_command *cmd, t_state *state);
+void		handle_heredoc(t_token *token, t_command *cmd, t_state *state);
+void		parse_fd(t_token *token, t_command *cmd, t_state *state);
+void		open_fd(int *fd, const char *filename, int flags, t_state *state);
 
 //Token Management
 void		ft_parse_tokens(t_state *state);
