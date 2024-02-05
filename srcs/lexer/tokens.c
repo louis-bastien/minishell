@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:29:59 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/02 15:13:00 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:21:42 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,15 @@ t_token	*import_tokens(t_token *tokens, int token_counter)
 		i++;
 	}
 	return (tokens_list);
+}
+
+void	remove_token(t_token **token_list, t_token *token)
+{
+	if (token->prev)
+		token->prev->next = token->next;
+	else
+		*token_list = token->next;
+	if (token->next)
+		token->next->prev = token->prev;
+	free_token(token);
 }
