@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:16:02 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/05 19:16:07 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/06 21:35:07 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	handle_command(t_command *cmd, t_state *state)
 
 	current = cmd->tokens;
 	if (!current || current->type != WORD)
-		ft_exit("(parser) Could not find a command", state);
+		ft_error("(parser) Could not find a command", state);
 	else
 	{
 		cmd->command = ft_strdup(current->str);
 		if (!cmd->command)
-			ft_exit("(parser) Failed to malloc command", state);
+			ft_error("(parser) Failed to malloc command", state);
 		remove_token(&cmd->tokens, current);
 	}
 }
@@ -40,13 +40,13 @@ void	handle_args(t_command *cmd, t_state *state)
 	cmd->args_count = count_token(current);
 	cmd->args = malloc(sizeof(char *) * (cmd->args_count + 1));
 	if (!cmd->args)
-		ft_exit("(parser) Failed to malloc args", state);
+		ft_error("(parser) Failed to malloc args", state);
 	while (i < cmd->args_count)
 	{
 		next = current->next;
 		cmd->args[i] = ft_strdup(current->str);
 		if (!cmd->args[i])
-			ft_exit("(parser) Failed to malloc arg", state);
+			ft_error("(parser) Failed to malloc arg", state);
 		remove_token(&cmd->tokens, current);
 		current = next;
 		i++;

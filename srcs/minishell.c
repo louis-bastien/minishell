@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/02 16:27:26 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/07 00:04:07 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	main(int argc, char **argv) //, char **envp)
 {
 	t_state	*state;
 
-	if (argc != 1 || argv[1])
-		perror("The number of arguments is not valid.\n");
 	state = init_state();
-	//state->data->env = copy_env(envp);
-	run_shell(state);
+	if (argc > 1 || argv[1])
+		perror("Minishell does not take any argument.");
+	else
+		run_shell(state);
 	free(state);
 	state = NULL;
 	return (1);
@@ -34,13 +34,17 @@ void	run_shell(t_state *state)
 	{
 		input = readline("minishell_$> ");
 		if (!input)
-			ft_exit("(Input) EOF reached or input error from Readline", state);
-//		add_history(input);
-		ft_lexer(input, state);
-		ft_expander(state);
-		print_token(state->token_list);
-		ft_parser(state);
-		ft_print_cmds(state->cmd_list);
+			ft_error("(Input) EOF reached or input error from Readline", state);
+		else
+		{
+			add_history(input);
+			ft_lexer(input, state);
+			if (!state->error)
+				ft_expander(state);
+			if (!state->error)
+				ft_parser(state);
+			ft_print_cmds(state->cmd_list);
+		}
 		reset_all(state);
 		free(input);
 	}
@@ -51,7 +55,7 @@ t_state	*init_state(void)
 	t_state	*new_state;
 
 	new_state = malloc(sizeof(t_state));
-	new_state->should_terminate = false;
+	new_state->error = NULL;
 	new_state->token_list = NULL;
 	new_state->cmd_list = NULL;
 	new_state->data = NULL;

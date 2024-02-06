@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:04:09 by lbastien          #+#    #+#             */
-/*   Updated: 2024/01/30 11:20:15 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/06 21:35:39 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	ft_error(char *str, t_state *state)
-{
-	printf("Error to handle");
-	ft_exit(str, state);
-}
 
 void	ft_error_sms(char *str)
 {

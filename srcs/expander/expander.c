@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:18:17 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/02 17:37:26 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/06 21:36:49 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*expand_env_variables(char *str, t_state *state)
 			value = get_env_value(current, state);
 			new_str = replace_env(str, env_pos, value);
 			if (!new_str)
-				ft_exit("Failed to generate expanded string", state);
+				ft_error("Failed to generate expanded string", state);
 			free(str);
 			str = new_str;
 			current = new_str + env_pos + ft_strlen(value);

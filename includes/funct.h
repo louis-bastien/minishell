@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/05 19:11:27 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/06 21:35:49 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ char		*print_type(t_ttype type);
 
 //Exit
 void		ft_exit(char *str, t_state *state);
+void		ft_error(char *str, t_state *state);
 void		reset_all(t_state *state);
 void		free_tokens(t_token	*tokens);
 void		free_token(t_token *node);

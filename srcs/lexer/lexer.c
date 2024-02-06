@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/02 15:13:23 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/07 00:03:57 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ void	create_tokens(t_token **token_list, char *input, t_state *state)
 	char	*reader;
 
 	reader = input;
-	while (*reader)
+	while (*reader && !state->error)
 	{
+		printf("char=%c", *reader);
 		skip_whitespaces(&reader);
 		if (is_quote(*reader))
 			token_str = handle_quotes(&reader, state);
@@ -39,10 +40,17 @@ void	create_tokens(t_token **token_list, char *input, t_state *state)
 			token_str = ft_strndup(reader, 2);
 		else if (*reader == '\0')
 			break ;
+		else if (!ft_isalnum(*reader))
+			ft_error("Unrecognized character in input", state);
 		else
 			token_str = handle_regular_expression(&reader, state);
-		add_token(token_list, token_str);
-		reader += ft_strlen(token_str);
+		if (token_str)
+		{
+			add_token(token_list, token_str);
+			reader += ft_strlen(token_str);
+		}
+		else
+			ft_error("Failed to parse token", state);
 	}
 }
 
