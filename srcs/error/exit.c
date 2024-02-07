@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/02 16:27:55 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/06 23:58:33 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,30 @@
 
 void	ft_exit(char *str, t_state *state)
 {
-	printf("Error: %s\n", str);
+	printf("Fatal Error: %s\n", str);
 	reset_all(state);
 	free (state);
 	state = NULL;
+	clear_history();
 	exit(0);
+}
+
+void	ft_error(char *str, t_state *state)
+{
+	if (!state->error)
+		state->error = ft_strdup(str);
 }
 
 void	reset_all(t_state *state)
 {
 	if (state)
 	{
+		if (state->error)
+		{
+			printf("Error: %s\n", state->error);
+			free(state->error);
+			state->error = NULL;
+		}
 		if (state->token_list)
 		{
 			free_tokens (state->token_list);

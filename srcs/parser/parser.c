@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/02 15:35:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/07 14:44:20 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	ft_parser(t_state *state)
 {
 	init_cmd_list(state->token_list, state);
-	ft_parse_tokens(state);
+	if (!state->error)
+		ft_parse_tokens(state);
 }
 
 void	init_cmd_list(t_token *tokens, t_state *state)
@@ -23,13 +24,20 @@ void	init_cmd_list(t_token *tokens, t_state *state)
 	int		token_counter;
 
 	token_counter = count_upto_pipe(tokens);
-	printf("%d elements counted\n", token_counter);
-	if (add_cmd(&state->cmd_list, tokens, token_counter))
-		ft_exit("(parser) Failed to add new cmd", state);
-	while (tokens && tokens->type != PIPE)
-		tokens = tokens->next;
-	if (tokens)
-		init_cmd_list(tokens->next, state);
+	if (token_counter)
+	{
+		if (add_cmd(&state->cmd_list, tokens, token_counter))
+			ft_error("(parser) Failed to add new cmd", state);
+		else
+		{
+			while (tokens && tokens->type != PIPE)
+				tokens = tokens->next;
+			if (tokens)
+				init_cmd_list(tokens->next, state);
+		}
+	}
+	else
+		ft_error("Make sure pipes are preceded and followed by valid commands", state);
 }
 
 int	add_cmd(t_command **cmd_list, t_token *tokens, int token_counter)

@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/05 18:27:05 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/07 14:45:20 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ void	ft_parse_tokens(t_state *state)
 	command = state->cmd_list;
 	while (command)
 	{
-		handle_redirections(command, state);
-		handle_command(command, state);
-		handle_args(command, state);
+		if (!state->error)
+			handle_redirections(command, state);
+		if (!state->error)
+			handle_command(command, state);
+		if (!state->error)
+			handle_args(command, state);
 		command = command->next;
 	}
 }
@@ -41,7 +44,10 @@ void	handle_redirections(t_command *cmd, t_state *state)
 			next_token = current->next;
 			file_token = next_token;
 			if (!file_token || file_token->type != WORD)
-				ft_exit("Missing file after redirection\n", state);
+			{
+				ft_error("Missing file after redirection", state);
+				break ;
+			}
 			else
 				parse_fd(current, cmd, state);
 			next_token = next_token->next;
@@ -63,13 +69,13 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 		close(cmd->fd_in);
 	fd = open(".heredoc", O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (fd < 0)
-		ft_exit("(parser) could not open tmp file for heredoc", state);
+		ft_error("(parser) could not open tmp file for heredoc", state);
 	while (1)
 	{
 		write(1, "heredoc> ", 9);
 		buffer = get_next_line(STDIN_FILENO);
 		if (!buffer)
-			ft_exit("(parser) empty buffer for heredoc", state);
+			ft_error("(parser) empty buffer for heredoc", state);
 		if (!ft_strncmp(token->str, buffer, ft_strlen(token->str)))
 			break ;
 		write(fd, buffer, ft_strlen(buffer));
@@ -103,7 +109,7 @@ void	open_fd(int *fd, const char *filename, int flags, t_state *state)
 		close(*fd);
 	*fd = open(filename, flags, 0644);
 	if (*fd < 0)
-		ft_exit("(parser) could not open tmp file for heredoc", state);
+		ft_error("(parser) could not open tmp file for heredoc", state);
 }
 
 

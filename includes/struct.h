@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/07 13:35:57 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:12:20 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_data
 
 typedef struct s_state
 {
-	bool		should_terminate;
+	char		*error;
 	t_token		*token_list;
 	t_command	*cmd_list;
 	t_data		*data;

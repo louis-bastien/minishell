@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/07 10:31:04 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:12:41 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ void		ft_lexer(char *input, t_state *state);
 void		create_tokens(t_token **token_list, char *input, t_state *state);
 void		parse_type(t_token *token);
 void		skip_whitespaces(char **str);
+char		*generate_token(char *reader, t_state *state);
 char		*handle_quotes(char **reader, t_state *state);
-char		*handle_regular_expression(char **reader, t_state *state);
+char		*handle_regular_expression(char *reader, t_state *state);
 int			is_whitespace(char c);
 int			is_quote(char c);
 int			is_token(char c);
 int			is_single_token(char *str);
 int			is_double_token(char *str);
+int			is_validchar (char c);
 
 //Expander
 void		ft_expander(t_state *state);
@@ -71,6 +73,7 @@ char		*print_type(t_ttype type);
 
 //Exit
 void		ft_exit(char *str, t_state *state);
+void		ft_error(char *str, t_state *state);
 void		reset_all(t_state *state);
 void		free_tokens(t_token	*tokens);
 void		free_token(t_token *node);
