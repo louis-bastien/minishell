@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/07 14:44:20 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:43:50 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_cmd_list(t_token *tokens, t_state *state)
 		}
 	}
 	else
-		ft_error("Make sure pipes are preceded and followed by valid commands", state);
+		ft_error("Use pipes with valid commands", state);
 }
 
 int	add_cmd(t_command **cmd_list, t_token *tokens, int token_counter)

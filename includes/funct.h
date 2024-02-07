@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/07 16:19:33 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/07 18:58:01 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void		parse_type(t_token *token);
 void		skip_whitespaces(char **str);
 char		*generate_token(char **reader, t_state *state);
 char		*handle_quotes(char **reader, t_state *state);
-char		*handle_regular_expression(char *reader, t_state *state);
+char		*handle_string(char **reader, t_state *state);
+char		*handle_token(char **reader, t_state *state);
 int			is_whitespace(char c);
 int			is_quote(char c);
 int			is_token(char c);
