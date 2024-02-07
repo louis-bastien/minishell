@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:32:31 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/07 14:07:48 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:20:36 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ char	*handle_quotes(char **reader, t_state *state)
 	char	quote;
 	int		i;
 
-	printf("ENTERING3\n");
 	quote = *(*reader)++;
 	token_str = NULL;
 	i = 0;
