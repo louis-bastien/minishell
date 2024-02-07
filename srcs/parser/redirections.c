@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/06 21:36:49 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/07 14:45:20 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ void	ft_parse_tokens(t_state *state)
 	command = state->cmd_list;
 	while (command)
 	{
-		handle_redirections(command, state);
-		handle_command(command, state);
-		handle_args(command, state);
+		if (!state->error)
+			handle_redirections(command, state);
+		if (!state->error)
+			handle_command(command, state);
+		if (!state->error)
+			handle_args(command, state);
 		command = command->next;
 	}
 }
@@ -41,7 +44,10 @@ void	handle_redirections(t_command *cmd, t_state *state)
 			next_token = current->next;
 			file_token = next_token;
 			if (!file_token || file_token->type != WORD)
-				ft_error("Missing file after redirection\n", state);
+			{
+				ft_error("Missing file after redirection", state);
+				break ;
+			}
 			else
 				parse_fd(current, cmd, state);
 			next_token = next_token->next;
