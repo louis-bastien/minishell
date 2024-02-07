@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/05 19:11:27 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/07 10:31:04 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,17 @@ int			ft_builtins(char **argv, char *envp);
 int			minicd(char **argv, char **envp);
 int			mini_pwd(t_state *state, char **env);
 int			mini_env(int outfd, char **env);
+int			mini_echo(int outfd, char **cmd);
+int			mini_exit(char **cmd);
+int			mini_export(int outfd, char **argv, char **env);
+int			mini_unset(int outfd, char **argv, char **env);
+
+//utils builtins
+void		print_var_res(int outfd, const char *var);
+int			is_env_var_valid(char *word);
+void		rm_var(char *var, char **env);
+
+//Executor
+void		pre_executor(t_state *state);
 
 #endif

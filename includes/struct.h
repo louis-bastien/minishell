@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/05 17:52:18 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:35:57 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_command
 	t_token				*tokens;
 	int					fd_in;
 	int					fd_out;
+	int					is_builtin;
 	struct s_command	*next;
 }	t_command;
 
@@ -53,6 +54,8 @@ typedef struct s_data
 	char	**path;
 	char	*pwd;
 	int		here_doc;
+	int		pipes;
+	int		exit_status;
 }	t_data;
 
 typedef struct s_state

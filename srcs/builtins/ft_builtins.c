@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtins.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:34:12 by agheredi          #+#    #+#             */
-/*   Updated: 2024/01/31 18:42:39 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:50:03 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@
 // 	else if (!ft_strncmp(argv[0], "exit", 5))
 // 		exit_status = minipwd();
 // 	else
-// 		exit_status = no_builtin();
+// 		exit_status = 1;
 // 	return (exit_status);
 // }
