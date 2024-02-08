@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/07 18:58:01 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:27:48 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ char		*get_env_value(char *str, t_state *state);
 char		*get_env_name(char *env);
 char		*get_exit_status(char *str);
 int			is_valid_env(char c);
+void		quote_wrapper(char **str, t_state *state);
+void		parse_single_quotes(char **str, char **current, t_state *state);
+void		remove_char_from_string(char *str, int pos);
 
 //Parser
 void		ft_parser(t_state *state);
@@ -69,7 +72,7 @@ int			count_token(t_token *token);
 //Utils 
 void		ft_print_cmds(t_command *commands);
 void		print_args(t_command *command);
-void		print_token(t_token *tokens);
+void		print_tokens(t_token *tokens);
 char		*print_type(t_ttype type);
 
 //Exit

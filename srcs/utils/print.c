@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 18:35:13 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/02 15:35:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:13:09 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_print_cmds(t_command *commands)
 		printf("command: %s\n", commands->command);
 		print_args(commands);
 		printf("args_count: %d\n", commands->args_count);
-		print_token(commands->tokens);
+		print_tokens(commands->tokens);
 		printf("fd_in: %d\n", commands->fd_in);
 		printf("fd_out: %d\n", commands->fd_out);
 		printf("==\n");
@@ -46,7 +46,7 @@ void	print_args(t_command *command)
 	printf("\n");
 }
 
-void	print_token(t_token *tokens)
+void	print_tokens(t_token *tokens)
 {
 	printf("tokens: ");
 	while (tokens)

@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/07 19:06:04 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:02:20 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	create_tokens(t_token **token_list, char *input, t_state *state)
 char	*generate_token(char **reader, t_state *state)
 {
 	char	*token_str;
-	
+
 	token_str = NULL;
 	if (is_single_token(*reader) || is_double_token(*reader))
 		token_str = handle_token(reader, state);

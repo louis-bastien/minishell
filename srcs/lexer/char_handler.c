@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:32:31 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/07 19:07:29 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/08 20:08:00 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,39 +18,16 @@ void	skip_whitespaces(char **str)
 		(*str)++;
 }
 
-char	*handle_quotes(char **reader, t_state *state)
-{
-	char	*token_str;
-	char	quote;
-	int		i;
-
-	quote = *(*reader)++;
-	token_str = NULL;
-	i = 0;
-	while ((*reader)[i] && (*reader)[i] != quote)
-		i++;
-	if ((*reader)[i] != quote)
-		ft_error("Unclosed quote", state);
-	else
-	{
-		token_str = ft_strndup(*reader, i);
-		if (!token_str && i)
-			ft_error("Failed to malloc quoted token", state);
-		(*reader)++;
-	}
-	return (token_str);
-}
-
 char	*handle_string(char **reader, t_state *state)
 {
 	char	*token_str;
-	char 	*current;
+	char	*current;
 	int		i;
 
 	token_str = NULL;
 	current = *reader;
 	i = 0;
-	while (is_validchar(**reader))
+	while (is_validchar(*current++))
 		i++;
 	token_str = ft_strndup(*reader, i);
 	*reader += i;
@@ -64,7 +41,7 @@ char	*handle_string(char **reader, t_state *state)
 
 char	*handle_token(char **reader, t_state *state)
 {
-	char *token_str;
+	char	*token_str;
 
 	token_str = NULL;
 	if (is_single_token(*reader))
