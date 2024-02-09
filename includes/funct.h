@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/07 15:12:41 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:54:47 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 //Main
 void		run_shell(t_state *state);
-t_state		*init_state(void);
+t_state		*init_state(char **envp);
 
 //Lexer
 void		ft_lexer(char *input, t_state *state);
@@ -90,21 +90,22 @@ void		ft_error_perm(int perm, char *str);
 char		**copy_env(char **env);
 
 //Builtins
-int			ft_builtins(char **argv, char *envp);
-int			minicd(char **argv, char **envp);
-int			mini_pwd(t_state *state, char **env);
-int			mini_env(int outfd, char **env);
-int			mini_echo(int outfd, char **cmd);
-int			mini_exit(char **cmd);
-int			mini_export(int outfd, char **argv, char **env);
-int			mini_unset(int outfd, char **argv, char **env);
+int			ft_builtins(t_state *state);
+int			minicd(t_state *state);
+int			mini_pwd(t_state *state);
+int			mini_env(t_state *state);
+int			mini_echo(t_state *state);
+int			mini_exit(t_state *state);
+int			mini_export(t_state *state);
+int			mini_unset(t_state *state);
 
 //utils builtins
 void		print_var_res(int outfd, const char *var);
 int			is_env_var_valid(char *word);
-void		rm_var(char *var, char **env);
+//void		rm_var(char *var, char **env);
+char		*get_var_env(char *var, char **envp);
 
 //Executor
-void		pre_executor(t_state *state);
+int			pre_executor(t_state *state);
 
 #endif

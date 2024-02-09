@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/07 15:15:29 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:57:22 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(int argc, char **argv) //, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	t_state	*state;
 
-	state = init_state();
+	state = init_state(envp);
 	if (argc > 1 || argv[1])
 		perror("Minishell does not take any argument.");
 	else
@@ -52,14 +52,17 @@ void	run_shell(t_state *state)
 	}
 }
 
-t_state	*init_state(void)
+t_state	*init_state(char **envp)
 {
 	t_state	*new_state;
 
-	new_state = malloc(sizeof(t_state));
+	new_state = (t_state *)malloc(sizeof(t_state));
 	new_state->error = NULL;
 	new_state->token_list = NULL;
 	new_state->cmd_list = NULL;
-	new_state->data = NULL;
+	new_state->data = malloc(sizeof(t_data));
+	if (!new_state->data)
+		ft_error_sms("Error: No se pudo asignar memoria.\n");
+	new_state->data->env = copy_env(envp);
 	return (new_state);
 }

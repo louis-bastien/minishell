@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   miniexit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:10:31 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/07 10:11:10 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:45:55 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	mini_exit(char **cmd)
+int	mini_exit(t_state *state)
 {
 	ft_putendl_fd("exit", STDERR_FILENO);
-	if (cmd[1] && cmd[2])
+	if (state->cmd_list->args[1] && state->cmd_list->args[2])
 	{
 		ft_putstr_fd("Minishell: exit: to many argumnets\n", 2);
 		return (1);

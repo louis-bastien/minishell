@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre_executor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/07 13:53:51 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:47:27 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	one_cmd(t_state *state)
 {
 	if (state->cmd_list->is_builtin == 0)
-		ft_builtins(state->cmd_list->command, state->data->env);
+		ft_builtins(state);
 	else
 	{
 		//crear un hijo para ejecutar el cmd

@@ -3,35 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   miniecho.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:08:26 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/07 10:08:53 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:37:39 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	mini_echo(int outfd, char **cmd)
+int	mini_echo(t_state *state)
 {
 	int	i;
 	int	flag;
 
 	i = 2;
 	flag = 0;
-	if (cmd && cmd[i][0] == '-' && cmd[i][1] == 'n')
+	if (state->cmd_list->args && state->cmd_list->args[i][0] == '-'
+		&& state->cmd_list->args[i][1] == 'n')
 	{
 		flag = 1;
 		i++;
 	}
-	while (cmd[i])
+	while (state->cmd_list->args[i])
 	{
-		ft_putstr_fd(cmd[i], outfd);
+		ft_putstr_fd(state->cmd_list->args[i], state->cmd_list->fd_out);
 		i++;
-		if (cmd[i])
-			ft_putstr_fd(" ", outfd);
+		if (state->cmd_list->args[i])
+			ft_putstr_fd(" ", state->cmd_list->fd_out);
 	}
 	if (flag == 0)
-		ft_putstr_fd("\n", outfd);
+		ft_putstr_fd("\n", state->cmd_list->fd_out);
 	return (0);
 }
