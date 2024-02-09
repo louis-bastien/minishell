@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/08 19:27:48 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:05:27 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,16 @@ int			is_validchar (char c);
 //Expander
 void		ft_expander(t_state *state);
 char		*expand_env_variables(char *str, t_state *state);
-char		*replace_env(char *str, int env_pos, char *value);
-char		*get_env_value(char *str, t_state *state);
-char		*get_env_name(char *env);
+char		*replace_env(char *str, int env_pos, char *value, char *name);
+char		*get_env_value(char *name);
+char		*get_env_name(char *env, int end_pos);
 char		*get_exit_status(char *str);
 int			is_valid_env(char c);
 void		quote_wrapper(char **str, t_state *state);
 void		parse_single_quotes(char **str, char **current, t_state *state);
+void		parse_double_quotes(char **str, char **current, t_state *state);
 void		remove_char_from_string(char *str, int pos);
+char		*expnvar(char **str, int start_pos, int end_pos, t_state *state);
 
 //Parser
 void		ft_parser(t_state *state);
