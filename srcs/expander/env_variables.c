@@ -6,20 +6,19 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:19:28 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/06 21:36:49 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:49:43 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*get_env_name(char *name)
+char	*get_env_name(char *name, int len)
 {
 	char	*value;
 	int		i;
 
 	i = 0;
-	name += 1;
-	while (is_valid_env(name[i]))
+	while (is_valid_env(name[i]) && len)
 		i++;
 	value = ft_strndup(name, i);
 	if (!value)
@@ -27,22 +26,16 @@ char	*get_env_name(char *name)
 	return (value);
 }
 
-char	*get_env_value(char *str, t_state *state)
+char	*get_env_value(char *name)
 {
-	char	*name;
 	char	*value;
 
-	value = NULL;
-	name = get_env_name(str);
-	if (!name)
-		ft_error("(Expander) Failed to malloc name", state);
-	else if (ft_strlen(name) == 1 && name[0] == '?')
+	if (ft_strlen(name) == 1 && name[0] == '?')
 		value = get_exit_status("exit_status");
 	else
 		value = getenv(name);
 	if (!value)
 		value = "";
-	free (name);
 	return (value);
 }
 

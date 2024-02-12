@@ -30,8 +30,13 @@ Kernel configured for up to 8 processors.
 Processor type: arm64e (ARM64E)
 Processors active: 0 1 2 3 4 5 6 7
 Primary memory available: 8.00 gigabytes
+<<<<<<< HEAD
 Default processor set: 564 tasks, 2705 threads, 8 processors
 Load average: 1.64, Mach factor: 6.35
+=======
+Default processor set: 655 tasks, 3028 threads, 8 processors
+Load average: 3.22, Mach factor: 4.76
+>>>>>>> main
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -2201,7 +2206,11 @@ configure:6129: checking for tgetent
 configure:6129: gcc -o conftest -g -O2   conftest.c  >&5
 ld: Undefined symbols:
   _tgetent, referenced from:
+<<<<<<< HEAD
       _main in conftest-c50c55.o
+=======
+      _main in conftest-efdde3.o
+>>>>>>> main
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:6129: $? = 1
 configure: failed program was:
@@ -2586,7 +2595,11 @@ configure:6458: checking for mbscasecmp
 configure:6458: gcc -o conftest -g -O2   conftest.c  >&5
 ld: Undefined symbols:
   _mbscasecmp, referenced from:
+<<<<<<< HEAD
       _main in conftest-d5a1aa.o
+=======
+      _main in conftest-b0c54e.o
+>>>>>>> main
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:6458: $? = 1
 configure: failed program was:
@@ -2716,7 +2729,11 @@ configure:6464: checking for mbscmp
 configure:6464: gcc -o conftest -g -O2   conftest.c  >&5
 ld: Undefined symbols:
   _mbscmp, referenced from:
+<<<<<<< HEAD
       _main in conftest-c8e418.o
+=======
+      _main in conftest-694b3a.o
+>>>>>>> main
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:6464: $? = 1
 configure: failed program was:
@@ -2854,7 +2871,11 @@ configure:6483: checking for mbschr
 configure:6483: gcc -o conftest -g -O2   conftest.c  >&5
 ld: Undefined symbols:
   _mbschr, referenced from:
+<<<<<<< HEAD
       _main in conftest-5537bb.o
+=======
+      _main in conftest-ce9065.o
+>>>>>>> main
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:6483: $? = 1
 configure: failed program was:

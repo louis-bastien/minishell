@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/06 23:58:33 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:25:35 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_exit(char *str, t_state *state)
 	free (state);
 	state = NULL;
 	clear_history();
-	exit(0);
 }
 
 void	ft_error(char *str, t_state *state)

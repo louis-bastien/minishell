@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:30:38 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/07 13:39:41 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/07 18:58:29 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ int	is_double_token(char *str)
 
 int	is_validchar (char c)
 {
+	if (c == '\0')
+		return (0);
 	if (is_token(c))
 		return (0);
 	else if (is_whitespace(c))
 		return (0);
-	else if (is_quote(c))
-		return (0);
-	else if (c != '$' && !ft_isalnum(c))
+	else if (c != '$' && !ft_isalnum(c) && !is_quote(c))
 		return (0);
 	else
 		return (1);

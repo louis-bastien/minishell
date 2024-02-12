@@ -6,7 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/12 13:50:37 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/12 19:54:17 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ int	main(int argc, char **argv, char **envp)
 		perror("Minishell does not take any argument.");
 	else
 		run_shell(state);
-	free(state);
-	state = NULL;
-	return (1);
+	ft_exit("Reached end of main", state);
+	return (0);
 }
 
 void	run_shell(t_state *state)
@@ -39,8 +38,10 @@ void	run_shell(t_state *state)
 		{
 			add_history(input);
 			ft_lexer(input, state);
+			print_tokens(state->token_list);
 			if (!state->error)
 				ft_expander(state);
+			print_tokens(state->token_list);
 			if (!state->error)
 				ft_parser(state);
 			if (!state->error)
@@ -50,6 +51,7 @@ void	run_shell(t_state *state)
 		reset_all(state);
 		free(input);
 	}
+	clear_history();
 }
 
 t_state	*init_state(char **envp)

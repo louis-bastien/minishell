@@ -6,6 +6,16 @@
 		"string_view": "c",
 		"minishell.h": "c",
 		"struct.h": "c",
-		"locale": "c"
+		"locale": "c",
+		"__bit_reference": "c",
+		"__hash_table": "c",
+		"__split_buffer": "c",
+		"array": "c",
+		"initializer_list": "c",
+		"ios": "c",
+		"iterator": "c",
+		"unordered_map": "c",
+		"vector": "c",
+		"sstream": "c"
 	}
 }
