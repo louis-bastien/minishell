@@ -6,7 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/12 13:10:57 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/12 13:50:37 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ t_state	*init_state(char **envp)
 		ft_error_sms("Error: No se pudo asignar memoria.\n");
 	new_state->data->env = copy_env(envp);
 	new_state->data->path = ft_parse_path(envp);
+	new_state->data->pipes = 0;
 	return (new_state);
 }

@@ -6,7 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/12 13:36:31 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/12 14:45:49 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	exc_one_cmd(t_state *state)
 	path = get_path(state->data->path, state->cmd_list->command);
 	if (path == NULL)
 		ft_error_perm(NOCMD, state->cmd_list->command);
-	execve(path, &state->cmd_list->command, state->data->env);
+	execve(state->data->path, &state->cmd_list->command, state->data->env);
 }
 
 int	one_cmd(t_state *state)

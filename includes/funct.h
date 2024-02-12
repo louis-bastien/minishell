@@ -6,7 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/12 13:27:03 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/12 14:04:39 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void		ft_error_perm(int perm, char *str);
 
 //Init
 char		**copy_env(char **env);
+void		is_builtins(t_state *state);
 
 //Builtins
 int			ft_builtins(t_state *state);
