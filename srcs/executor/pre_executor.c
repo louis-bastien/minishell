@@ -6,31 +6,60 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/09 20:47:27 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/12 13:36:31 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+void	exc_one_cmd(t_state *state)
+{
+	char	*path;
+
+	path = get_path(state->data->path, state->cmd_list->command);
+	if (path == NULL)
+		ft_error_perm(NOCMD, state->cmd_list->command);
+	execve(path, &state->cmd_list->command, state->data->env);
+}
+
 int	one_cmd(t_state *state)
 {
+	int	exit_code;
+	int	pid;
+	int	status;
+
+	exit_code = 0;
 	if (state->cmd_list->is_builtin == 0)
-		ft_builtins(state);
+	{
+		exit_code = ft_builtins(state);
+		return (exit_code);
+	}
 	else
 	{
-		//crear un hijo para ejecutar el cmd
+		pid = fork();
+		if (pid < 0)
+			ft_error_sms("Error en fork");
+		if (pid == 0)
+			exc_one_cmd(state);
+		waitpid(pid, &status, 0);
+		if (WEXITSTATUS(status) != 0)
+			exit(WEXITSTATUS(status));
 	}
-	return (0);
+	return (exit_code);
 }
 
 int	pre_executor(t_state *state)
 {
+	int	exit_code;
+
 	if (state->data->pipes == 0)
-		one_cmd(state);
+		exit_code = one_cmd(state);
 	else
 	{
+		exit_code = 0;
+		printf("mas de un comando\n");
 		//malloc de los pid
 		//executor
 	}
-	return (0);
+	return (exit_code);
 }

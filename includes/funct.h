@@ -6,7 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/09 20:54:47 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/12 13:27:03 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,11 @@ int			mini_unset(t_state *state);
 void		print_var_res(int outfd, const char *var);
 int			is_env_var_valid(char *word);
 //void		rm_var(char *var, char **env);
+
+//utils data
 char		*get_var_env(char *var, char **envp);
+char		**ft_parse_path(char **envp);
+char		*get_path(char **all_path, char *cmd);
 
 //Executor
 int			pre_executor(t_state *state);
