@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/07 14:45:20 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/12 21:28:32 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 		buffer = get_next_line(STDIN_FILENO);
 		if (!buffer)
 			ft_error("(parser) empty buffer for heredoc", state);
-		if (!ft_strncmp(token->str, buffer, ft_strlen(token->str)))
+		if (!ft_strncmp(token->str, buffer, ft_strlen(buffer) - 1))
 			break ;
+		expnvar(&buffer, 0, ft_strlen(buffer), state);
 		write(fd, buffer, ft_strlen(buffer));
 		write(fd, "\n", 1);
 		free(buffer);

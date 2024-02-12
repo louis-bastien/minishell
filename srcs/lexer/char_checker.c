@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:30:38 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/07 18:58:29 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/12 18:30:09 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ int	is_validchar (char c)
 		return (0);
 	else if (is_whitespace(c))
 		return (0);
-	else if (c != '$' && !ft_isalnum(c) && !is_quote(c))
+	else if (c == '$' || c == '-' || c == '+')
+		return (1);
+	else if (!ft_isalnum(c) && !is_quote(c))
 		return (0);
 	else
 		return (1);

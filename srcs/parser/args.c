@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:16:02 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/06 21:35:07 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/12 18:33:08 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	handle_command(t_command *cmd, t_state *state)
 		cmd->command = ft_strdup(current->str);
 		if (!cmd->command)
 			ft_error("(parser) Failed to malloc command", state);
-		remove_token(&cmd->tokens, current);
 	}
 }
 

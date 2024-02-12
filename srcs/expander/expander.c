@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:18:17 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/09 20:05:21 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/12 21:03:13 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,29 @@
 void	ft_expander(t_state *state)
 {
 	t_token	*token;
+	t_token	*next_token;
 
 	token = state->token_list;
+	next_token = NULL;
 	while (token)
 	{
-		quote_wrapper(&token->str, state);
-		token = token->next;
+		next_token = token->next;
+		quote_wrapper(token, state);
+		token = next_token;
 	}
 }
 
-void	quote_wrapper(char **str, t_state *state)
+void	quote_wrapper(t_token *token, t_state *state)
 {
 	char	*current;
+	char	**str;
 	int		i;
 
 	i = 0;
-	current = *str;
+	current = token->str;
+	str = &token->str;
 	while (*current)
 	{
-		printf("char=%c\n", *current);
 		if (*current == '\'')
 			parse_single_quotes(str, &current, state);
 		else if (*current == '\"')
@@ -43,6 +47,11 @@ void	quote_wrapper(char **str, t_state *state)
 			while (is_valid_env(current[i]))
 				i++;
 			current = expnvar(str, 0, i, state);
+			if (ft_strlen(*str) == 0)
+			{
+				remove_token(&state->token_list, token);
+				break ;
+			}
 		}
 		else
 			current++;
@@ -74,7 +83,6 @@ char	*expnvar(char **str, int start_pos, int len, t_state *state)
 	char	*name;
 
 	current = *str + start_pos;
-	printf("str=%s, start_pos=%d, len=%d, current=%c\n", *str, start_pos, len, *current);
 	while (*current && --len)
 	{
 		if (*current == '$' && is_valid_env(*(current + 1)))
@@ -83,14 +91,12 @@ char	*expnvar(char **str, int start_pos, int len, t_state *state)
 			name = get_env_name(current + 1, len);
 			value = get_env_value(name);
 			new_str = replace_env(*str, env_pos, value, name);
-			printf("name=%s, value=%s, env_pos=%d len=%d value=%s, newstr=%s\n",name, value, env_pos, len, value, new_str);
 			if (!new_str)
 				ft_error("Failed to generate expanded string", state);
 			free (name);
 			free(*str);
 			*str = new_str;
 			current = new_str + env_pos + ft_strlen(value);
-			printf("current=%s, len=%d\n", current, len);
 		}
 		else if (is_quote(*current))
 			break ;
