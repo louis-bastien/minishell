@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniecho.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:08:26 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/09 20:37:39 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/13 13:34:06 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	mini_echo(t_state *state)
 	int	i;
 	int	flag;
 
-	i = 2;
+	i = 1;
 	flag = 0;
 	if (state->cmd_list->args && state->cmd_list->args[i][0] == '-'
 		&& state->cmd_list->args[i][1] == 'n')
