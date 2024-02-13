@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_var_envp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:24:37 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/12 13:24:26 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/13 11:03:56 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_var_env(char *var, char **envp)
 	while (*envp != NULL)
 	{
 		if (ft_strncmp(*envp, var, len_var) == 0)
-			str_var = ft_strdup(*envp + len_var);
+			str_var = ft_strdup(*envp + (len_var + 1));
 		envp++;
 	}
 	return (str_var);

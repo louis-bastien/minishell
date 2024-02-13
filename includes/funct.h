@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/12 19:55:24 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/13 12:02:07 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int			mini_unset(t_state *state);
 //utils builtins
 void		print_var_res(int outfd, const char *var);
 int			is_env_var_valid(char *word);
+char		*get_dir_var(char **str, char **env);
 //void		rm_var(char *var, char **env);
 
 //utils data
