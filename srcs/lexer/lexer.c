@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/13 19:22:52 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/13 23:29:08 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	create_tokens(t_token **token_list, char *input, t_state *state)
 		token_str = generate_token(&reader, state);
 		if (!token_str)
 		{
-			ft_error("Failed to parse token", state);
+			ft_error("Failed to parse token content", state);
 			break ;
 		}
 		else

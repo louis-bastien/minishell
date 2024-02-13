@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/13 19:43:58 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/13 23:05:16 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	run_shell(t_state *state)
 			if (!state->error)
 				ft_parser(state);
 			ft_print_cmds(state->cmd_list);
-			if (!state->error)
-				pre_executor(state);
+//			if (!state->error)
+//				pre_executor(state);
 		}
 		reset_all(state);
 		free(input);

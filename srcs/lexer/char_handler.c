@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:32:31 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/09 19:26:11 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/13 23:02:50 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,37 @@ void	skip_whitespaces(char **str)
 char	*handle_string(char **reader, t_state *state)
 {
 	char	*token_str;
-	char	*current;
-	int		i;
-	bool	quoted;
+	int		len;
 
-	quoted = false;
 	token_str = NULL;
-	current = *reader;
-	i = 0;
-	while (*current && (is_validchar(*current) || quoted))
-	{
-		if (is_quote(*current) && !quoted)
-			quoted = true;
-		else if(is_quote(*current) && quoted)
-			quoted = false;
-		current++;
-		i++;
-	}
-	token_str = ft_strndup(*reader, i);
-	*reader += i;
+	len = get_strlen(*reader);
+	token_str = ft_strndup(*reader, len);
+	*reader += len;
 	if (!token_str)
 	{
 		ft_error("Failed to malloc regular expression", state);
 		return (NULL);
 	}
 	return (token_str);
+}
+
+int	get_strlen(char *current)
+{
+	int		i;
+	bool	quoted;
+
+	i = 0;
+	quoted = false;
+	while (*current && (is_validchar(*current) || quoted))
+	{
+		if (is_quote(*current) && !quoted)
+			quoted = true;
+		else if (is_quote(*current) && quoted)
+			quoted = false;
+		current++;
+		i++;
+	}
+	return (i);
 }
 
 char	*handle_token(char **reader, t_state *state)

@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:18:17 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/12 21:03:13 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/13 23:45:47 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,35 @@ void	quote_wrapper(t_token *token, t_state *state)
 {
 	char	*current;
 	char	**str;
-	int		i;
 
-	i = 0;
 	current = token->str;
 	str = &token->str;
 	while (*current)
 	{
+		printf("char=%c\n", *current);
 		if (*current == '\'')
 			parse_single_quotes(str, &current, state);
 		else if (*current == '\"')
 			parse_double_quotes(str, &current, state);
 		else if (*current == '$' && is_valid_env(*(current + 1)))
-		{
-			while (is_valid_env(current[i]))
-				i++;
-			current = expnvar(str, 0, i, state);
-			if (ft_strlen(*str) == 0)
-			{
-				remove_token(&state->token_list, token);
-				break ;
-			}
-		}
+			parse_unquoted(str, &current, token, state);
 		else
 			current++;
 	}
+}
+
+void	parse_unquoted(char **str, char **current, t_token *token, t_state *state)
+{
+	int		i;
+	char	*tmp;
+
+	i = 0;
+	tmp = *current;
+	while (is_valid_env(tmp[i]))
+		i++;
+	*current = expnvar(str, *current - *str, i, state);
+	if (ft_strlen(*str) == 0)
+		remove_token(&state->token_list, token);
 }
 
 void	parse_double_quotes(char **str, char **current, t_state *state)
@@ -85,6 +89,7 @@ char	*expnvar(char **str, int start_pos, int len, t_state *state)
 	current = *str + start_pos;
 	while (*current && --len)
 	{
+		printf("len=%d\n", len);
 		if (*current == '$' && is_valid_env(*(current + 1)))
 		{
 			env_pos = current - *str;
@@ -121,6 +126,7 @@ void	parse_single_quotes(char **str, char **current, t_state *state)
 		printf("endpos=%ld, startpos=%ld\n", end - *str, *current - *str);
 		remove_char_from_string(*str, end - *str);
 		remove_char_from_string(*str, *current - *str);
+		*current += end - *current - 1;
 	}
 }
 
