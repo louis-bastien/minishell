@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/12 19:09:23 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/13 13:41:50 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 //Main
 void		run_shell(t_state *state);
-t_state		*init_state(void);
+t_state		*init_state(char **envp);
 
 //Lexer
 void		ft_lexer(char *input, t_state *state);
@@ -94,11 +94,30 @@ void		ft_error_perm(int perm, char *str);
 
 //Init
 char		**copy_env(char **env);
+void		is_builtins(t_state *state);
 
 //Builtins
-int			ft_builtins(char **argv, char *envp);
-int			minicd(char **argv, char **envp);
-int			mini_pwd(t_state *state, char **env);
-int			mini_env(int outfd, char **env);
+int			ft_builtins(t_state *state);
+int			minicd(t_state *state);
+int			mini_pwd(t_state *state);
+int			mini_env(t_state *state);
+int			mini_echo(t_state *state);
+int			mini_exit(t_state *state);
+int			mini_export(t_state *state);
+int			mini_unset(t_state *state);
+
+//utils builtins
+void		print_var_res(int outfd, const char *var);
+int			is_env_var_valid(char *word);
+char		*get_dir_var(char **str, char **env);
+//void		rm_var(char *var, char **env);
+
+//utils data
+char		*get_var_env(char *var, char **envp);
+char		**ft_parse_path(char **envp);
+char		*get_path(char **all_path, char *cmd);
+
+//Executor
+int			pre_executor(t_state *state);
 
 #endif

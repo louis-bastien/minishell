@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minienv.c                                          :+:      :+:    :+:   */
+/*   miniexit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 12:10:07 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/09 20:44:43 by agusheredia      ###   ########.fr       */
+/*   Created: 2024/02/07 10:10:31 by agheredi          #+#    #+#             */
+/*   Updated: 2024/02/09 20:45:55 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	mini_env(t_state *state)
+int	mini_exit(t_state *state)
 {
-	int	i;
-
-	i = 0;
-	while (state->data->env[i])
+	ft_putendl_fd("exit", STDERR_FILENO);
+	if (state->cmd_list->args[1] && state->cmd_list->args[2])
 	{
-		ft_putendl_fd(state->data->env[i], state->cmd_list->fd_out);
-		i++;
+		ft_putstr_fd("Minishell: exit: to many argumnets\n", 2);
+		return (1);
 	}
+	//necesito determinar el exit estatus de la estructura
+	//antes de salir debe liberar memoria
 	return (0);
 }
