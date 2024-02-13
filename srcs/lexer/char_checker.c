@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:30:38 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/12 21:40:24 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:22:33 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,4 @@ int	is_double_token(char *str)
 			return (1);
 	}
 	return (0);
-}
-
-int	is_validchar (char c)
-{
-	if (c == '\0')
-		return (0);
-	if (is_token(c))
-		return (0);
-	else if (is_whitespace(c))
-		return (0);
-	else if (c == '$' || c == '-' || c == '+')
-		return (1);
-	else if (!ft_isalnum(c) && !is_quote(c))
-		return (0);
-	else
-		return (1);
 }

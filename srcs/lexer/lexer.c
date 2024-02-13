@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/09 19:37:30 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:22:52 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ void	create_tokens(t_token **token_list, char *input, t_state *state)
 			break ;
 		}
 		else
-			add_token(token_list, token_str);
+		{
+			if (add_token(token_list, token_str))
+				ft_error("Failed to add/malloc token", state);
+		}
 	}
 }
 
@@ -89,4 +92,18 @@ void	parse_type(t_token *token)
 			token->type = WORD;
 		token = token->next;
 	}
+}
+
+int	is_validchar(char c)
+{
+	if (c == '\0')
+		return (0);
+	if (is_token(c))
+		return (0);
+	else if (is_whitespace(c))
+		return (0);
+	else if (ft_isprint(c))
+		return (1);
+	else
+		return (0);
 }

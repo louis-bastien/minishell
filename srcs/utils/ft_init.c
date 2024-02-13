@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/12 14:03:56 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/13 18:46:58 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	**copy_env(char **env)
+char	**copy_env(char **env, t_state *state)
 {
 	int		i;
 	int		j;
@@ -24,7 +24,7 @@ char	**copy_env(char **env)
 		j++;
 	data_env = malloc(sizeof(char *) * (j + 1));
 	if (!data_env)
-		ft_error_sms("Error: No se pudo asignar memoria.\n");
+		ft_exit("Failed to malloc data_env", state);
 	i = 0;
 	while (i < j)
 	{

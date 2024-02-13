@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/13 13:41:50 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:48:53 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 //Main
 void		run_shell(t_state *state);
-t_state		*init_state(char **envp);
+t_state		*init_state(t_state *state);
+t_data		*init_data(char **envp, t_state *state);
 
 //Lexer
 void		ft_lexer(char *input, t_state *state);
@@ -86,6 +87,8 @@ void		free_token(t_token *node);
 void		free_cmds(t_command *cmds);
 void		free_cmd(t_command *cmd);
 void		free_args(t_command *cmd);
+void		free_data(t_data *data);
+void		free_doubleptr(char **dptr);
 
 //Errors
 void		ft_error(char *str, t_state *state);
@@ -93,7 +96,7 @@ void		ft_error_sms(char *str);
 void		ft_error_perm(int perm, char *str);
 
 //Init
-char		**copy_env(char **env);
+char		**copy_env(char **env, t_state *state);
 void		is_builtins(t_state *state);
 
 //Builtins
