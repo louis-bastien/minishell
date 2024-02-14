@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/13 14:00:20 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/14 13:57:08 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	exc_one_cmd(t_state *state)
 {
 	char	*path;
 
-	printf("Antes de ejecutar el comando\n");
 	path = get_path(state->data->path, state->cmd_list->command);
 	printf("%s\n", path);
 	if (path == NULL)
@@ -31,16 +30,13 @@ int	one_cmd(t_state *state)
 	int	status;
 
 	exit_code = 0;
-	printf("Entra a one_comd\n");
 	if (state->cmd_list->is_builtin == 0)
 	{
-		printf("entra al if de builtin\n");
 		exit_code = ft_builtins(state);
 		return (exit_code);
 	}
 	else
 	{
-		printf("entra al else para hacer fork\n");
 		pid = fork();
 		if (pid < 0)
 			ft_error_sms("Error en fork");

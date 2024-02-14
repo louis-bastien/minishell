@@ -6,7 +6,7 @@
 #    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/02/07 13:56:58 by agheredi         ###   ########.fr        #
+#    Updated: 2024/02/14 13:58:03 by agheredi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ SRC = srcs/minishell.c \
 	srcs/utils/print.c \
 	srcs/utils/get_var_envp.c \
 	srcs/executor/pre_executor.c \
-	srcs/executor/ft_heredoc.c \
 	srcs/executor/executor.c \
 	srcs/builtins/ft_builtins.c \
 	srcs/builtins/minicd.c \

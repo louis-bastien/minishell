@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/14 13:18:01 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:01:44 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	run_shell(t_state *state)
 				ft_parser(state);
 			if (!state->error)
 				pre_executor(state);
-		ft_print_cmds(state->cmd_list);
+		//ft_print_cmds(state->cmd_list);
 		}
 		reset_all(state);
 		free(input);

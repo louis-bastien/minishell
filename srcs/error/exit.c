@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/13 22:48:35 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:03:44 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void	ft_exit(char *str, t_state *state)
 	if (!state->error)
 		state->error = ft_strdup(str);
 	reset_all(state);
+	if (state->data)
+	{
+		free_data(state->data);
+		state->data = NULL;
+	}
 	free (state);
 	state = NULL;
 	clear_history();
@@ -49,11 +54,6 @@ void	reset_all(t_state *state)
 		{
 			free_cmds (state->cmd_list);
 			state->cmd_list = NULL;
-		}
-		if (state->data)
-		{
-			free_data(state->data);
-			state->data = NULL;
 		}
 	}
 }
