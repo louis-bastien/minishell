@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/07 16:25:35 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/13 22:48:35 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 void	ft_exit(char *str, t_state *state)
 {
-	printf("Fatal Error: %s\n", str);
+	if (!state->error)
+		state->error = ft_strdup(str);
 	reset_all(state);
 	free (state);
 	state = NULL;
 	clear_history();
+	exit (1);
 }
 
 void	ft_error(char *str, t_state *state)
@@ -33,7 +35,8 @@ void	reset_all(t_state *state)
 	{
 		if (state->error)
 		{
-			printf("Error: %s\n", state->error);
+			ft_putstr_fd(state->error, STDERR_FILENO);
+			ft_putstr_fd("\n", STDERR_FILENO);
 			free(state->error);
 			state->error = NULL;
 		}
@@ -47,5 +50,37 @@ void	reset_all(t_state *state)
 			free_cmds (state->cmd_list);
 			state->cmd_list = NULL;
 		}
+		if (state->data)
+		{
+			free_data(state->data);
+			state->data = NULL;
+		}
+	}
+}
+
+void	free_data(t_data *data)
+{
+	if (data->env)
+	{
+		free_doubleptr(data->env);
+		data->env = NULL;
+	}
+	if (data->path)
+	{
+		free_doubleptr(data->path);
+		data->path = NULL;
+	}
+	free(data);
+}
+
+void	free_doubleptr(char **dptr)
+{
+	int	i;
+
+	i = 0;
+	while (dptr[i])
+	{
+		free(dptr[i]);
+		i++;
 	}
 }
