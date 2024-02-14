@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniexport.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/09 20:41:01 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/14 12:11:20 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print_var_res(int outfd, const char *var)
 	write(outfd, "\"\n", 2);
 }
 
-int	mini_export(t_state *state)
+void	export_no_arg(t_state *state)
 {
 	int	i;
 
@@ -45,6 +45,30 @@ int	mini_export(t_state *state)
 			print_var_res(state->cmd_list->fd_out, state->data->env[i]);
 		}
 		i++;
+	}
+}
+
+//void	update_env(char **var_value, t_state *state)
+
+int	mini_export(t_state *state)
+{
+	char	**var_value;
+
+	var_value = NULL;
+	if (state->cmd_list->args_count == 1)
+		export_no_arg(state);
+	else
+	{
+		if (ft_strchr(state->cmd_list->args[1], '=') != NULL)
+		{
+			var_value = ft_split(state->cmd_list->args[1], '=');
+			//update_env(var_value, state);
+		}
+		else
+		{
+			printf("export: format incorrect %s", state->cmd_list->args[1]);
+			return (1);
+		}
 	}
 	return (0);
 }

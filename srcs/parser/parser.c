@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/13 13:30:29 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/13 13:58:59 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_command	*create_cmd(t_token *tokens, int token_counter)
 	new_cmd->args_count = 0;
 	new_cmd->tokens = import_tokens(tokens, token_counter);
 	parse_type(new_cmd->tokens);
-	new_cmd->fd_in = -1;
+	new_cmd->fd_in = 0;
 	new_cmd->fd_out = 1;
 	new_cmd->next = NULL;
 	return (new_cmd);

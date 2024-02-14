@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniunset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:14:59 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/09 20:42:26 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/14 11:16:55 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,15 @@ int	is_env_var_valid(char *word)
 	return (1);
 }
 
-/*void	rm_var(char *var, char **env)
-{
-	
-}*/
-
 int	mini_unset(t_state *state)
 {
-	int	i;
-
-	i = 0;
-	while (state->cmd_list->args[i])
+	if (state->cmd_list->args_count == 2
+		&& is_env_var_valid(state->cmd_list->args[1]))
 	{
-		if (is_env_var_valid(state->cmd_list->args[i]))
-		{
-			printf("aqui deberia borrar var\n");
-			//rm_var(argv[i], env);
-		}
-		else
-			ft_error_sms("unset no valid\n");
+		printf("aqui deberia borrar var\n");
+		unsetenv(state->cmd_list->args[1]);
 	}
+	else
+		ft_error_sms("unset no valid\n");
 	return (0);
 }

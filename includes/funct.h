@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/13 13:41:50 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/14 10:05:25 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			is_quote(char c);
 int			is_token(char c);
 int			is_single_token(char *str);
 int			is_double_token(char *str);
-int			is_validchar (char c);
+int			is_validchar(char c);
 
 //Expander
 void		ft_expander(t_state *state);
@@ -109,7 +109,7 @@ int			mini_unset(t_state *state);
 //utils builtins
 void		print_var_res(int outfd, const char *var);
 int			is_env_var_valid(char *word);
-char		*get_dir_var(char **str, char **env);
+char		*get_dir_var(t_state *state);
 //void		rm_var(char *var, char **env);
 
 //utils data
