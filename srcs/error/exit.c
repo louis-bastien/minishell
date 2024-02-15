@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/14 14:03:44 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/15 14:43:28 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,6 @@ void	free_data(t_data *data)
 	{
 		free_doubleptr(data->env);
 		data->env = NULL;
-	}
-	if (data->path)
-	{
-		free_doubleptr(data->path);
-		data->path = NULL;
 	}
 	free(data);
 }

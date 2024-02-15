@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/14 12:11:20 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:10:12 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	export_no_arg(t_state *state)
 	}
 }
 
-//void	update_env(char **var_value, t_state *state)
 
 int	mini_export(t_state *state)
 {
@@ -62,13 +61,14 @@ int	mini_export(t_state *state)
 		if (ft_strchr(state->cmd_list->args[1], '=') != NULL)
 		{
 			var_value = ft_split(state->cmd_list->args[1], '=');
-			//update_env(var_value, state);
+			if (double_array_size(var_value) != 2)
+				ft_error_perm(42, "export: format incorrect\n");
+			printf("variable %s \n", var_value[0]);
+			printf("valor %s\n", var_value[1]);
+			state->data->env = update_env(var_value, state);
 		}
 		else
-		{
-			printf("export: format incorrect %s", state->cmd_list->args[1]);
-			return (1);
-		}
+			ft_error_perm(42, "export: format incorrect\n");
 	}
 	return (0);
 }

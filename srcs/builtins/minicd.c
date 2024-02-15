@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:48:46 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/14 10:43:45 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:29:45 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ char	*get_dir_var(t_state *state)
 	return (dir);
 }
 
+/*char	**update_cd(t_state *state)
+{
+	char	**nenv;
+	//cambiar el valor de pwd a oldpwd y en pwd tomar el valor actual
+	return (nenv);
+}*/
+
 int	minicd(t_state *state)
 {
 	char	*var;
@@ -38,10 +45,8 @@ int	minicd(t_state *state)
 	if (!var)
 		return (1);
 	if (chdir(var) == -1)
-	{
-		printf("cd: %s: No such file or directory\n", var);
-		return (1);
-	}
+		ft_error_perm(404, var);
+	//state->data->env = update_cd(state);
 	free(var);
 	return (0);
 }

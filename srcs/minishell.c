@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/14 14:01:44 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/15 13:18:59 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ t_data	*init_data(char **envp, t_state *state)
 	if (!new_data)
 		ft_exit("Failed to malloc t_data", state);
 	new_data->env = copy_env(envp, state);
-	new_data->path = ft_parse_path(envp);
 	new_data->pipes = 0;
 	return (new_data);
 }

@@ -6,7 +6,7 @@
 #    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/02/14 13:58:03 by agheredi         ###   ########.fr        #
+#    Updated: 2024/02/15 15:08:32 by agheredi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ SRC = srcs/minishell.c \
 	srcs/parser/parser.c \
 	srcs/parser/redirections.c \
 	srcs/parser/args.c \
-	srcs/utils/ft_strlen.c \
 	srcs/utils/ft_init.c \
 	srcs/utils/print.c \
 	srcs/utils/get_var_envp.c \
+	srcs/utils/env_utils.c \
 	srcs/executor/pre_executor.c \
 	srcs/executor/executor.c \
 	srcs/builtins/ft_builtins.c \

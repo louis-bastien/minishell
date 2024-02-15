@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/14 13:16:57 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:43:58 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ int			mini_unset(t_state *state);
 void		print_var_res(int outfd, const char *var);
 int			is_env_var_valid(char *word);
 char		*get_dir_var(t_state *state);
+void		export_no_arg(t_state *state);
+char		**update_env(char **var_value, t_state *state);
 //void		rm_var(char *var, char **env);
 
 //utils data
@@ -125,5 +127,10 @@ char		*get_path(char **all_path, char *cmd);
 
 //Executor
 int			pre_executor(t_state *state);
+
+//env_utils
+int			double_array_size(char **d_str);
+char		**set_darray(char **d_str, char *n_str, int index);
+int			get_var_index(char *var, char **envp);
 
 #endif
