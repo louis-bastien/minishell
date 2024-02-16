@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/15 17:10:12 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/16 10:31:39 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ void	export_no_arg(t_state *state)
 	}
 }
 
+char	**update_env(char **var_value, t_state *state)
+{
+	char	**nenv;
+	int		i;
+
+	i = get_var_index(var_value[0], state->data->env);
+	if (i == -1)
+	{
+		nenv = add_str_darry(state->data->env, state->cmd_list->args[1]);
+	}
+	else
+		nenv = set_darray(state->data->env, state->cmd_list->args[1], i);
+	return (nenv);
+}
 
 int	mini_export(t_state *state)
 {
@@ -63,8 +77,6 @@ int	mini_export(t_state *state)
 			var_value = ft_split(state->cmd_list->args[1], '=');
 			if (double_array_size(var_value) != 2)
 				ft_error_perm(42, "export: format incorrect\n");
-			printf("variable %s \n", var_value[0]);
-			printf("valor %s\n", var_value[1]);
 			state->data->env = update_env(var_value, state);
 		}
 		else

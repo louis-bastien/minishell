@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/15 16:43:58 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/16 10:27:59 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,6 @@ int			pre_executor(t_state *state);
 int			double_array_size(char **d_str);
 char		**set_darray(char **d_str, char *n_str, int index);
 int			get_var_index(char *var, char **envp);
+char		**add_str_darry(char **d_array, char *nwstr);
 
 #endif

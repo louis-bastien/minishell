@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:41:27 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/15 17:33:59 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/16 10:52:03 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,30 @@ int	get_var_index(char *var, char **envp)
 			return (index);
 		index++;
 	}
-	if (index == double_array_size(envp))
+	if (index == (double_array_size(envp) - 1))
 		index = -1;
 	return (index);
 }
 
-char	**update_env(char **var_value, t_state *state)
+char	**add_str_darry(char **d_array, char *nwstr)
 {
-	char	**nenv;
+	char	**nw_darray;
+	int		sizeold;
 	int		i;
 
-	i = get_var_index(var_value[0], state->data->env);
-	if (i == -1)
+	sizeold = double_array_size(d_array);
+	nw_darray = (char **)malloc(sizeof(char *) * (sizeold + 2));
+	if (!nw_darray)
+		ft_error_perm(42, "Error al asignar memori con Malloc\n");
+	i = 0;
+	while (i < sizeold)
 	{
-		//quiere decir que la variable no existe y debo crearla
+		nw_darray[i] = ft_strdup(d_array[i]);
+		free(d_array[i]);
+		i++;
 	}
-	nenv = set_darray(state->data->env, state->cmd_list->args[1], i);
-	return (nenv);
+	nw_darray[i] = ft_strdup(nwstr);
+	nw_darray[i + 1] = NULL;
+	free(d_array);
+	return (nw_darray);
 }
