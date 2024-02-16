@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/13 13:58:59 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:01:34 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_cmd_list(t_token *tokens, t_state *state)
 	int		token_counter;
 
 	token_counter = count_upto_pipe(tokens);
-	if (token_counter)
+	if (token_counter != 0)
 	{
 		if (add_cmd(&state->cmd_list, tokens, token_counter))
 			ft_error("(parser) Failed to add new cmd", state);
@@ -37,7 +37,7 @@ void	init_cmd_list(t_token *tokens, t_state *state)
 		}
 	}
 	else
-		ft_error("Use pipes with valid commands", state);
+		ft_error("Use pipes between commands", state);
 }
 
 int	add_cmd(t_command **cmd_list, t_token *tokens, int token_counter)

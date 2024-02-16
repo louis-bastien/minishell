@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/16 10:27:59 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/16 14:49:08 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ char		*get_env_name(char *env, int end_pos);
 char		*get_exit_status(char *str);
 int			is_valid_env(char c);
 void		quote_wrapper(t_token *token, t_state *state);
-void		parse_single_quotes(char **str, char **current, t_state *state);
-void		parse_double_quotes(char **str, char **current, t_state *state);
-void		parse_unquoted(char **str, char **current, \
+void		single_quotes(char **str, char **current, t_state *state);
+void		double_quotes(char **str, char **current, t_state *state);
+void		unquoted(char **str, char **current, \
 			t_token *token, t_state *state);
 void		remove_char_from_string(char *str, int pos);
 char		*expnvar(char **str, int start_pos, int end_pos, t_state *state);

@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:19:28 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/13 13:39:14 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/16 14:48:55 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,36 @@ char	*get_env_value(char *name)
 char	*get_exit_status(char *str)
 {
 	return (str);
+}
+
+char	*replace_env(char *str, int env_pos, char *value, char *name)
+{
+	char	*new_str;
+	int		new_length;
+	int		name_length;
+
+	name_length = ft_strlen(name) + 1;
+	new_length = ft_strlen(str) - (name_length) + ft_strlen(value);
+	new_str = malloc(sizeof(char) * new_length + 1);
+	if (!new_str)
+		return (NULL);
+	strncpy(new_str, str, env_pos);
+	new_str[env_pos] = '\0';
+	strcat(new_str, value);
+	strcat(new_str, str + env_pos + (name_length));
+	free (name);
+	free(str);
+	return (new_str);
+}
+
+int	is_valid_env(char c)
+{
+	if (ft_isalnum(c))
+		return (1);
+	else if (c == '?')
+		return (1);
+	else if (c == '_')
+		return (1);
+	else
+		return (0);
 }

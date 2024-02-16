@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/12 21:28:32 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:17:26 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_parse_tokens(t_state *state)
 void	handle_redirections(t_command *cmd, t_state *state)
 {
 	t_token	*current;
-	t_token	*next_token;
 	t_token	*file_token;
 
 	current = cmd->tokens;
@@ -41,8 +40,7 @@ void	handle_redirections(t_command *cmd, t_state *state)
 		if (current->type == INPUT || current->type == OUTPUT \
 		|| current->type == APPEND || current->type == HEREDOC)
 		{
-			next_token = current->next;
-			file_token = next_token;
+			file_token = current->next;
 			if (!file_token || file_token->type != WORD)
 			{
 				ft_error("Missing file after redirection", state);
@@ -50,14 +48,30 @@ void	handle_redirections(t_command *cmd, t_state *state)
 			}
 			else
 				parse_fd(current, cmd, state);
-			next_token = next_token->next;
 			remove_token(&cmd->tokens, current);
+			current = file_token->next;
 			remove_token(&cmd->tokens, file_token);
-			current = next_token;
 		}
 		else
 			current = current->next;
 	}
+}
+
+void	parse_fd(t_token *token, t_command *cmd, t_state *state)
+{
+	t_token	*file_token;
+
+	file_token = token->next;
+	if (token->type == INPUT)
+		open_fd(&cmd->fd_in, file_token->str, O_RDONLY, state);
+	else if (token->type == OUTPUT)
+		open_fd(&cmd->fd_out, file_token->str, \
+		O_WRONLY | O_CREAT | O_TRUNC, state);
+	else if (token->type == APPEND)
+		open_fd(&cmd->fd_out, file_token->str, \
+		O_WRONLY | O_CREAT | O_APPEND, state);
+	else if (token->type == HEREDOC)
+		handle_heredoc(file_token, cmd, state);
 }
 
 void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
@@ -85,23 +99,6 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 	}
 	cmd->fd_in = fd;
 	free(buffer);
-}
-
-void	parse_fd(t_token *token, t_command *cmd, t_state *state)
-{
-	t_token	*file_token;
-
-	file_token = token->next;
-	if (token->type == INPUT)
-		open_fd(&cmd->fd_in, file_token->str, O_RDONLY, state);
-	else if (token->type == OUTPUT)
-		open_fd(&cmd->fd_out, file_token->str, \
-		O_WRONLY | O_CREAT | O_TRUNC, state);
-	else if (token->type == APPEND)
-		open_fd(&cmd->fd_out, file_token->str, \
-		O_WRONLY | O_CREAT | O_APPEND, state);
-	else if (token->type == HEREDOC)
-		handle_heredoc(file_token, cmd, state);
 }
 
 void	open_fd(int *fd, const char *filename, int flags, t_state *state)
