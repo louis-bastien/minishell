@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:41:27 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/16 10:52:03 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/16 13:45:15 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char	**add_str_darry(char **d_array, char *nwstr)
 		free(d_array[i]);
 		i++;
 	}
+	free(d_array[i]);
 	nw_darray[i] = ft_strdup(nwstr);
 	nw_darray[i + 1] = NULL;
 	free(d_array);

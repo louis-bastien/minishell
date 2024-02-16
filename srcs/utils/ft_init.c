@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/13 18:46:58 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/16 14:46:33 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,17 @@
 
 char	**copy_env(char **env, t_state *state)
 {
-	int		i;
-	int		j;
 	char	**data_env;
+	int		i;
+	int		size_env;
 
-	i = -1;
-	j = 0;
-	while (env[++i])
-		j++;
-	data_env = malloc(sizeof(char *) * (j + 1));
+	i = 0;
+	size_env = double_array_size(env);
+	data_env = malloc(sizeof(char *) * (size_env + 1));
 	if (!data_env)
 		ft_exit("Failed to malloc data_env", state);
 	i = 0;
-	while (i < j)
+	while (i < size_env)
 	{
 		data_env[i] = ft_strdup(env[i]);
 		i++;
