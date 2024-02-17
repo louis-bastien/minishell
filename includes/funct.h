@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/16 14:49:08 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/18 00:55:00 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void		parse_fd(t_token *token, t_command *cmd, t_state *state);
 void		open_fd(int *fd, const char *filename, int flags, t_state *state);
 void		handle_command(t_command *cmd, t_state *state);
 void		handle_args(t_command *cmd, t_state *state);
-
 
 //Token Management
 void		ft_parse_tokens(t_state *state);
@@ -126,7 +125,10 @@ char		**ft_parse_path(char **envp);
 char		*get_path(char **all_path, char *cmd);
 
 //Executor
-int			pre_executor(t_state *state);
+void			pre_executor(t_state *state);
+void		ft_init_pipes(t_state *state);
+int			needs_pipe(t_command *cmd);
+int			assign_pipes(t_command *cmd);
 
 //env_utils
 int			double_array_size(char **d_str);

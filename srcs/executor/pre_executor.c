@@ -6,11 +6,23 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/16 17:09:46 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/18 00:55:12 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
+
+void	pre_executor(t_state *state)
+{
+	int	exit_code;
+
+	if (state->data->commands == 1)
+		one_cmd(state);
+	else
+	{
+		multiple_cmd(state);
+	}
+}
 
 void	exc_one_cmd(t_state *state)
 {
@@ -51,19 +63,3 @@ int	one_cmd(t_state *state)
 	return (exit_code);
 }
 
-int	pre_executor(t_state *state)
-{
-	int	exit_code;
-
-	is_builtins(state);
-	if (state->data->pipes == 0)
-		exit_code = one_cmd(state);
-	else
-	{
-		exit_code = 0;
-		printf("mas de un comando\n");
-		//malloc de los pid
-		//executor
-	}
-	return (exit_code);
-}

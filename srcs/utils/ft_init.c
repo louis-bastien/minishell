@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/16 14:46:33 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/17 23:13:20 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,22 +71,4 @@ char	*get_path(char **all_path, char *cmd)
 	return (NULL);
 }
 
-void	is_builtins(t_state *state)
-{
-	if (!ft_strncmp(state->cmd_list->command, "cd", 3))
-		state->cmd_list->is_builtin = 0;
-	else if (!ft_strncmp(state->cmd_list->command, "pwd", 4))
-		state->cmd_list->is_builtin = 0;
-	else if (!ft_strncmp(state->cmd_list->command, "echo", 5))
-		state->cmd_list->is_builtin = 0;
-	else if (!ft_strncmp(state->cmd_list->command, "export", 7))
-		state->cmd_list->is_builtin = 0;
-	else if (!ft_strncmp(state->cmd_list->command, "unset", 6))
-		state->cmd_list->is_builtin = 0;
-	else if (!ft_strncmp(state->cmd_list->command, "env", 4))
-		state->cmd_list->is_builtin = 0;
-	else if (!ft_strncmp(state->cmd_list->command, "exit", 5))
-		state->cmd_list->is_builtin = 0;
-	else
-		state->cmd_list->is_builtin = 1;
-}
+

@@ -6,7 +6,7 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/02/16 14:58:51 by lbastien         ###   ########.fr        #
+#    Updated: 2024/02/18 00:55:34 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC = srcs/minishell.c \
 	srcs/utils/get_var_envp.c \
 	srcs/utils/env_utils.c \
 	srcs/executor/pre_executor.c \
+	srcs/executor/pipes.c \
 	srcs/executor/executor.c \
 	srcs/builtins/ft_builtins.c \
 	srcs/builtins/minicd.c \

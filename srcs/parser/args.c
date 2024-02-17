@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:16:02 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/16 16:31:01 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/17 23:13:35 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,24 @@ void	handle_args(t_command *cmd, t_state *state)
 	}
 	cmd->args[i] = NULL;
 }
+
+int	check_builtins(t_command *cmd)
+{
+	if (!ft_strncmp(cmd->command, "cd", 3))
+		cmd->is_builtin = true;
+	else if (!ft_strncmp(cmd->command, "pwd", 4))
+		cmd->is_builtin = true;
+	else if (!ft_strncmp(cmd->command, "echo", 5))
+		cmd->is_builtin = true;
+	else if (!ft_strncmp(cmd->command, "export", 7))
+		cmd->is_builtin = true;
+	else if (!ft_strncmp(cmd->command, "unset", 6))
+		cmd->is_builtin = true;
+	else if (!ft_strncmp(cmd->command, "env", 4))
+		cmd->is_builtin = true;
+	else if (!ft_strncmp(cmd->command, "exit", 5))
+		cmd->is_builtin = true;
+	else
+		cmd->is_builtin = false;
+}
+

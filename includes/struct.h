@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/15 13:18:35 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/18 00:52:04 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ typedef struct s_command
 	t_token				*tokens;
 	int					fd_in;
 	int					fd_out;
-	int					is_builtin;
+	bool				is_builtin;
 	struct s_command	*next;
 }	t_command;
 
 typedef struct s_data
 {
 	char	**env;
-	int		pipes;
+	int		commands;
 	int		exit_status;
 }	t_data;
 
