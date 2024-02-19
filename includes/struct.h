@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/18 00:52:04 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:28:59 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ typedef struct s_command
 
 typedef struct s_data
 {
+	pid_t	pid;
 	char	**env;
-	int		commands;
+	int		pipes;
 	int		exit_status;
 }	t_data;
 

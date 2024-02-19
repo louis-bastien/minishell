@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/19 11:46:54 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:27:37 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,3 +64,19 @@ int	one_cmd(t_state *state)
 	return (exit_code);
 }
 
+int	pre_executor(t_state *state)
+{
+	int	exit_code;
+
+	is_builtins(state);
+	if (state->data->pipes == 0)
+		exit_code = one_cmd(state);
+	else
+	{
+		exit_code = 0;
+		printf("mas de un comando\n");
+		//malloc de los pid
+		//executor
+	}
+	return (exit_code);
+}
