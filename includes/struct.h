@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/19 12:28:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:33:05 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_command
 {
 	char				*command;
 	char				**args;
+	int					index;
 	int					args_count;
 	t_token				*tokens;
 	int					fd_in;
@@ -52,7 +53,7 @@ typedef struct s_data
 {
 	pid_t	pid;
 	char	**env;
-	int		pipes;
+	char	*cmd_error;
 	int		exit_status;
 }	t_data;
 
@@ -62,6 +63,7 @@ typedef struct s_state
 	t_token		*token_list;
 	t_command	*cmd_list;
 	t_data		*data;
+	int			num_cmds;
 }	t_state;
 
 #endif

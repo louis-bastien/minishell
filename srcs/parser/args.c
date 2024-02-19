@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:16:02 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/17 23:13:35 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:04:33 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	handle_args(t_command *cmd, t_state *state)
 	cmd->args[i] = NULL;
 }
 
-int	check_builtins(t_command *cmd)
+void	check_builtins(t_command *cmd)
 {
 	if (!ft_strncmp(cmd->command, "cd", 3))
 		cmd->is_builtin = true;

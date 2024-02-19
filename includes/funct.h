@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/19 12:31:15 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:07:46 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ char		*expnvar(char **str, int start_pos, int end_pos, t_state *state);
 //Parser
 void		ft_parser(t_state *state);
 void		init_cmd_list(t_token *tokens, t_state *state);
-int			add_cmd(t_command **cmd_list, t_token *tokens, int token_counter);
-t_command	*create_cmd(t_token *tokens, int token_counter);
+int			add_cmd(t_command **cmd_list, t_token *tokens, \
+			int numtok, int numcmd);
+t_command	*create_cmd(t_token *tokens, int numtok, int numcmd);
 int			count_upto_pipe(t_token *tokens);
 void		handle_redirections(t_command *cmd, t_state *state);
 void		handle_heredoc(t_token *token, t_command *cmd, t_state *state);
@@ -82,7 +83,6 @@ char		*print_type(t_ttype type);
 
 //Exit
 void		ft_exit(char *str, t_state *state);
-void		ft_error(char *str, t_state *state);
 void		reset_all(t_state *state);
 void		free_tokens(t_token	*tokens);
 void		free_token(t_token *node);
@@ -94,6 +94,8 @@ void		free_doubleptr(char **dptr);
 
 //Errors
 void		ft_error(char *str, t_state *state);
+void		ft_error_exec(char *cmd, int exit_code, char *str, t_state *state);
+void		print_error(t_state *state);
 void		ft_error_sms(char *str);
 void		ft_error_perm(int perm, char *str);
 
@@ -102,7 +104,8 @@ char		**copy_env(char **env, t_state *state);
 void		is_builtins(t_state *state);
 
 //Builtins
-int			ft_builtins(t_state *state);
+void		check_builtins(t_command *cmd);
+void		ft_exec_builtin(t_state *state, t_command *cmd);
 int			minicd(t_state *state);
 int			mini_pwd(t_state *state);
 int			mini_env(t_state *state);
@@ -126,6 +129,9 @@ char		*get_path(char **all_path, char *cmd);
 
 //Executor
 void		pre_executor(t_state *state);
+void		one_cmd(t_state *state);
+void		exec_one_cmd(t_state *state);  
+
 void		ft_init_pipes(t_state *state);
 int			needs_pipe(t_command *cmd);
 int			assign_pipes(t_command *cmd);

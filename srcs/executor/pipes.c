@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 00:52:41 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/19 11:44:42 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:07:45 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_init_pipes(t_state *state)
 
 int	needs_pipe(t_command *cmd)
 {
-	if (cmd->fd_out == STDOUT_FILENO && cmd->next->fd_in == STDIN_FILENO)
+	if (cmd->index == 1 || !cmd->next)
 		return (1);
 	else
 		return (0);
@@ -42,10 +42,13 @@ int	assign_pipes(t_command *cmd)
 
 	if (pipe(pipe_fds) == -1)
 		return (0);
-	else
-	{
+	if (cmd->fd_out == STDOUT_FILENO)
 		cmd->fd_out = pipe_fds[1];
-		cmd->next->fd_in = pipe_fds[0];
-		return (1);
-	}
+	else
+		close(pipe_fds[1]);
+	if (cmd->fd_in == STDIN_FILENO)
+		cmd->fd_in = pipe_fds[0];
+	else
+		close(pipe_fds[0]);
+	return (1);
 }

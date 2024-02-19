@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/15 14:43:28 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:08:03 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,12 @@ void	ft_exit(char *str, t_state *state)
 	exit (1);
 }
 
-void	ft_error(char *str, t_state *state)
-{
-	if (!state->error)
-		state->error = ft_strdup(str);
-}
-
 void	reset_all(t_state *state)
 {
 	if (state)
 	{
 		if (state->error)
-		{
-			ft_putstr_fd(state->error, STDERR_FILENO);
-			ft_putstr_fd("\n", STDERR_FILENO);
-			free(state->error);
-			state->error = NULL;
-		}
+			print_error(state);
 		if (state->token_list)
 		{
 			free_tokens (state->token_list);
@@ -56,6 +45,24 @@ void	reset_all(t_state *state)
 			state->cmd_list = NULL;
 		}
 	}
+}
+
+void	print_error(t_state *state)
+{
+	if (state->data->cmd_error)
+	{
+		ft_putstr_fd(state->data->cmd_error, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+	}
+	ft_putstr_fd(state->error, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
+	ft_putstr_fd("Error code: ", STDERR_FILENO);
+	ft_putstr_fd(ft_itoa(state->data->exit_status), STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
+	free(state->error);
+	state->error = NULL;
+	free(state->data->cmd_error);
+	state->data->cmd_error = NULL;
 }
 
 void	free_data(t_data *data)
