@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/18 00:55:00 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:31:15 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ char		**ft_parse_path(char **envp);
 char		*get_path(char **all_path, char *cmd);
 
 //Executor
-void			pre_executor(t_state *state);
+void		pre_executor(t_state *state);
 void		ft_init_pipes(t_state *state);
 int			needs_pipe(t_command *cmd);
 int			assign_pipes(t_command *cmd);
