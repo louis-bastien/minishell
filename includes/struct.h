@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/15 13:18:35 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:05:36 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ typedef struct s_command
 
 typedef struct s_data
 {
+	pid_t	pid;
 	char	**env;
-	int		pipes;
+	int		nun_pipes;
+	int		**pipe;
+	int		idx;
 	int		exit_status;
 }	t_data;
 

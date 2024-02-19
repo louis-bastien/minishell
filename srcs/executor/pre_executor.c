@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/15 13:26:38 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:05:43 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	pre_executor(t_state *state)
 	int	exit_code;
 
 	is_builtins(state);
-	if (state->data->pipes == 0)
+	//redirrecciones
+	if (state->data->nun_pipes == 0)
 		exit_code = one_cmd(state);
 	else
 	{

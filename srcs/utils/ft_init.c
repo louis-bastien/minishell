@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/16 14:46:33 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:36:39 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**copy_env(char **env, t_state *state)
 
 	i = 0;
 	size_env = double_array_size(env);
-	data_env = malloc(sizeof(char *) * (size_env + 1));
+	data_env = (char **)malloc(sizeof(char *) * (size_env + 1));
 	if (!data_env)
 		ft_exit("Failed to malloc data_env", state);
 	i = 0;
