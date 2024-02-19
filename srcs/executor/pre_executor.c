@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/18 00:55:12 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/19 11:46:54 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	pre_executor(t_state *state)
 		one_cmd(state);
 	else
 	{
+		ft_init_pipes(state);
 		multiple_cmd(state);
 	}
 }
