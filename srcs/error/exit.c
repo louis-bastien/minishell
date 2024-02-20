@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/20 12:11:57 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:20:23 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	reset_all(t_state *state)
 			state->cmd_list = NULL;
 		}
 		state->num_cmds = 0;
+		state->data->last_pid = -1;
+		state->data->childs = 0;
 	}
 }
 

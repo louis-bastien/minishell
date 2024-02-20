@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/19 17:33:05 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:19:10 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_data
 	char	**env;
 	char	*cmd_error;
 	int		exit_status;
+	int		childs;
+	int		last_pid;
 }	t_data;
 
 typedef struct s_state

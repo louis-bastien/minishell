@@ -5,77 +5,114 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 13:56:13 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/20 11:45:37 by lbastien         ###   ########.fr       */
+/*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
+/*   Updated: 2024/02/20 17:24:41 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-// void	close_pipes(t_state *state)
+void	ft_executor(t_state *state)
+{
+	t_command	*cmd;
+
+	cmd = state->cmd_list;
+	while (cmd)
+	{
+		if (cmd->is_builtin == true)
+			ft_exec_builtin(cmd, state);
+		else
+			exec_cmd(cmd, state);
+		cmd = cmd->next;
+	}
+	if (state->data->childs > 0)
+		ft_waitpid(state);
+}
+
+void	exec_cmd(t_command *cmd, t_state *state)
+{
+	char	*path;
+	int		pid;
+
+	path = get_path(cmd, state);
+	if (state->error)
+		return ;
+	pid = fork();
+	if (pid < 0)
+		ft_error_exec(cmd->command, -1, "Error forking process", state);
+	else if (pid == 0)
+	{
+		make_dup(cmd, state);
+		execve(path, cmd->args, state->data->env);
+		ft_error_exec(cmd->command, EXIT_FAILURE, "Execution Failed", state);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		if (is_last(cmd, state))
+			state->data->last_pid = pid;
+		state->data->childs++;
+	}
+}
+
+void	make_dup(t_command *cmd, t_state *state)
+{
+	int	code;
+
+	code = 0;
+	if (cmd->fd_in != STDIN_FILENO)
+	{
+		if (dup2(cmd->fd_in, 0) == -1)
+			ft_error_exec(cmd->command, code, "Failed to dup STDIN", state);
+		close(cmd->fd_in);
+	}
+	if (cmd->fd_out != STDOUT_FILENO)
+	{
+		if (dup2(cmd->fd_out, 1) == -1)
+			ft_error_exec(cmd->command, code, "Failed to dup STDOUT", state);
+		close(cmd->fd_out);
+	}
+}
+
+void	ft_waitpid(t_state *state)
+{
+	int	status;
+	int	wait_pid;
+
+	wait_pid = 1;
+	status = 0;
+	while (wait_pid > 0)
+	{
+		wait_pid = waitpid(-1, &status, 0);
+		if (wait_pid == state->data->last_pid)
+		{
+			if (WIFEXITED(status))
+				state->data->exit_status = WEXITSTATUS(status);
+			else if (WIFSIGNALED(status))
+				state->data->exit_status = 128 + WTERMSIG(status);
+			else
+				state->data->exit_status = 0;
+		}
+	}
+}
+
+// void	one_cmd(t_state *state)
 // {
-// 	int	i;
+// 	t_command	*cmd;
+// 	int			pid;
+// 	int			status;
 
-// 	i = 0;
-// 	while (i < state->data->nun_pipes)
+// 	cmd = state->cmd_list;
+// 	if (cmd->is_builtin == true)
+// 		ft_exec_builtin(state, cmd);
+// 	else
 // 	{
-// 		close(state->data->pipe[i][0]);
-// 		close(state->data->pipe[i][1]);
-// 		i++;
+// 		pid = fork();
+// 		if (pid < 0)
+// 			ft_error_exec(cmd->command, -1, "Error forking process", state);
+// 		if (pid == 0)
+// 			exec_cmd(cmd, state);
+// 		waitpid(pid, &status, 0);
 // 	}
 // }
 
-// static void	sub_dup2(int zero, int first)
-// {
-// 	dup2(zero, 0);
-// 	dup2(first, 1);
-// }
-
-// void	child(t_state *state)
-// {
-// 	char	*path;
-// 	char	**cmd;
-// 	char	**all_path;
-// 	int		idx;
-
-// 	idx = state->data->idx;
-// 	state->data->pid = fork();
-// 	if (!state->data->pid)
-// 	{
-// 		if (state->data->idx == 0)
-// 			sub_dup2(state->cmd_list->fd_in, state->data->pipe[idx][1]);
-// 		else if (state->data->idx == (state->data->nun_pipes))
-// 			sub_dup2(state->data->pipe[idx - 1][0], state->cmd_list->fd_out);
-// 		else
-// 			sub_dup2(state->data->pipe[idx -1][0], state->data->pipe[idx][1]);
-// 		close_pipes(state);
-// 		cmd = ft_split(p->cmd[p->idx], ' ');
-// 		all_path = ft_parse_path(state->data->env);
-// 		path = get_path(all_path, cmd);
-// 		if (path == NULL)
-// 			ft_error(NOCMD, cmd[0]);
-// 		execve(path, cmd, state->data->env);
-// 		free(path);
-// 		free(cmd);
-// 	}
-// }
-
-// void	multiple_cmd(t_state *state)
-// {
-// 	int	status;
-// 	int	i;
-
-// 	i = -1;
-// 	while (++i < state->data->nun_pipes)
-// 	{
-// 		state->data->pipe[i] = malloc(sizeof(int) * 2);
-// 		if (!state->data->pipe[i])
-// 			ft_error_perm(42, "Malloc\n");
-// 		pipe(state->data->pipe[i]);
-// 	}
-// 	state->data->idx = -1;
-// 	while (++state->data->idx < state->data->nun_pipes + 1)
-// 		child(state);
-// 	close_pipes(state);
-// 	waitpid(-1, &status, 0);
-// }

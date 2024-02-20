@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/19 18:02:23 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:12:38 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,28 @@ char	**ft_parse_path(char **envp)
 	return (all_path);
 }
 
-char	*get_path(char **all_path, char *cmd)
+char	*get_path(t_command *cmd, t_state *state)
 {
+	char	**all_path;
 	int		i;
 	char	*exec;
 	char	*path_part;
 
-	if (all_path == NULL || cmd == NULL)
-		return (NULL);
 	i = 0;
+	all_path = ft_parse_path(state->data->env);
+	if (all_path == NULL || cmd == NULL)
+		ft_error_exec(cmd->command, -1, "Error Parsing Path", state);
 	while (all_path[i] != NULL)
 	{
 		path_part = ft_strjoin(all_path[i], "/");
-		exec = ft_strjoin(path_part, cmd);
+		exec = ft_strjoin(path_part, cmd->command);
 		free(path_part);
 		if (access(exec, F_OK) == 0)
 			return (exec);
 		free(exec);
 		i++;
 	}
+	ft_error_exec(cmd->command, NOCMD, "Command does not exist", state);
 	return (NULL);
 }
 

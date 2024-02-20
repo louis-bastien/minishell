@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/20 14:14:16 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:19:29 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	run_shell(t_state *state)
 			if (!state->error)
 				ft_parser(state);
 			if (!state->error)
-				executor(state);
+				ft_executor(state);
 			//ft_print_cmds(state->cmd_list);
 		}
 		reset_all(state);
@@ -79,5 +79,7 @@ t_data	*init_data(char **envp, t_state *state)
 	new_data->env = copy_env(envp, state);
 	new_data->cmd_error = NULL;
 	new_data->exit_status = 0;
+	new_data->last_pid = -1;
+	new_data->childs = 0;
 	return (new_data);
 }
