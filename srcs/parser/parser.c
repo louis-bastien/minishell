@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/20 12:03:47 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:13:03 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,10 @@ void	init_cmd_list(t_token *tokens, t_state *state)
 	if (token_counter != 0)
 	{
 		state->num_cmds++;
-		if (add_cmd(&state->cmd_list, tokens, token_counter, cmd_counter))
+		if (add_cmd(&state->cmd_list, tokens, token_counter, state->num_cmds))
 			ft_error("(parser) Failed to add new cmd", state);
 		else
 		{
-			state->num_cmds++;
 			while (tokens && tokens->type != PIPE)
 				tokens = tokens->next;
 			if (tokens)

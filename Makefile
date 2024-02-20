@@ -6,7 +6,7 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/02/20 11:56:33 by lbastien         ###   ########.fr        #
+#    Updated: 2024/02/20 13:36:13 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ SRC = srcs/minishell.c \
 	srcs/parser/parser.c \
 	srcs/parser/redirections.c \
 	srcs/parser/args.c \
-	srcs/parser/commands.c \
 	srcs/utils/ft_init.c \
+	srcs/utils/cmd_utils.c \
 	srcs/utils/print.c \
 	srcs/utils/get_var_envp.c \
 	srcs/utils/env_utils.c \

@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/20 11:59:06 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:36:51 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void		ft_print_cmds(t_command *commands);
 void		print_args(t_command *command);
 void		print_tokens(t_token *tokens);
 char		*print_type(t_ttype type);
+int			is_first(t_command *cmd);
+int			is_last(t_command *cmd, t_state *state);
 
 //Exit
 void		ft_exit(char *str, t_state *state);
@@ -134,7 +136,7 @@ void		exec_cmd(t_command *cmd, t_state *state);
 
 void		ft_init_pipes(t_state *state);
 int			needs_pipe(t_command *cmd);
-int			assign_pipes(t_command *cmd);
+int			assign_pipes(t_command *cmd, t_state *state);
 
 //env_utils
 int			double_array_size(char **d_str);
