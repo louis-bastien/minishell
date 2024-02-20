@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/19 18:07:46 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:59:06 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void		free_doubleptr(char **dptr);
 //Errors
 void		ft_error(char *str, t_state *state);
 void		ft_error_exec(char *cmd, int exit_code, char *str, t_state *state);
-void		print_error(t_state *state);
+void		print_err(t_state *state);
 void		ft_error_sms(char *str);
 void		ft_error_perm(int perm, char *str);
 
@@ -130,7 +130,7 @@ char		*get_path(char **all_path, char *cmd);
 //Executor
 void		pre_executor(t_state *state);
 void		one_cmd(t_state *state);
-void		exec_one_cmd(t_state *state);  
+void		exec_cmd(t_command *cmd, t_state *state);  
 
 void		ft_init_pipes(t_state *state);
 int			needs_pipe(t_command *cmd);

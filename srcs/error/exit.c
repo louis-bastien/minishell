@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/19 18:08:03 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:59:00 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	reset_all(t_state *state)
 	if (state)
 	{
 		if (state->error)
-			print_error(state);
+			print_err(state);
 		if (state->token_list)
 		{
 			free_tokens (state->token_list);

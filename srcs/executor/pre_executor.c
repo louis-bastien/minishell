@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/19 18:06:21 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:01:59 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	pre_executor(t_state *state)
 {
+	printf("num_cmds=%d\n", state->num_cmds);
 	if (state->num_cmds == 1)
 		one_cmd(state);
 	else
@@ -23,7 +24,7 @@ void	pre_executor(t_state *state)
 	}
 }
 
-void	exec_cmd(t_state *state, t_command *cmd)
+void	exec_cmd(t_command *cmd, t_state *state)
 {
 	char	*path;
 	char	**all_path;
@@ -53,7 +54,7 @@ void	one_cmd(t_state *state)
 		if (pid < 0)
 			ft_error("Error while forking process", state);
 		if (pid == 0)
-			exec_one_cmd(state);
+			exec_cmd(cmd, state);
 		waitpid(pid, &status, 0);
 	}
 }

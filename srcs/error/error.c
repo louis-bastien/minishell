@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:04:09 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/19 18:02:35 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:58:46 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_error_exec(char *cmd, int exit_code, char *str, t_state *state)
 		state->data->cmd_error = cmd;
 }
 
-void	print_error(t_state *state)
+void	print_err(t_state *state)
 {
 	if (state->data->cmd_error)
 	{
