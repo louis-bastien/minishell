@@ -6,13 +6,13 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:34:12 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/20 17:30:02 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/21 22:25:50 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_exec_builtin(t_command *cmd, t_state *state)
+int	ft_exec_builtin(t_command *cmd, t_state *state)
 {
 	int	exit_status;
 
@@ -35,4 +35,5 @@ void	ft_exec_builtin(t_command *cmd, t_state *state)
 		ft_error_exec(cmd->command, NOCMD, "Invalid builtin", state);
 	if (exit_status)
 		ft_error_exec(cmd->command, exit_status, "Execution error", state);
+	return (exit_status);
 }

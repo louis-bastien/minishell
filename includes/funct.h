@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/21 17:45:03 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/21 22:22:20 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,8 @@ int			is_validchar(char c);
 void		ft_expander(t_state *state);
 char		*expand_env_variables(char *str, t_state *state);
 char		*replace_env(char *str, int env_pos, char *value, char *name);
-char		*get_env_value(char *name);
+char		*get_env_value(char *name, t_state *state);
 char		*get_env_name(char *env, int end_pos);
-char		*get_exit_status(char *str);
 int			is_valid_env(char c);
 void		quote_wrapper(t_token *token, t_state *state);
 void		single_quotes(char **str, char **current, t_state *state);
@@ -107,7 +106,7 @@ void		is_builtins(t_state *state);
 
 //Builtins
 void		check_builtins(t_command *cmd);
-void		ft_exec_builtin(t_command *cmd, t_state *state);
+int			ft_exec_builtin(t_command *cmd, t_state *state);
 int			minicd(t_state *state);
 int			mini_pwd(t_state *state);
 int			mini_env(t_state *state);
@@ -133,6 +132,9 @@ char		*get_path(t_command *cmd, t_state *state);
 void		ft_executor(t_state *state);
 void		make_dup(t_command *cmd, t_state *state);
 void		exec_cmd(t_command *cmd, t_state *state);
+void		ft_child(t_command *cmd, t_state *state);
+void		ft_parent(t_command *cmd, int pid, t_state *state);
+
 void		ft_waitpid(t_state *state);
 
 void		ft_init_pipes(t_state *state);
