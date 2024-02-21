@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/20 17:03:45 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:45:03 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void		ft_waitpid(t_state *state);
 
 void		ft_init_pipes(t_state *state);
 int			needs_pipe(t_command *cmd);
-int			assign_pipes(t_command *cmd, t_state *state);
+int			assign_pipes(t_command *cmd);
 
 //env_utils
 int			double_array_size(char **d_str);
