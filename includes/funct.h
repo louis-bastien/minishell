@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/21 22:22:20 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:05:42 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,21 +125,23 @@ char		**update_env(char **var_value, t_state *state);
 
 //utils data
 char		*get_var_env(char *var, char **envp);
-char		**ft_parse_path(char **envp);
-char		*get_path(t_command *cmd, t_state *state);
 
 //Executor
 void		ft_executor(t_state *state);
 void		make_dup(t_command *cmd, t_state *state);
 void		exec_cmd(t_command *cmd, t_state *state);
-void		ft_child(t_command *cmd, t_state *state);
+void		ft_child(t_command *cmd, char *path, t_state *state);
 void		ft_parent(t_command *cmd, int pid, t_state *state);
-
 void		ft_waitpid(t_state *state);
-
 void		ft_init_pipes(t_state *state);
 int			needs_pipe(t_command *cmd);
 int			assign_pipes(t_command *cmd);
+
+//Path
+char		**ft_parse_path(char **envp);
+char		*get_path(t_command *cmd, t_state *state);
+int			check_absolute_path(t_command *cmd);
+int			is_absolute(t_command *cmd);
 
 //env_utils
 int			double_array_size(char **d_str);

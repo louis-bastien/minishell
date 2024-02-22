@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/21 16:46:32 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/22 21:05:01 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	run_shell(t_state *state)
 		input = readline("\033[0;32mminishell➜\033[0m ");
 		if (!input)
 			ft_error("(Input) EOF reached or input error from Readline", state);
+		else if (!ft_strncmp(input, "exit", ft_strlen(input)))
+			ft_exit("Exiting gracefully", state);
 		else
 		{
 			add_history(input);
@@ -47,7 +49,9 @@ void	run_shell(t_state *state)
 				ft_parser(state);
 			if (!state->error)
 				ft_executor(state);
-			//ft_print_cmds(state->cmd_list);
+			// printf("Error: %s\n", state->error);
+			// printf("Error_CMD: %s\n", state->data->cmd_error);
+			// printf("Exit_status: %d\n", state->data->exit_status);
 		}
 		reset_all(state);
 		free(input);

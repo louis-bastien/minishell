@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/22 13:48:21 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:47:55 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,29 @@ void	ft_executor(t_state *state)
 
 void	exec_cmd(t_command *cmd, t_state *state)
 {
+	char	*path;
 	int		pid;
 
+	path = NULL;
 	if (state->error)
 		return ;
+	path = get_path(cmd, state);
+	if (!path)
+		ft_error_exec(cmd->command, NOCMD, "Command does not exist", state);
 	pid = fork();
 	if (pid < 0)
 		ft_error_exec(cmd->command, -1, "Error forking process", state);
 	else if (pid == 0)
-		ft_child(cmd, state);
+		ft_child(cmd, path, state);
 	else
 		ft_parent(cmd, pid, state);
 }
 
-void	ft_child(t_command *cmd, t_state *state)
+void	ft_child(t_command *cmd, char *path, t_state *state)
 {
-	char	*path;
 	int		status;
 
 	status = 0;
-	path = NULL;
 //	printf("%s child process created\n", cmd->command);
 	make_dup(cmd, state);
 //	printf("%s executing...\n", cmd->command);
@@ -62,7 +65,6 @@ void	ft_child(t_command *cmd, t_state *state)
 	}
 	else
 	{
-		path = get_path(cmd, state);
 		execve(path, cmd->args, state->data->env);
 		ft_error_exec(cmd->command, EXIT_FAILURE, "Execution Failed", state);
 		exit(EXIT_FAILURE);
@@ -99,7 +101,7 @@ void	ft_waitpid(t_state *state)
 				state->data->exit_status = WEXITSTATUS(status);
 			else if (WIFSIGNALED(status))
 				state->data->exit_status = 128 + WTERMSIG(status);
-			else
+			else	
 				state->data->exit_status = 0;
 		}
 		state->data->childs--;
