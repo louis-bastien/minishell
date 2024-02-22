@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/21 21:58:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/22 13:48:21 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	ft_executor(t_state *state)
 
 	cmd = state->cmd_list;
 	ft_init_pipes(state);
-	while (cmd)
+	while (cmd && !state->error)
 	{
 		if (cmd->is_builtin && state->num_cmds == 1)
-			ft_exec_builtin(cmd, state);
+			state->data->exit_status = ft_exec_builtin(cmd, state);
 		else
 			exec_cmd(cmd, state);
 		cmd = cmd->next;
