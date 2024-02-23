@@ -1,17 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.c                                          :+:      :+:    :+:   */
+/*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD:srcs/utils/ft_init.c
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
 /*   Updated: 2024/02/23 11:54:57 by agusheredia      ###   ########.fr       */
+=======
+/*   Created: 2024/02/22 21:58:13 by lbastien          #+#    #+#             */
+/*   Updated: 2024/02/22 22:00:52 by lbastien         ###   ########.fr       */
+>>>>>>> main:srcs/utils/path.c
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+<<<<<<< HEAD:srcs/utils/ft_init.c
 char	**copy_env(char **env)
 {
 	char	**data_env;
@@ -37,6 +43,8 @@ char	**copy_env(char **env)
 	return (data_env);
 }
 
+=======
+>>>>>>> main:srcs/utils/path.c
 char	**ft_parse_path(char **envp)
 {
 	char	*str_path;
@@ -61,7 +69,13 @@ char	*get_path(t_command *cmd, t_state *state, char **env)
 	char	*path_part;
 
 	i = 0;
+<<<<<<< HEAD:srcs/utils/ft_init.c
 	all_path = ft_parse_path(env);
+=======
+	if (check_absolute_path(cmd))
+		return (cmd->command);
+	all_path = ft_parse_path(state->data->env);
+>>>>>>> main:srcs/utils/path.c
 	if (all_path == NULL || cmd == NULL)
 		ft_error_exec(cmd->command, -1, "Error Parsing Path", state);
 	while (all_path[i] != NULL)
@@ -78,4 +92,30 @@ char	*get_path(t_command *cmd, t_state *state, char **env)
 	return (NULL);
 }
 
+int	check_absolute_path(t_command *cmd)
+{
+	char	*last_slash;
+	char	*relative_cmd;
 
+	if (is_absolute(cmd))
+	{
+		last_slash = ft_strrchr(cmd->command, '/');
+		relative_cmd = last_slash + 1;
+		if (cmd->args[0])
+			free(cmd->args[0]);
+		cmd->args[0] = ft_strdup(relative_cmd);
+		return (1);
+	}
+	return (0);
+}
+
+int	is_absolute(t_command *cmd)
+{
+
+	if (cmd->command[0] == '/')
+		return (1);
+	else if (cmd->command[0] == '.' && cmd->command[1] == '/')
+		return (1);
+	else
+		return (0);
+}

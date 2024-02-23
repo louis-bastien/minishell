@@ -6,7 +6,7 @@
 #    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/02/23 15:17:27 by agheredi         ###   ########.fr        #
+#    Updated: 2024/02/23 15:54:58 by agheredi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 FLAGS = -Wall -Werror -Wextra -g -fsanitize='address,undefined'
 SRC = srcs/minishell.c \
 	srcs/error/error.c \
-	srcs/error/exit.c \
+	srcs/error/reset.c \
 	srcs/error/free.c \
 	srcs/lexer/lexer.c \
 	srcs/lexer/char_checker.c \
@@ -26,8 +26,8 @@ SRC = srcs/minishell.c \
 	srcs/parser/parser.c \
 	srcs/parser/redirections.c \
 	srcs/parser/args.c \
-	srcs/utils/ft_init.c \
-	srcs/utils/cmd_utils.c \
+	srcs/utils/path.c \
+	srcs/utils/cmd.c \
 	srcs/utils/print.c \
 	srcs/utils/get_var_envp.c \
 	srcs/utils/env_utils.c \

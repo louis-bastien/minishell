@@ -6,11 +6,27 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:04:09 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/20 11:58:46 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:11:20 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	ft_exit(char *str, t_state *state)
+{
+	if (!state->error)
+		state->error = ft_strdup(str);
+	reset_all(state);
+	if (state->data)
+	{
+		free_data(state->data);
+		state->data = NULL;
+	}
+	free (state);
+	state = NULL;
+	clear_history();
+	exit (1);
+}
 
 void	ft_error(char *str, t_state *state)
 {
@@ -23,9 +39,12 @@ void	ft_error_exec(char *cmd, int exit_code, char *str, t_state *state)
 	if (!state->error)
 		state->error = ft_strdup(str);
 	if (!state->data->exit_status)
+	{
 		state->data->exit_status = exit_code;
-	if (!state->data->exit_status)
-		state->data->cmd_error = cmd;
+		printf("ERRORSET=%d\n", exit_code);
+	}
+	if (!state->data->cmd_error)
+		state->data->cmd_error = ft_strdup(cmd);
 }
 
 void	print_err(t_state *state)
@@ -38,6 +57,7 @@ void	print_err(t_state *state)
 	ft_putstr_fd(state->error, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
 	ft_putstr_fd("Error code: ", STDERR_FILENO);
+	printf("ERRORSETPRINTR=%d\n", state->data->exit_status);
 	ft_putstr_fd(ft_itoa(state->data->exit_status), STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
 	free(state->error);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/23 12:02:44 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/23 15:54:15 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	run_shell(t_state *state, char ***env)
 		input = readline("\033[0;32mminishell➜\033[0m ");
 		if (!input)
 			ft_error("(Input) EOF reached or input error from Readline", state);
+		else if (!ft_strncmp(input, "exit", ft_strlen(input)))
+			ft_exit("Exiting gracefully", state);
 		else
 		{
 			add_history(input);
