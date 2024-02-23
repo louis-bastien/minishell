@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:41:27 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/22 20:41:29 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/23 14:04:55 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ int	get_var_index(char *var, char **envp)
 			return (index);
 		index++;
 	}
-	if (index == (double_array_size(envp) - 1))
-		index = -1;
+	index = -1;
 	return (index);
 }
 
