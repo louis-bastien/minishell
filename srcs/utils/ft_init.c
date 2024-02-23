@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/20 16:12:38 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:54:57 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	**copy_env(char **env, t_state *state)
+char	**copy_env(char **env)
 {
 	char	**data_env;
 	int		i;
@@ -22,11 +22,15 @@ char	**copy_env(char **env, t_state *state)
 	size_env = double_array_size(env);
 	data_env = (char **)malloc(sizeof(char *) * (size_env + 1));
 	if (!data_env)
-		ft_exit("Failed to malloc data_env", state);
-	i = 0;
-	while (i < size_env)
+		return (NULL);
+	while (i < size_env && env[i] != NULL)
 	{
 		data_env[i] = ft_strdup(env[i]);
+		if (!data_env[i])
+		{
+			free_darray(data_env);
+			return (NULL);
+		}
 		i++;
 	}
 	data_env[i] = NULL;
@@ -49,7 +53,7 @@ char	**ft_parse_path(char **envp)
 	return (all_path);
 }
 
-char	*get_path(t_command *cmd, t_state *state)
+char	*get_path(t_command *cmd, t_state *state, char **env)
 {
 	char	**all_path;
 	int		i;
@@ -57,7 +61,7 @@ char	*get_path(t_command *cmd, t_state *state)
 	char	*path_part;
 
 	i = 0;
-	all_path = ft_parse_path(state->data->env);
+	all_path = ft_parse_path(env);
 	if (all_path == NULL || cmd == NULL)
 		ft_error_exec(cmd->command, -1, "Error Parsing Path", state);
 	while (all_path[i] != NULL)

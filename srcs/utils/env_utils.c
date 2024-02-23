@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:41:27 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/16 13:45:15 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/22 20:41:29 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,33 @@ char	**add_str_darry(char **d_array, char *nwstr)
 	while (i < sizeold)
 	{
 		nw_darray[i] = ft_strdup(d_array[i]);
-		free(d_array[i]);
 		i++;
 	}
-	free(d_array[i]);
 	nw_darray[i] = ft_strdup(nwstr);
 	nw_darray[i + 1] = NULL;
-	free(d_array);
+	free_darray(d_array);
 	return (nw_darray);
+}
+
+char	**rm_d_array(char **d_array, int i)
+{
+	char	**orig_arr;
+	char	**new_arr;
+	int		orig_arr_size;
+	int		j;
+
+	orig_arr = d_array;
+	orig_arr_size = double_array_size(orig_arr);
+	new_arr = (char **)malloc(sizeof(char *) * orig_arr_size);
+	j = 0;
+	while (j++ < i)
+		new_arr[j] = ft_strdup(orig_arr[j]);
+	while (orig_arr[j + 1])
+	{
+		new_arr[j] = ft_strdup(orig_arr[j + 1]);
+		++j;
+	}
+	new_arr[j] = NULL;
+	free_darray(d_array);
+	return (new_arr);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/21 22:22:20 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:03:00 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 # include "minishell.h"
 
 //Main
-void		run_shell(t_state *state);
+void		run_shell(t_state *state, char ***env);
 t_state		*init_state(t_state *state);
-t_data		*init_data(char **envp, t_state *state);
+t_data		*init_data(t_state *state);
 
 //Lexer
 void		ft_lexer(char *input, t_state *state);
@@ -81,6 +81,7 @@ void		print_tokens(t_token *tokens);
 char		*print_type(t_ttype type);
 int			is_first(t_command *cmd);
 int			is_last(t_command *cmd, t_state *state);
+void		free_darray(char **d_array);
 
 //Exit
 void		ft_exit(char *str, t_state *state);
@@ -101,39 +102,42 @@ void		ft_error_sms(char *str);
 void		ft_error_perm(int perm, char *str);
 
 //Init
-char		**copy_env(char **env, t_state *state);
+char		**copy_env(char **env);
 void		is_builtins(t_state *state);
 
 //Builtins
 void		check_builtins(t_command *cmd);
-int			ft_exec_builtin(t_command *cmd, t_state *state);
-int			minicd(t_state *state);
-int			mini_pwd(t_state *state);
-int			mini_env(t_state *state);
+int			ft_exec_builtin(t_command *cmd, t_state *state, char ***env);
+int			minicd(t_state *state, char ***env);
+int			mini_pwd(void);
+int			mini_env(t_state *state, char ***env);
 int			mini_echo(t_state *state);
 int			mini_exit(t_state *state);
-int			mini_export(t_state *state);
-int			mini_unset(t_state *state);
+int			mini_export(t_state *state, char ***env);
+int			mini_unset(t_state *state, char ***env);
 
 //utils builtins
 void		print_var_res(int outfd, const char *var);
 int			is_env_var_valid(char *word);
-char		*get_dir_var(t_state *state);
-void		export_no_arg(t_state *state);
-char		**update_env(char **var_value, t_state *state);
-//void		rm_var(char *var, char **env);
+char		*get_dir_var(t_state *state, char ***env);
+void		export_no_arg(t_state *state, char ***env);
+char		**update_env(char **var_value, t_state *state, char ***env);
+void		env_rm_var(char *varname, char ***env);
+void		determine_exit_code(char **str);
+int			is_str_digit(char *str);
 
 //utils data
 char		*get_var_env(char *var, char **envp);
 char		**ft_parse_path(char **envp);
-char		*get_path(t_command *cmd, t_state *state);
+char		*get_path(t_command *cmd, t_state *state, char **env);
 
 //Executor
-void		ft_executor(t_state *state);
+void		ft_executor(t_state *state, char ***env);
 void		make_dup(t_command *cmd, t_state *state);
-void		exec_cmd(t_command *cmd, t_state *state);
-void		ft_child(t_command *cmd, t_state *state);
+void		exec_cmd(t_command *cmd, t_state *state, char ***env);
+void		ft_child(t_command *cmd, t_state *state, char ***env);
 void		ft_parent(t_command *cmd, int pid, t_state *state);
+void		ft_execve(t_command *cmd, t_state *state, char **env);
 
 void		ft_waitpid(t_state *state);
 
@@ -146,5 +150,6 @@ int			double_array_size(char **d_str);
 char		**set_darray(char **d_str, char *n_str, int index);
 int			get_var_index(char *var, char **envp);
 char		**add_str_darry(char **d_array, char *nwstr);
+char		**rm_d_array(char **d_array, int i);
 
 #endif

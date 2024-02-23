@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/20 17:20:23 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:48:15 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ void	print_error(t_state *state)
 
 void	free_data(t_data *data)
 {
-	if (data->env)
+	/*if (data->env)
 	{
 		free_doubleptr(data->env);
 		data->env = NULL;
-	}
+	}*/
 	free(data);
 }
 

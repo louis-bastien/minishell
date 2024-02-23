@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minienv.c                                          :+:      :+:    :+:   */
+/*   free_darray.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 12:10:07 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/23 12:12:15 by agusheredia      ###   ########.fr       */
+/*   Created: 2024/02/22 19:54:48 by agusheredia       #+#    #+#             */
+/*   Updated: 2024/02/22 21:02:23 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	mini_env(t_state *state, char ***env)
+void	free_darray(char **d_array)
 {
 	int	i;
-	//int	size;
+	int	size;
 
 	i = 0;
-	//size = double_array_size(*env);
-	while ((*env)[i])
+	size = double_array_size(d_array);
+	while (i < size)
 	{
-		ft_putendl_fd((*env)[i], state->cmd_list->fd_out);
+		free(d_array[i]);
 		i++;
 	}
-	return (0);
+	free(d_array);
 }

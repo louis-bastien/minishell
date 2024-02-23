@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/21 16:46:32 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:02:44 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,21 @@
 int	main(int argc, char **argv, char **envp)
 {
 	t_state	*state;
+	char	**env;
 
 	state = NULL;
 	state = init_state(state);
-	state->data = init_data(envp, state);
+	state->data = init_data(state);
+	env = copy_env(envp);
 	if (argc > 1 || argv[1])
 		ft_exit("Minishell does not take any argument.", state);
 	else
-		run_shell(state);
+		run_shell(state, &env);
 	ft_exit("Exiting from main", state);
 	return (0);
 }
 
-void	run_shell(t_state *state)
+void	run_shell(t_state *state, char ***env)
 {
 	char	*input;
 
@@ -46,7 +48,7 @@ void	run_shell(t_state *state)
 			if (!state->error)
 				ft_parser(state);
 			if (!state->error)
-				ft_executor(state);
+				ft_executor(state, env);
 			//ft_print_cmds(state->cmd_list);
 		}
 		reset_all(state);
@@ -69,14 +71,14 @@ t_state	*init_state(t_state *state)
 	return (new_state);
 }
 
-t_data	*init_data(char **envp, t_state *state)
+t_data	*init_data(t_state *state)
 {
 	t_data	*new_data;
 
 	new_data = malloc(sizeof(t_data));
 	if (!new_data)
 		ft_exit("Failed to malloc t_data", state);
-	new_data->env = copy_env(envp, state);
+	//new_data->env = copy_env(envp);
 	new_data->cmd_error = NULL;
 	new_data->exit_status = 0;
 	new_data->last_pid = -1;

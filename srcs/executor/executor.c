@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/21 21:58:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:56:07 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_executor(t_state *state)
+void	ft_executor(t_state *state, char ***env)
 {
 	t_command	*cmd;
 
@@ -21,16 +21,16 @@ void	ft_executor(t_state *state)
 	while (cmd)
 	{
 		if (cmd->is_builtin && state->num_cmds == 1)
-			ft_exec_builtin(cmd, state);
+			ft_exec_builtin(cmd, state, env);
 		else
-			exec_cmd(cmd, state);
+			exec_cmd(cmd, state, env);
 		cmd = cmd->next;
 	}
 	if (state->data->childs > 0)
 		ft_waitpid(state);
 }
 
-void	exec_cmd(t_command *cmd, t_state *state)
+void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 {
 	int		pid;
 
@@ -40,32 +40,33 @@ void	exec_cmd(t_command *cmd, t_state *state)
 	if (pid < 0)
 		ft_error_exec(cmd->command, -1, "Error forking process", state);
 	else if (pid == 0)
-		ft_child(cmd, state);
+		ft_child(cmd, state, env);
 	else
 		ft_parent(cmd, pid, state);
 }
 
-void	ft_child(t_command *cmd, t_state *state)
+void	ft_child(t_command *cmd, t_state *state, char ***env)
 {
-	char	*path;
+	//char	*path;
 	int		status;
 
 	status = 0;
-	path = NULL;
+	//path = NULL;
 //	printf("%s child process created\n", cmd->command);
 	make_dup(cmd, state);
 //	printf("%s executing...\n", cmd->command);
 	if (cmd->is_builtin == true)
 	{
-		status = ft_exec_builtin(cmd, state);
+		status = ft_exec_builtin(cmd, state, env);
 		exit (status);
 	}
 	else
 	{
-		path = get_path(cmd, state);
-		execve(path, cmd->args, state->data->env);
-		ft_error_exec(cmd->command, EXIT_FAILURE, "Execution Failed", state);
-		exit(EXIT_FAILURE);
+		//path = get_path(cmd, state);
+		//execve(path, cmd->args, state->data->env);
+		//ft_error_exec(cmd->command, EXIT_FAILURE, "Execution Failed", state);
+		//exit(EXIT_FAILURE);
+		ft_execve(cmd, state, *env);
 	}
 }
 
