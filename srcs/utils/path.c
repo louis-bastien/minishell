@@ -5,19 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD:srcs/utils/ft_init.c
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/23 11:54:57 by agusheredia      ###   ########.fr       */
-=======
-/*   Created: 2024/02/22 21:58:13 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/22 22:00:52 by lbastien         ###   ########.fr       */
->>>>>>> main:srcs/utils/path.c
+/*   Updated: 2024/02/23 20:35:05 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-<<<<<<< HEAD:srcs/utils/ft_init.c
 char	**copy_env(char **env)
 {
 	char	**data_env;
@@ -43,8 +37,6 @@ char	**copy_env(char **env)
 	return (data_env);
 }
 
-=======
->>>>>>> main:srcs/utils/path.c
 char	**ft_parse_path(char **envp)
 {
 	char	*str_path;
@@ -69,13 +61,7 @@ char	*get_path(t_command *cmd, t_state *state, char **env)
 	char	*path_part;
 
 	i = 0;
-<<<<<<< HEAD:srcs/utils/ft_init.c
 	all_path = ft_parse_path(env);
-=======
-	if (check_absolute_path(cmd))
-		return (cmd->command);
-	all_path = ft_parse_path(state->data->env);
->>>>>>> main:srcs/utils/path.c
 	if (all_path == NULL || cmd == NULL)
 		ft_error_exec(cmd->command, -1, "Error Parsing Path", state);
 	while (all_path[i] != NULL)

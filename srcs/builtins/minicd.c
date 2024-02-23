@@ -6,26 +6,26 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:48:46 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/23 11:56:56 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/23 20:17:17 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*get_dir_var(t_state *state, char ***env)
+char	*get_dir_var(t_command *cmd, char ***env)
 {
 	char	*dir;
 
 	dir = NULL;
-	if (state->cmd_list->args_count == 1
-		|| (ft_strncmp(state->cmd_list->args[1], "~", 2) == 0))
+	if (cmd->args_count == 1
+		|| (ft_strncmp(cmd->args[1], "~", 2) == 0))
 	{
 		dir = get_var_env("HOME=", *env);
 		if (!dir)
 			ft_error_sms("cd HOME not set");
 	}
 	else
-		dir = ft_strdup(state->cmd_list->args[1]);
+		dir = ft_strdup(cmd->args[1]);
 	return (dir);
 }
 
@@ -42,11 +42,11 @@ char	**update_cd(char ***env)
 	return (nenv);
 }
 
-int	minicd(t_state *state, char ***env)
+int	minicd(t_command *cmd, char ***env)
 {
 	char	*var;
 
-	var = get_dir_var(state, env);
+	var = get_dir_var(cmd, env);
 	if (!var)
 		return (1);
 	if (chdir(var) == -1)

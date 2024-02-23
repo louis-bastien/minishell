@@ -6,11 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-<<<<<<< HEAD:srcs/error/exit.c
-/*   Updated: 2024/02/23 11:48:15 by agusheredia      ###   ########.fr       */
-=======
-/*   Updated: 2024/02/22 21:08:56 by lbastien         ###   ########.fr       */
->>>>>>> main:srcs/error/reset.c
+/*   Updated: 2024/02/23 20:33:25 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +36,6 @@ void	reset_all(t_state *state)
 
 void	free_data(t_data *data)
 {
-	/*if (data->env)
-	{
-		free_doubleptr(data->env);
-		data->env = NULL;
-	}*/
 	free(data);
 }
 

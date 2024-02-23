@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniunset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:14:59 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/23 15:27:54 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:27:01 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	is_env_var_valid(char *word)
 	return (1);
 }
 
-int	mini_unset(t_state *state, char ***env)
+int	mini_unset(t_command *cmd, char ***env)
 {
 	int	index_var;
 
-	index_var = get_var_index(state->cmd_list->args[1], *env);
-	if (state->cmd_list->args_count == 2
+	index_var = get_var_index(cmd->args[1], *env);
+	if (cmd->args_count == 2
 		&& index_var != -1)
 	{
 		*env = rm_d_array(*env, index_var);

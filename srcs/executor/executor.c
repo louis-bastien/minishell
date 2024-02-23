@@ -6,11 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/02/23 11:56:07 by agusheredia      ###   ########.fr       */
-=======
-/*   Updated: 2024/02/22 22:47:55 by lbastien         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2024/02/23 20:45:37 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +21,7 @@ void	ft_executor(t_state *state, char ***env)
 	while (cmd && !state->error)
 	{
 		if (cmd->is_builtin && state->num_cmds == 1)
-<<<<<<< HEAD
 			ft_exec_builtin(cmd, state, env);
-=======
-			state->data->exit_status = ft_exec_builtin(cmd, state);
->>>>>>> main
 		else
 			exec_cmd(cmd, state, env);
 		cmd = cmd->next;
@@ -46,37 +38,23 @@ void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 	path = NULL;
 	if (state->error)
 		return ;
-	path = get_path(cmd, state);
+	path = get_path(cmd, state, *env);
 	if (!path)
 		ft_error_exec(cmd->command, NOCMD, "Command does not exist", state);
 	pid = fork();
 	if (pid < 0)
 		ft_error_exec(cmd->command, -1, "Error forking process", state);
 	else if (pid == 0)
-<<<<<<< HEAD
 		ft_child(cmd, state, env);
-=======
-		ft_child(cmd, path, state);
->>>>>>> main
 	else
 		ft_parent(cmd, pid, state);
 }
 
-<<<<<<< HEAD
 void	ft_child(t_command *cmd, t_state *state, char ***env)
 {
-	//char	*path;
 	int		status;
 
 	status = 0;
-	//path = NULL;
-=======
-void	ft_child(t_command *cmd, char *path, t_state *state)
-{
-	int		status;
-
-	status = 0;
->>>>>>> main
 //	printf("%s child process created\n", cmd->command);
 	make_dup(cmd, state);
 //	printf("%s executing...\n", cmd->command);
@@ -87,17 +65,7 @@ void	ft_child(t_command *cmd, char *path, t_state *state)
 	}
 	else
 	{
-<<<<<<< HEAD
-		//path = get_path(cmd, state);
-		//execve(path, cmd->args, state->data->env);
-		//ft_error_exec(cmd->command, EXIT_FAILURE, "Execution Failed", state);
-		//exit(EXIT_FAILURE);
 		ft_execve(cmd, state, *env);
-=======
-		execve(path, cmd->args, state->data->env);
-		ft_error_exec(cmd->command, EXIT_FAILURE, "Execution Failed", state);
-		exit(EXIT_FAILURE);
->>>>>>> main
 	}
 }
 
@@ -131,31 +99,10 @@ void	ft_waitpid(t_state *state)
 				state->data->exit_status = WEXITSTATUS(status);
 			else if (WIFSIGNALED(status))
 				state->data->exit_status = 128 + WTERMSIG(status);
-			else	
+			else
 				state->data->exit_status = 0;
 		}
 		state->data->childs--;
 //		printf("Childs remaining=%d\n", state->data->childs);
 	}
 }
-
-// void	one_cmd(t_state *state)
-// {
-// 	t_command	*cmd;
-// 	int			pid;
-// 	int			status;
-
-// 	cmd = state->cmd_list;
-// 	if (cmd->is_builtin == true)
-// 		ft_exec_builtin(state, cmd);
-// 	else
-// 	{
-// 		pid = fork();
-// 		if (pid < 0)
-// 			ft_error_exec(cmd->command, -1, "Error forking process", state);
-// 		if (pid == 0)
-// 			exec_cmd(cmd, state);
-// 		waitpid(pid, &status, 0);
-// 	}
-// }
-

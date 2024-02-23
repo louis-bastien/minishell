@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:41:27 by agheredi          #+#    #+#             */
-<<<<<<< HEAD:srcs/utils/env_utils.c
-/*   Updated: 2024/02/23 15:27:38 by agheredi         ###   ########.fr       */
-=======
-/*   Updated: 2024/02/22 22:02:15 by lbastien         ###   ########.fr       */
->>>>>>> main:srcs/utils/env.c
+/*   Updated: 2024/02/23 20:38:03 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +68,6 @@ char	**add_str_darry(char **d_array, char *nwstr)
 	return (nw_darray);
 }
 
-<<<<<<< HEAD:srcs/utils/env_utils.c
 char	**rm_d_array(char **d_array, int i)
 {
 	char	**orig_arr;
@@ -98,25 +93,4 @@ char	**rm_d_array(char **d_array, int i)
 	new_arr[j] = NULL;
 	free_darray(d_array);
 	return (new_arr);
-=======
-char	**copy_env(char **env, t_state *state)
-{
-	char	**data_env;
-	int		i;
-	int		size_env;
-
-	i = 0;
-	size_env = double_array_size(env);
-	data_env = (char **)malloc(sizeof(char *) * (size_env + 1));
-	if (!data_env)
-		ft_exit("Failed to malloc data_env", state);
-	i = 0;
-	while (i < size_env)
-	{
-		data_env[i] = ft_strdup(env[i]);
-		i++;
-	}
-	data_env[i] = NULL;
-	return (data_env);
->>>>>>> main:srcs/utils/env.c
 }

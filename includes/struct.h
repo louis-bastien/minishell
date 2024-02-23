@@ -6,7 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/23 11:23:27 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/23 20:13:50 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct s_command
 typedef struct s_data
 {
 	pid_t	pid;
-	//char	**env;
 	char	*cmd_error;
 	int		exit_status;
 	int		childs;

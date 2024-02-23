@@ -6,11 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/02/23 12:03:00 by agusheredia      ###   ########.fr       */
-=======
-/*   Updated: 2024/02/22 22:05:42 by lbastien         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2024/02/23 20:49:31 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,59 +103,45 @@ void		ft_error_perm(int perm, char *str);
 
 //Init
 char		**copy_env(char **env);
-void		is_builtins(t_state *state);
 
 //Builtins
 void		check_builtins(t_command *cmd);
 int			ft_exec_builtin(t_command *cmd, t_state *state, char ***env);
-int			minicd(t_state *state, char ***env);
+int			minicd(t_command *cmd, char ***env);
 int			mini_pwd(void);
-int			mini_env(t_state *state, char ***env);
-int			mini_echo(t_state *state);
-int			mini_exit(t_state *state);
-int			mini_export(t_state *state, char ***env);
-int			mini_unset(t_state *state, char ***env);
+int			mini_env(t_command *cmd, char ***env);
+int			mini_echo(t_command *cmd);
+int			mini_exit(t_state *state, t_command *cmd);
+int			mini_export(t_command *cmd, char ***env);
+int			mini_unset(t_command *cmd, char ***env);
 
 //utils builtins
 void		print_var_res(int outfd, const char *var);
 int			is_env_var_valid(char *word);
-char		*get_dir_var(t_state *state, char ***env);
-void		export_no_arg(t_state *state, char ***env);
-char		**update_env(char **var_value, t_state *state, char ***env);
-void		env_rm_var(char *varname, char ***env);
+char		*get_dir_var(t_command *cmd, char ***env);
+void		export_no_arg(t_command *cmd, char ***env);
+char		**update_env(char **var_value, t_command *cmd, char ***env);
 void		determine_exit_code(char **str);
 int			is_str_digit(char *str);
 
 //utils data
 char		*get_var_env(char *var, char **envp);
-<<<<<<< HEAD
-char		**ft_parse_path(char **envp);
-char		*get_path(t_command *cmd, t_state *state, char **env);
-=======
->>>>>>> main
 
 //Executor
 void		ft_executor(t_state *state, char ***env);
 void		make_dup(t_command *cmd, t_state *state);
-<<<<<<< HEAD
 void		exec_cmd(t_command *cmd, t_state *state, char ***env);
 void		ft_child(t_command *cmd, t_state *state, char ***env);
 void		ft_parent(t_command *cmd, int pid, t_state *state);
-void		ft_execve(t_command *cmd, t_state *state, char **env);
-
-=======
-void		exec_cmd(t_command *cmd, t_state *state);
-void		ft_child(t_command *cmd, char *path, t_state *state);
-void		ft_parent(t_command *cmd, int pid, t_state *state);
->>>>>>> main
 void		ft_waitpid(t_state *state);
 void		ft_init_pipes(t_state *state);
 int			needs_pipe(t_command *cmd);
 int			assign_pipes(t_command *cmd);
+void		ft_execve(t_command *cmd, t_state *state, char **env);
 
 //Path
 char		**ft_parse_path(char **envp);
-char		*get_path(t_command *cmd, t_state *state);
+char		*get_path(t_command *cmd, t_state *state, char **env);
 int			check_absolute_path(t_command *cmd);
 int			is_absolute(t_command *cmd);
 

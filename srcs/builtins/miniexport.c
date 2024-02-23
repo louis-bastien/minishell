@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniexport.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/23 14:04:33 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:25:42 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print_var_res(int outfd, const char *var)
 	write(outfd, "\"\n", 2);
 }
 
-void	export_no_arg(t_state *state, char ***env)
+void	export_no_arg(t_command *cmd, char ***env)
 {
 	int	i;
 
@@ -41,14 +41,14 @@ void	export_no_arg(t_state *state, char ***env)
 	{
 		if (ft_strchr((*env)[i], '='))
 		{
-			ft_putstr_fd("declare -x ", state->cmd_list->fd_out);
-			print_var_res(state->cmd_list->fd_out, (*env)[i]);
+			ft_putstr_fd("declare -x ", cmd->fd_out);
+			print_var_res(cmd->fd_out, (*env)[i]);
 		}
 		i++;
 	}
 }
 
-char	**update_env(char **var_value, t_state *state, char ***env)
+char	**update_env(char **var_value, t_command *cmd, char ***env)
 {
 	char	**nenv;
 	int		i;
@@ -56,28 +56,28 @@ char	**update_env(char **var_value, t_state *state, char ***env)
 	i = get_var_index(var_value[0], *env);
 	if (i == -1)
 	{
-		nenv = add_str_darry(*env, state->cmd_list->args[1]);
+		nenv = add_str_darry(*env, cmd->args[1]);
 	}
 	else
-		nenv = set_darray(*env, state->cmd_list->args[1], i);
+		nenv = set_darray(*env, cmd->args[1], i);
 	return (nenv);
 }
 
-int	mini_export(t_state *state, char ***env)
+int	mini_export(t_command *cmd, char ***env)
 {
 	char	**var_value;
 
 	var_value = NULL;
-	if (state->cmd_list->args_count == 1)
-		export_no_arg(state, env);
+	if (cmd->args_count == 1)
+		export_no_arg(cmd, env);
 	else
 	{
-		if (ft_strchr(state->cmd_list->args[1], '=') != NULL)
+		if (ft_strchr(cmd->args[1], '=') != NULL)
 		{
-			var_value = ft_split(state->cmd_list->args[1], '=');
+			var_value = ft_split(cmd->args[1], '=');
 			if (double_array_size(var_value) != 2)
 				ft_error_perm(42, "export: format incorrect\n");
-			*env = update_env(var_value, state, env);
+			*env = update_env(var_value, cmd, env);
 		}
 		else
 			ft_error_perm(42, "export: format incorrect\n");

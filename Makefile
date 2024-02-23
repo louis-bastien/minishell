@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
+#    By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/02/23 15:54:58 by agheredi         ###   ########.fr        #
+#    Updated: 2024/02/23 20:47:36 by agusheredia      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRC = srcs/minishell.c \
 	srcs/utils/cmd.c \
 	srcs/utils/print.c \
 	srcs/utils/get_var_envp.c \
-	srcs/utils/env_utils.c \
+	srcs/utils/env.c \
 	srcs/utils/free_darray.c \
 	srcs/executor/pipes.c \
 	srcs/executor/executor.c \
