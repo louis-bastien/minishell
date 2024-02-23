@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:41:27 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/23 14:04:55 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/23 15:27:38 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,16 @@ char	**rm_d_array(char **d_array, int i)
 	orig_arr_size = double_array_size(orig_arr);
 	new_arr = (char **)malloc(sizeof(char *) * orig_arr_size);
 	j = 0;
-	while (j++ < i)
-		new_arr[j] = ft_strdup(orig_arr[j]);
-	while (orig_arr[j + 1])
+	while (j < i)
 	{
-		new_arr[j] = ft_strdup(orig_arr[j + 1]);
-		++j;
+		new_arr[j] = ft_strdup(orig_arr[j]);
+		j++;
+	}
+	while (orig_arr[i] && orig_arr[i + 1])
+	{
+		new_arr[j] = ft_strdup(orig_arr[i + 1]);
+		i++;
+		j++;
 	}
 	new_arr[j] = NULL;
 	free_darray(d_array);
