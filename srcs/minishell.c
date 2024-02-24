@@ -18,7 +18,6 @@ int	main(int argc, char **argv, char **envp)
 	char	**env;
 
 	state = NULL;
-	ft_signals();
 	state = init_state(state);
 	state->data = init_data(state);
 	env = copy_env(envp);
@@ -33,11 +32,10 @@ int	main(int argc, char **argv, char **envp)
 void	run_shell(t_state *state, char ***env)
 {
 	char				*input;
-	struct sigaction	sa;
 
-	sigaction(SIGINT, &sa, NULL);
 	while (1)
 	{
+		ft_signals();
 		input = readline("\033[0;32mminishell➜\033[0m ");
 		if (!input)
 			ft_error("(Input) EOF reached or input error from Readline", state);
@@ -104,5 +102,10 @@ void	ft_signals(void)
 void	signal_handler(int sign)
 {	
 	if (sign == SIGINT)
+	{
 		printf("SIGINT RECEIVED\n");
+		rl_replace_line("", 1);
+		rl_on_new_line();
+		rl_redisplay();
+	}
 }
