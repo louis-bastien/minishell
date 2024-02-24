@@ -18,6 +18,7 @@ int	main(int argc, char **argv, char **envp)
 	char	**env;
 
 	state = NULL;
+	ft_signals();
 	state = init_state(state);
 	state->data = init_data(state);
 	env = copy_env(envp);
@@ -31,8 +32,10 @@ int	main(int argc, char **argv, char **envp)
 
 void	run_shell(t_state *state, char ***env)
 {
-	char	*input;
+	char				*input;
+	struct sigaction	sa;
 
+	sigaction(SIGINT, &sa, NULL);
 	while (1)
 	{
 		input = readline("\033[0;32mminishell➜\033[0m ");
@@ -86,4 +89,20 @@ t_data	*init_data(t_state *state)
 	new_data->last_pid = -1;
 	new_data->childs = 0;
 	return (new_data);
+}
+
+void	ft_signals(void)
+{
+	struct sigaction	sa;
+	
+	sa.sa_handler = signal_handler;
+	sa.sa_flags = SA_RESTART;
+	sigemptyset(&sa.sa_mask);
+	sigaction(SIGINT, &sa, NULL);
+}
+
+void	signal_handler(int sign)
+{	
+	if (sign == SIGINT)
+		printf("SIGINT RECEIVED\n");
 }

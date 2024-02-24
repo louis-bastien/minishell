@@ -19,6 +19,10 @@ void		run_shell(t_state *state, char ***env);
 t_state		*init_state(t_state *state);
 t_data		*init_data(t_state *state);
 
+//Signals
+void		ft_signals(void);
+void		signal_handler(int sign);
+
 //Lexer
 void		ft_lexer(char *input, t_state *state);
 void		create_tokens(t_token **token_list, char *input, t_state *state);
