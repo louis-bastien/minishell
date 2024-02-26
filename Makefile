@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+         #
+#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/02/23 20:47:36 by agusheredia      ###   ########.fr        #
+#    Updated: 2024/02/26 14:18:04 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ READLINE_PATH = readline-8.1/
 READLINE_LIB = -lreadline -lhistory
 
 LIBS = $(LIBFT_LIB) $(READLINE_LIB) -lncurses
-LIB_FLAGS = -L$(LIBFT_PATH) -L$(READLINE_PATH)
+LIB_FLAGS = -L $(LIBFT_PATH) -L $(READLINE_PATH)
 
 READLINE_ABSOLUTE_PATH = $(shell pwd)/readline-8.1
 
@@ -65,7 +65,7 @@ READLINE_ABSOLUTE_PATH = $(shell pwd)/readline-8.1
 OBJ_DIR = obj
 OBJECTS = $(addprefix $(OBJ_DIR)/,$(notdir $(SRC:.c=.o)))
 
-INCLUDES =-Iincludes -I$(LIBFT_PATH)
+INCLUDES = -I includes -I $(LIBFT_PATH) -I $(READLINE_PATH)
 
 # Colors
 GREEN = \033[0;32m

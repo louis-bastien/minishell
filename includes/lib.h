@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:11:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/12 21:39:25 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:33:03 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@
 # include <signal.h>
 # include <string.h>
 # include <fcntl.h>
-# include <readline/readline.h>
-# include <readline/history.h>
 # include <stdbool.h>
 # include <errno.h>
 # include <sys/wait.h>
 # include "../libft/libft.h"
+# include "../readline-8.1/rlstdc.h"
+# include "../readline-8.1/readline.h"
+# include "../readline-8.1/history.h"
 
 #endif

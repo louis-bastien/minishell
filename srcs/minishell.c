@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/23 15:54:15 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:13:27 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_data	*init_data(t_state *state)
 void	ft_signals(void)
 {
 	struct sigaction	sa;
-	
+
 	sa.sa_handler = signal_handler;
 	sa.sa_flags = SA_RESTART;
 	sigemptyset(&sa.sa_mask);
@@ -100,7 +100,7 @@ void	ft_signals(void)
 }
 
 void	signal_handler(int sign)
-{	
+{
 	if (sign == SIGINT)
 	{
 		printf("SIGINT RECEIVED\n");

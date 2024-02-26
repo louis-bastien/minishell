@@ -22,11 +22,7 @@
 #if !defined (_XMALLOC_H_)
 #define _XMALLOC_H_
 
-#if defined (READLINE_LIBRARY)
 #  include "rlstdc.h"
-#else
-#  include <readline/rlstdc.h>
-#endif
 
 #ifndef PTR_T
 

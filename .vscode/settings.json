@@ -17,6 +17,9 @@
 		"unordered_map": "c",
 		"vector": "c",
 		"sstream": "c",
-		"rltypedefs.h": "c"
+		"rltypedefs.h": "c",
+		"wait.h": "c",
+		"readline.h": "c",
+		"keymaps.h": "c"
 	}
 }
