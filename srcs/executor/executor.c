@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/23 20:45:37 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/26 14:10:16 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 void	ft_child(t_command *cmd, t_state *state, char ***env)
 {
 	int		status;
+	char 	*path;
 
 	status = 0;
 //	printf("%s child process created\n", cmd->command);
@@ -65,7 +66,9 @@ void	ft_child(t_command *cmd, t_state *state, char ***env)
 	}
 	else
 	{
-		ft_execve(cmd, state, *env);
+		path = get_path(cmd, state, env);
+		execve(path, cmd->args, env);
+		exit(EXIT_FAILURE);
 	}
 }
 
