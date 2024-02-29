@@ -6,7 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/23 20:33:25 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/28 21:10:44 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	reset_all(t_state *state)
 {
 	if (state)
 	{
-		if (state->error || state->data->cmd_error)
-			print_err(state);
+		//if (state->error || state->data->cmd_error)
+		//	print_err(state);
 		if (state->token_list)
 		{
 			free_tokens (state->token_list);
@@ -49,4 +49,10 @@ void	free_doubleptr(char **dptr)
 		free(dptr[i]);
 		i++;
 	}
+}
+
+void	free_env(char ***env)
+{
+	free_doubleptr(*env);
+	free(env);
 }

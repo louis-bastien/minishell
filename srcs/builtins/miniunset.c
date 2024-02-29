@@ -6,7 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:14:59 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/23 20:27:01 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/28 20:20:47 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ int	mini_unset(t_command *cmd, char ***env)
 		*env = rm_d_array(*env, index_var);
 	}
 	else
-		ft_error_sms("unset no valid\n");
+		ft_error_perm(42, "unset no valid\n");
 	return (0);
 }

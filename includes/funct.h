@@ -6,7 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/23 20:49:31 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/28 10:03:27 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void		free_cmd(t_command *cmd);
 void		free_args(t_command *cmd);
 void		free_data(t_data *data);
 void		free_doubleptr(char **dptr);
+void		free_env(char ***env);
 
 //Errors
 void		ft_error(char *str, t_state *state);
@@ -115,7 +116,7 @@ int			minicd(t_command *cmd, char ***env);
 int			mini_pwd(void);
 int			mini_env(t_command *cmd, char ***env);
 int			mini_echo(t_command *cmd);
-int			mini_exit(t_state *state, t_command *cmd);
+int			mini_exit(t_state *state, t_command *cmd, char ***env);
 int			mini_export(t_command *cmd, char ***env);
 int			mini_unset(t_command *cmd, char ***env);
 

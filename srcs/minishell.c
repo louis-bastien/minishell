@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/26 14:13:27 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/28 22:19:49 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-int	main(int argc, char **argv, char **envp)
-{
-	t_state	*state;
-	char	**env;
-
-	state = NULL;
-	state = init_state(state);
-	state->data = init_data(state);
-	env = copy_env(envp);
-	if (argc > 1 || argv[1])
-		ft_exit("Minishell does not take any argument.", state);
-	else
-		run_shell(state, &env);
-	ft_exit("Exiting from main", state);
-	return (0);
-}
 
 void	run_shell(t_state *state, char ***env)
 {
@@ -39,8 +22,6 @@ void	run_shell(t_state *state, char ***env)
 		input = readline("\033[0;32mminishell➜\033[0m ");
 		if (!input)
 			ft_error("(Input) EOF reached or input error from Readline", state);
-		else if (!ft_strncmp(input, "exit", ft_strlen(input)))
-			ft_exit("Exiting gracefully", state);
 		else
 		{
 			add_history(input);
@@ -52,7 +33,7 @@ void	run_shell(t_state *state, char ***env)
 				ft_parser(state);
 			if (!state->error)
 				ft_executor(state, env);
-			//ft_print_cmds(state->cmd_list);
+			ft_print_cmds(state->cmd_list);
 		}
 		reset_all(state);
 		free(input);
@@ -81,7 +62,6 @@ t_data	*init_data(t_state *state)
 	new_data = malloc(sizeof(t_data));
 	if (!new_data)
 		ft_exit("Failed to malloc t_data", state);
-	//new_data->env = copy_env(envp);
 	new_data->cmd_error = NULL;
 	new_data->exit_status = 0;
 	new_data->last_pid = -1;

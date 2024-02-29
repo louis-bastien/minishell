@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
+#    By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/02/26 14:18:04 by lbastien         ###   ########.fr        #
+#    Updated: 2024/02/28 19:41:45 by agusheredia      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 FLAGS = -Wall -Werror -Wextra -g -fsanitize='address,undefined'
-SRC = srcs/minishell.c \
+SRC = srcs/main.c \
+	srcs/minishell.c \
 	srcs/error/error.c \
 	srcs/error/reset.c \
 	srcs/error/free.c \

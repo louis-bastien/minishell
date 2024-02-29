@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:04:09 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/22 22:11:20 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/28 21:07:25 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,6 @@ void	print_err(t_state *state)
 	state->data->cmd_error = NULL;
 }
 
-void	ft_error_sms(char *str)
-{
-	ft_putstr_fd("Minishell: ", 2);
-	ft_putstr_fd(str, 2);
-}
-
 void	ft_error_perm(int perm, char *str)
 {
 	if (perm == NOREAD || perm == NOWRITE)
@@ -89,8 +83,8 @@ void	ft_error_perm(int perm, char *str)
 	else if (perm == NOCMD)
 	{
 		ft_putstr_fd("Minishell: ", 2);
-		ft_putstr_fd(": command not found: ", 2);
-		ft_putendl_fd(str, 2);
+		ft_putstr_fd(str, 2);
+		ft_putstr_fd(": command not found\n", 2);
 	}
 	else if (perm == 42)
 	{

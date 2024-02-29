@@ -6,7 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:41:27 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/23 20:38:03 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/02/28 10:30:39 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	double_array_size(char **d_str)
 	int	i;
 
 	i = 0;
+	if (!d_str)
+		return (0);
 	while (d_str[i])
 		i++;
 	return (i);

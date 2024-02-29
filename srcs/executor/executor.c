@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/26 14:10:16 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/28 22:04:12 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 		return ;
 	path = get_path(cmd, state, *env);
 	if (!path)
-		ft_error_exec(cmd->command, NOCMD, "Command does not exist", state);
+		ft_error_perm(NOCMD, cmd->command);
 	pid = fork();
 	if (pid < 0)
 		ft_error_exec(cmd->command, -1, "Error forking process", state);
@@ -53,7 +53,6 @@ void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 void	ft_child(t_command *cmd, t_state *state, char ***env)
 {
 	int		status;
-	char 	*path;
 
 	status = 0;
 //	printf("%s child process created\n", cmd->command);
@@ -66,9 +65,7 @@ void	ft_child(t_command *cmd, t_state *state, char ***env)
 	}
 	else
 	{
-		path = get_path(cmd, state, env);
-		execve(path, cmd->args, env);
-		exit(EXIT_FAILURE);
+		ft_execve(cmd, state, *env);
 	}
 }
 
