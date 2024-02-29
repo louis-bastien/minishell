@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 13:40:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/21 22:19:57 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:07:35 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	single_quotes(char **str, char **current, t_state *state)
 	end = ft_strchr(*current + 1, '\'');
 	if (!end)
 	{
-		ft_error("Unclosed quote", state);
+		ft_error("Unclosed quote1", state);
 		*current += 1;
+		return ;
 	}
 	else
 	{
@@ -37,7 +38,7 @@ void	double_quotes(char **str, char **current, t_state *state)
 	end = ft_strchr(*current + 1, '\"');
 	if (!end)
 	{
-		ft_error("Unclosed quote", state);
+		ft_error("Unclosed quote2", state);
 		*current += 1;
 		return ;
 	}

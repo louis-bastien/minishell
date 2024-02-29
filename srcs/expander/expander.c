@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:18:17 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/21 22:24:35 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:17:45 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_expander(t_state *state)
 	{
 		next_token = token->next;
 		quote_wrapper(token, state);
+		//si hay quotes abiertas resetear estado error y lanzar el error
 		token = next_token;
 	}
 }
@@ -34,6 +35,7 @@ void	quote_wrapper(t_token *token, t_state *state)
 
 	current = token->str;
 	str = &token->str;
+	printf("str quote_wrapper %s\n", token->str);
 	while (current && *current)
 	{
 		if (*current == '\'')

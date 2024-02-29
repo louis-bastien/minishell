@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/21 17:41:03 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:22:02 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_parser(t_state *state)
 {
+	printf("entra ft_parser\n");
 	init_cmd_list(state->token_list, state);
 	if (!state->error)
 		ft_parse_tokens(state);
