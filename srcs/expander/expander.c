@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:18:17 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/29 16:17:45 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/01 10:42:12 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	quote_wrapper(t_token *token, t_state *state)
 
 	current = token->str;
 	str = &token->str;
-	printf("str quote_wrapper %s\n", token->str);
+	//printf("str quote_wrapper %s\n", token->str);
 	while (current && *current)
 	{
 		if (*current == '\'')
