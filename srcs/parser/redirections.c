@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/19 17:22:30 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/02 17:06:44 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 		ft_error("(parser) could not open tmp file for heredoc", state);
 	while (1)
 	{
-		write(1, "heredoc> ", 9);
+		write(1, "> ", 2);
 		buffer = get_next_line(STDIN_FILENO);
 		if (!buffer)
 			ft_error("(parser) empty buffer for heredoc", state);

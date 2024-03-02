@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 00:52:41 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/21 21:49:27 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/02 18:23:56 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,15 @@ void	make_dup(t_command *cmd, t_state *state)
 	code = 0;
 	if (cmd->fd_in != STDIN_FILENO)
 	{
-//		printf("%s dupping fd_in (%d)\n", cmd->command, cmd->fd_in);
+		//printf("%s dupping fd_in (%d)\n", cmd->command, cmd->fd_in);
 		if (dup2(cmd->fd_in, STDIN_FILENO) == -1)
 			ft_error_exec(cmd->command, code, "Failed to dup STDIN", state);
 		close(cmd->fd_in);
 	}
+	//printf("%s dupping fd_out (%d)\n", cmd->command, cmd->fd_out);
 	if (cmd->fd_out != STDOUT_FILENO)
 	{
-//		printf("%s dupping fd_out (%d)\n", cmd->command, cmd->fd_out);
+		//printf("%s dupping fd_out (%d)\n", cmd->command, cmd->fd_out);
 		if (dup2(cmd->fd_out, STDOUT_FILENO) == -1)
 			ft_error_exec(cmd->command, code, "Failed to dup STDOUT", state);
 		close(cmd->fd_out);

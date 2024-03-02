@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniecho.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:08:26 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/01 10:54:23 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:53:41 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	mini_echo(t_command *cmd)
 
 	i = 1;
 	flag = 0;
-	printf("mini_echo\n");
 	if (!cmd->args[i])
 	{
 		ft_putstr_fd("\n", cmd->fd_out);
