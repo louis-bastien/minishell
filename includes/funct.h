@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/04 15:44:00 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:16:00 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		signal_handler(int sign);
 //Lexer
 void		ft_lexer(char *input, t_state *state);
 void		create_tokens(t_token **token_list, char *input, t_state *state);
-void		parse_type(t_token *token);
+t_ttype		parse_type(char *str);
 void		skip_whitespaces(char **str);
 char		*generate_token(char **reader, t_state *state);
 char		*handle_quotes(char **reader, t_state *state);
@@ -50,8 +50,7 @@ int			is_valid_env(char c);
 void		quote_wrapper(t_token *token, t_state *state);
 void		single_quotes(char **str, char **current, t_state *state);
 void		double_quotes(char **str, char **current, t_state *state);
-void		unquoted(char **str, char **current, \
-			t_token *token, t_state *state);
+void		unquoted(char **str, char **current, t_state *state);
 void		remove_char_from_string(char *str, int pos);
 char		*expnvar(char **str, int start_pos, int end_pos, t_state *state);
 
@@ -73,8 +72,8 @@ void		handle_args(t_command *cmd, t_state *state);
 void		ft_parse_tokens(t_state *state);
 t_token		*import_tokens(t_token *tokens, int token_counter);
 void		remove_token(t_token **token_list, t_token *token);
-int			add_token(t_token **token_list, char *str);
-t_token		*create_token(char *str);
+int			add_token(t_token **token_list, char *str, t_ttype type);
+t_token		*create_token(char *str, t_ttype type);
 int			count_token(t_token *token);
 
 

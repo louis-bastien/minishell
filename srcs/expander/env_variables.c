@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:19:28 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/21 22:21:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:49:58 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ char	*replace_env(char *str, int env_pos, char *value, char *name)
 	int		name_length;
 
 	name_length = ft_strlen(name) + 1;
-	new_length = ft_strlen(str) - (name_length) + ft_strlen(value);
-	new_str = malloc(sizeof(char) * new_length + 1);
+	new_length = ft_strlen(str) - name_length + ft_strlen(value);
+	new_str = malloc(sizeof(char) * (new_length + 1));
 	if (!new_str)
 		return (NULL);
 	strncpy(new_str, str, env_pos);

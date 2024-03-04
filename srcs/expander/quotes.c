@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 13:40:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/01 10:42:04 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:57:28 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	single_quotes(char **str, char **current, t_state *state)
 	end = ft_strchr(*current + 1, '\'');
 	if (!end)
 	{
-		ft_error("Unclosed quote1", state);
+		ft_error("Unclosed single quote", state);
 		*current += 1;
 		return ;
 	}
@@ -38,7 +38,7 @@ void	double_quotes(char **str, char **current, t_state *state)
 	end = ft_strchr(*current + 1, '\"');
 	if (!end)
 	{
-		ft_error("Unclosed quote2", state);
+		ft_error("Unclosed double quotes", state);
 		*current += 1;
 		return ;
 	}
@@ -47,18 +47,16 @@ void	double_quotes(char **str, char **current, t_state *state)
 	*current = expnvar(str, *current - *str, end - 1 - *current, state);
 }
 
-void	unquoted(char **str, char **current, t_token *token, t_state *state)
+void	unquoted(char **str, char **current, t_state *state)
 {
 	int		i;
 	char	*tmp;
 
 	i = 0;
-	tmp = *current;
+	tmp = *current + 1;
 	while (is_valid_env(tmp[i]))
 		i++;
 	*current = expnvar(str, *current - *str, i, state);
-	if (ft_strlen(*str) == 0)
-		remove_token(&state->token_list, token);
 }
 
 void	remove_char_from_string(char *str, int pos)

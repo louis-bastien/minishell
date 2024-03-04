@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/02 18:17:53 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/04 16:01:58 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ t_command	*create_cmd(t_token *tokens, int numtok, int numcmd)
 	new_cmd->index = numcmd;
 	new_cmd->args_count = 0;
 	new_cmd->tokens = import_tokens(tokens, numtok);
-	parse_type(new_cmd->tokens);
 	new_cmd->fd_in = STDIN_FILENO;
 	new_cmd->fd_out = STDOUT_FILENO;
 	new_cmd->is_builtin = false;

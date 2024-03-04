@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/01 10:40:00 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/04 13:26:38 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	reset_all(t_state *state)
 {
 	if (state)
 	{
-		//if (state->error || state->data->cmd_error)
-		//	print_err(state);
+		if (state->error || state->data->cmd_error)
+			print_err(state);
 		if (state->token_list)
 		{
 			free_tokens (state->token_list);
