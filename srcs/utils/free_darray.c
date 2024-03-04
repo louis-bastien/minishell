@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_darray.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:54:48 by agusheredia       #+#    #+#             */
-/*   Updated: 2024/02/22 21:02:23 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/04 15:22:47 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

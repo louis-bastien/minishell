@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:18:17 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/04 15:04:34 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:35:23 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	ft_expander(t_state *state)
 {
 	t_token	*token;
 	t_token	*next_token;
-	int i = 5;
+
 	token = state->token_list;
 	next_token = NULL;
-	while (token && !state->error && i--)
+	while (token && !state->error)
 	{
 		next_token = token->next;
 		quote_wrapper(token, state);
