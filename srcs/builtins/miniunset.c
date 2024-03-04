@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniunset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:14:59 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/02 16:17:13 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/04 15:52:52 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,20 @@ int	is_env_var_valid(char *word)
 int	mini_unset(t_command *cmd, char ***env)
 {
 	int	index_var;
+	int	i;
 
 	if (cmd->args_count == 1)
 		return (0);
-	index_var = get_var_index(cmd->args[1], *env);
-	if (cmd->args_count == 2
-		&& index_var != -1)
+	i = 1;
+	while (cmd->args[i])
 	{
-		*env = rm_d_array(*env, index_var);
+		index_var = get_var_index(cmd->args[i], *env);
+		if (cmd->args_count >= 2
+			&& index_var != -1)
+		{
+			*env = rm_d_array(*env, index_var);
+		}
+		i++;
 	}
-	else
-		ft_error_perm(42, "unset no valid\n");
 	return (0);
 }
