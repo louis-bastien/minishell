@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/19 17:22:30 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:07:48 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_lexer(char *input, t_state *state)
 
 	token_list = NULL;
 	create_tokens(&token_list, input, state);
-	parse_type(token_list);
 	state->token_list = token_list;
 }
 
@@ -26,6 +25,7 @@ void	create_tokens(t_token **token_list, char *input, t_state *state)
 {
 	char	*token_str;
 	char	*reader;
+	t_ttype type;
 
 	token_str = NULL;
 	reader = input;
@@ -35,6 +35,7 @@ void	create_tokens(t_token **token_list, char *input, t_state *state)
 		if (!*reader)
 			break ;
 		token_str = generate_token(&reader, state);
+		type = parse_type(token_str);
 		if (!token_str)
 		{
 			ft_error("Failed to parse token content", state);
@@ -42,7 +43,7 @@ void	create_tokens(t_token **token_list, char *input, t_state *state)
 		}
 		else
 		{
-			if (add_token(token_list, token_str))
+			if (add_token(token_list, token_str, type))
 				ft_error("Failed to add/malloc token", state);
 		}
 	}
@@ -65,33 +66,29 @@ char	*generate_token(char **reader, t_state *state)
 	return (token_str);
 }
 
-void	parse_type(t_token *token)
+t_ttype	parse_type(char *token)
 {
 	char	*str;
 
-	while (token)
+	str = token;
+	if (*str == '|')
+		return (PIPE);
+	else if (*str == '<')
 	{
-		str = token->str;
-		if (*str == '|')
-			token->type = PIPE;
-		else if (*str == '<')
-		{
-			if (str[1])
-				token->type = HEREDOC;
-			else
-				token->type = INPUT;
-		}
-		else if (*str == '>')
-		{
-			if (str[1])
-				token->type = APPEND;
-			else
-				token->type = OUTPUT;
-		}
+		if (str[1])
+			return (HEREDOC);
 		else
-			token->type = WORD;
-		token = token->next;
+			return (INPUT);
 	}
+	else if (*str == '>')
+	{
+		if (str[1])
+			return (APPEND);
+		else
+			return (OUTPUT);
+	}
+	else
+		return (WORD);
 }
 
 int	is_validchar(char c)

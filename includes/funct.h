@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/04 13:45:31 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:08:21 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		signal_handler(int sign);
 //Lexer
 void		ft_lexer(char *input, t_state *state);
 void		create_tokens(t_token **token_list, char *input, t_state *state);
-void		parse_type(t_token *token);
+t_ttype		parse_type(char *str);
 void		skip_whitespaces(char **str);
 char		*generate_token(char **reader, t_state *state);
 char		*handle_quotes(char **reader, t_state *state);
@@ -72,8 +72,8 @@ void		handle_args(t_command *cmd, t_state *state);
 void		ft_parse_tokens(t_state *state);
 t_token		*import_tokens(t_token *tokens, int token_counter);
 void		remove_token(t_token **token_list, t_token *token);
-int			add_token(t_token **token_list, char *str);
-t_token		*create_token(char *str);
+int			add_token(t_token **token_list, char *str, t_ttype type);
+t_token		*create_token(char *str, t_ttype type);
 int			count_token(t_token *token);
 
 
