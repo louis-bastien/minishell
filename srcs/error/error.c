@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:04:09 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/01 15:18:58 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/04 13:29:20 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	ft_error(char *str, t_state *state)
 {
 	if (!state->error)
 		state->error = ft_strdup(str);
+	if (!state->data->exit_status)
+		state->data->exit_status = 1;
 }
 
 void	ft_error_exec(char *cmd, int exit_code, char *str, t_state *state)
@@ -59,8 +61,7 @@ void	print_err(t_state *state)
 	}
 	ft_putstr_fd(state->error, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
-	ft_putstr_fd("Error code: ", STDERR_FILENO);
-	printf("ERRORSETPRINTR=%d\n", state->data->exit_status);
+	ft_putstr_fd("Exit code: ", STDERR_FILENO);
 	ft_putstr_fd(ft_itoa(state->data->exit_status), STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
 	free(state->error);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/02 17:17:08 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/04 15:04:32 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	run_shell(t_state *state, char ***env)
 			if (!state->error)
 				ft_expander(state);
 			//print_tokens(state->token_list);
-			//printf("State error: %s\n", state->error);
+			if (!state->token_list)
+				continue;
 			if (!state->error)
 				ft_parser(state);
 			if (!state->error)
@@ -37,7 +38,6 @@ void	run_shell(t_state *state, char ***env)
 			//ft_print_cmds(state->cmd_list);
 		}
 		reset_all(state);
-		state->error = NULL;
 		free(input);
 	}
 }
