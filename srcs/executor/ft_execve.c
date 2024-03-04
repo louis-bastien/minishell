@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:05:46 by agusheredia       #+#    #+#             */
-/*   Updated: 2024/02/28 10:04:56 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/04 16:03:15 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	ft_execve(t_command *cmd, t_state *state, char **env)
 	}
 	else
 		path = get_path(cmd, state, env);
+	free_darray(tmp);
 	execve(path, cmd->args, env);
 	free(path);
-	free_darray(tmp);
 	ft_error_exec(cmd->command, EXIT_FAILURE, "Execution Failed", state);
 	exit(EXIT_FAILURE);
 }
