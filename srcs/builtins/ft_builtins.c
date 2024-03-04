@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtins.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:34:12 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/28 10:39:21 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/04 16:32:14 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ft_exec_builtin(t_command *cmd, t_state *state, char ***env)
 	int	exit_status;
 
 	exit_status = 0;
-	//printf("entra en builtins\n");
 	if (!ft_strncmp(cmd->command, "cd", 3))
 		exit_status = minicd(cmd, env);
 	else if (!ft_strncmp(cmd->command, "pwd", 4))

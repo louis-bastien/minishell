@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/04 16:16:00 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:59:24 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,9 @@ int			mini_unset(t_command *cmd, char ***env);
 void		print_var_res(int outfd, const char *var);
 int			is_env_var_valid(char *word);
 char		*get_dir_var(t_command *cmd, char ***env);
-void		export_no_arg(t_command *cmd, char ***env);
+void		export_no_arg(char ***env);
 char		**update_env(char **var_value, t_command *cmd, char ***env, int i);
-void		determine_exit_code(char **str);
+int			determine_exit_code(char **str);
 int			is_str_digit(char *str);
 
 //utils data

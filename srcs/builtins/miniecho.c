@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   miniecho.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:08:26 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/01 15:53:41 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/04 16:43:38 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	print_argecho(char **args, int fd_out, int i)
+void	print_argecho(char **args, int i)
 {
 	while (args[i])
 	{
-		ft_putstr_fd(args[i], fd_out);
+		ft_putstr_fd(args[i], STDOUT_FILENO);
 		i++;
 		if (args[i])
-			ft_putstr_fd(" ", fd_out);
+			ft_putstr_fd(" ", STDOUT_FILENO);
 	}
 }
 
@@ -32,7 +32,7 @@ int	mini_echo(t_command *cmd)
 	flag = 0;
 	if (!cmd->args[i])
 	{
-		ft_putstr_fd("\n", cmd->fd_out);
+		ft_putstr_fd("\n", STDOUT_FILENO);
 		return (0);
 	}
 	if (cmd->args && cmd->args[i][0] == '-'
@@ -41,8 +41,8 @@ int	mini_echo(t_command *cmd)
 		flag = 1;
 		i++;
 	}
-	print_argecho(cmd->args, cmd->fd_out, i);
+	print_argecho(cmd->args, i);
 	if (flag == 0)
-		ft_putstr_fd("\n", cmd->fd_out);
+		ft_putstr_fd("\n", STDOUT_FILENO);
 	return (0);
 }

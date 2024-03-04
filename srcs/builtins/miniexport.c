@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/04 15:58:56 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:58:53 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print_var_res(int outfd, const char *var)
 	write(outfd, "\"\n", 2);
 }
 
-void	export_no_arg(t_command *cmd, char ***env)
+void	export_no_arg(char ***env)
 {
 	int	i;
 
@@ -41,8 +41,8 @@ void	export_no_arg(t_command *cmd, char ***env)
 	{
 		if (ft_strchr((*env)[i], '='))
 		{
-			ft_putstr_fd("declare -x ", cmd->fd_out);
-			print_var_res(cmd->fd_out, (*env)[i]);
+			ft_putstr_fd("declare -x ", STDOUT_FILENO);
+			print_var_res(STDOUT_FILENO, (*env)[i]);
 		}
 		i++;
 	}
@@ -70,11 +70,11 @@ int	mini_export(t_command *cmd, char ***env)
 
 	var_value = NULL;
 	if (cmd->args_count == 1)
-		export_no_arg(cmd, env);
+		export_no_arg(env);
 	else
 	{
-		i = 1;
-		while (cmd->args[i++])
+		i = 0;
+		while (cmd->args[++i])
 		{
 			if (ft_strchr(cmd->args[i], '=') != NULL)
 			{
