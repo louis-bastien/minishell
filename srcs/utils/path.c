@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/23 20:35:05 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/05 13:38:57 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,3 @@ int	check_absolute_path(t_command *cmd)
 	return (0);
 }
 
-int	is_absolute(t_command *cmd)
-{
-
-	if (cmd->command[0] == '/')
-		return (1);
-	else if (cmd->command[0] == '.' && cmd->command[1] == '/')
-		return (1);
-	else
-		return (0);
-}

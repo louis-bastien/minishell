@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:05:46 by agusheredia       #+#    #+#             */
-/*   Updated: 2024/03/05 13:25:05 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:48:54 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	ft_execve(t_command *cmd, t_state *state, char **env)
 	int		i;
 
 	tmp = NULL;
-	if (cmd->command[0] == '/')
+	if (is_absolute(cmd))
 	{
 		path = ft_strdup(cmd->command);
-		printf("%s\n", path);
+//		printf("%s\n", path);
 		tmp = ft_split(cmd->command, '/');
 		i = ft_sizesplit(tmp);
 		cmd->args[0] = ft_strdup(tmp[i - 1]);
@@ -45,4 +45,15 @@ void	ft_execve(t_command *cmd, t_state *state, char **env)
 	free(path);
 	ft_error_exec(cmd->command, EXIT_FAILURE, "Execution Failed", state);
 	exit(EXIT_FAILURE);
+}
+
+int	is_absolute(t_command *cmd)
+{
+
+	if (cmd->command[0] == '/')
+		return (1);
+	else if (cmd->command[0] == '.' && cmd->command[1] == '/')
+		return (1);
+	else
+		return (0);
 }

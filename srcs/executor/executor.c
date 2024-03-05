@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/05 13:10:25 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:47:57 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 	path = NULL;
 	if (state->error)
 		return ;
-	path = get_path(cmd, state, *env);
-	if (!path)
-		ft_error_perm(NOCMD, cmd->command);
 	pid = fork();
 	if (pid < 0)
 		ft_error_exec(cmd->command, -1, "Error forking process", state);
