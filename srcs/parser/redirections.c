@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/05 16:00:33 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:33:05 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,21 @@ void	parse_fd(t_token *token, t_command *cmd, t_state *state)
 		O_WRONLY | O_CREAT | O_APPEND, state);
 	else if (token->type == HEREDOC)
 		handle_heredoc(file_token, cmd, state);
+//	printf("heredoc fd3=%d\n", cmd->fd_in);
 }
 
 void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 {
 	int		fd;
-	char	*buffer;
+	char	*buffer; 
+	char	*filename;
 
+	fd = -1;
+	filename= ft_strjoin(".heredoc", ft_itoa(cmd->index));
 	if (cmd->fd_in > 1)
 		close(cmd->fd_in);
-	open_fd(&fd, ".heredoc", O_WRONLY | O_CREAT | O_TRUNC, state);
+	open_fd(&fd, filename, O_WRONLY | O_CREAT | O_TRUNC, state);
+//	printf("heredoc fd1=%d\n", fd);
 	while (1)
 	{
 		write(1, "> ", 2);
@@ -97,7 +102,8 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 		free(buffer);
 	}
 	close(fd);
-	open_fd(&cmd->fd_in, ".heredoc", O_RDONLY, state);
+	open_fd(&cmd->fd_in, filename, O_RDONLY, state);
+//	printf("heredoc fd2=%d\n", cmd->fd_in);
 	free(buffer);
 }
 

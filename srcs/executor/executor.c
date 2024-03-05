@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/05 16:00:58 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:34:50 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_child(t_command *cmd, t_state *state, char ***env)
 
 void	ft_parent(t_command *cmd, int pid, t_state *state)
 {
-	//printf("%s parent pid=%d fd_in=%d fd_out=%d\n", cmd->command, pid, cmd->fd_in, cmd->fd_out);
+//:e	printf("%s parent pid=%d fd_in=%d fd_out=%d\n", cmd->command, pid, cmd->fd_in, cmd->fd_out);
 	if (is_last(cmd, state))
 		state->data->last_pid = pid;
 	if (cmd->fd_out != STDOUT_FILENO)
@@ -81,13 +81,13 @@ void	ft_waitpid(t_state *state)
 	int	status;
 	int	wait_pid;
 
-	//printf("Waitpid-childs=%d last_pid=%d\n", state->data->childs, state->data->last_pid);
+//	printf("Waitpid-childs=%d last_pid=%d\n", state->data->childs, state->data->last_pid);
 	wait_pid = 1;
 	status = 0;
 	while (state->data->childs > 0)
 	{
 		wait_pid = waitpid(-1, &status, 0);
-		//printf("%d process closed. Exit_status=%d\n", wait_pid, WEXITSTATUS(status));
+//		printf("%d process closed. Exit_status=%d\n", wait_pid, WEXITSTATUS(status));
 		if (wait_pid == state->data->last_pid)
 		{
 			if (WIFEXITED(status))
@@ -98,6 +98,6 @@ void	ft_waitpid(t_state *state)
 				state->data->exit_status = 0;
 		}
 		state->data->childs--;
-		//printf("Childs remaining=%d\n", state->data->childs);
+//		printf("Childs remaining=%d\n", state->data->childs);
 	}
 }
