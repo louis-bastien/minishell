@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/02 18:17:07 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/05 13:10:25 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ void	ft_child(t_command *cmd, t_state *state, char ***env)
 		exit (status);
 	}
 	else
-	{
 		ft_execve(cmd, state, *env);
-	}
 }
 
 void	ft_parent(t_command *cmd, int pid, t_state *state)
