@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:18:17 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/04 15:35:23 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:36:37 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,23 +60,26 @@ char	*expnvar(char **str, int start_pos, int len, t_state *state)
 
 	current = *str + start_pos;
 //	printf("str=%s, start_pos=%d, len=%d, current_char=%c\n", *str, start_pos, len, *current);
-	while (*current && len--)
+	while (*current && len)
 	{
 //		printf("expnvar char=%c\n", *current);
 		if (*current == '$' && is_valid_env(*(current + 1)))
 		{
 			env_pos = current - *str;
 			name = get_env_name(current + 1, len);
+			len -= ft_strlen(name);
 			value = get_env_value(name, state);
 			new_str = replace_env(*str, env_pos, value, name);
 			if (!new_str)
 				ft_error("Failed to generate expanded string", state);
 			*str = new_str;
-//			printf("expnvar new_str=%s\n", new_str);
 			current = new_str + env_pos + ft_strlen(value);
 		}
 		else
+		{
 			current++;
+			len--;		
+		}
 	}
 	return (current);
 }

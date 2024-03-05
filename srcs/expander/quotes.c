@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 13:40:20 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/04 14:57:28 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:35:09 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	double_quotes(char **str, char **current, t_state *state)
 	end = ft_strchr(*current + 1, '\"');
 	if (!end)
 	{
-		ft_error("Unclosed double quotes", state);
+		ft_error("Unclosed double quote", state);
 		*current += 1;
 		return ;
 	}
