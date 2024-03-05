@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/04 16:07:48 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:54:42 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	create_tokens(t_token **token_list, char *input, t_state *state)
 {
 	char	*token_str;
 	char	*reader;
-	t_ttype type;
+	t_ttype	type;
 
 	token_str = NULL;
 	reader = input;
@@ -35,17 +35,14 @@ void	create_tokens(t_token **token_list, char *input, t_state *state)
 		if (!*reader)
 			break ;
 		token_str = generate_token(&reader, state);
-		type = parse_type(token_str);
 		if (!token_str)
 		{
 			ft_error("Failed to parse token content", state);
 			break ;
 		}
-		else
-		{
-			if (add_token(token_list, token_str, type))
-				ft_error("Failed to add/malloc token", state);
-		}
+		type = parse_type(token_str);
+		if (add_token(token_list, token_str, type))
+			ft_error("Failed to add/malloc token", state);
 	}
 }
 

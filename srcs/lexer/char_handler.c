@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:32:31 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/19 17:22:30 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:58:34 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,18 @@ int	get_strlen(char *current)
 {
 	int		i;
 	bool	quoted;
+	char	quote_type;
 
 	i = 0;
 	quoted = false;
 	while (*current && (is_validchar(*current) || quoted))
 	{
 		if (is_quote(*current) && !quoted)
+		{
 			quoted = true;
-		else if (is_quote(*current) && quoted)
+			quote_type = *current;
+		}
+		else if (*current == quote_type && quoted)
 			quoted = false;
 		current++;
 		i++;
