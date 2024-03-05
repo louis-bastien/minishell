@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   var.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 16:11:04 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/05 10:51:25 by lbastien         ###   ########.fr       */
+/*   Created: 2024/03/05 10:51:16 by lbastien          #+#    #+#             */
+/*   Updated: 2024/03/05 11:01:49 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef VAR_H
+# define VAR_H
 
-# include "lib.h"
-# include "struct.h"
-# include "funct.h"
-# include "var.h"
+volatile sig_atomic_t	g_command_running;
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+         #
+#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/02/28 19:41:45 by agusheredia      ###   ########.fr        #
+#    Updated: 2024/03/05 10:55:22 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ SRC = srcs/main.c \
 HEADER = includes/minishell.h \
 		includes/funct.h \
 		includes/lib.h \
-		includes/struct.h 
+		includes/struct.h \
+		includes/var.h
 
 #Local libraries
 LIBFT_PATH = libft/
