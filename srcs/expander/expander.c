@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:18:17 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/05 11:51:32 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:22:00 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	quote_wrapper(t_token *token, t_state *state)
 	str = &token->str;
 	while (current && *current)
 	{
-		printf("quote_wrapper char=%c, str=%s\n", *current, current);
+//		printf("quote_wrapper char=%c, str=%s\n", *current, current);
 		if (*current == '\'')
 			single_quotes(str, &current, state);
 		else if (*current == '\"')
