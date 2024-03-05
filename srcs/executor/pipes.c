@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 00:52:41 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/05 16:03:16 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:22:14 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	make_dup(t_command *cmd, t_state *state)
 	}
 	if (cmd->fd_out != STDOUT_FILENO)
 	{
-		printf("%s dupping fd_out (%d)\n", cmd->command, cmd->fd_out);
+//		printf("%s dupping fd_out (%d)\n", cmd->command, cmd->fd_out);
 		if (dup2(cmd->fd_out, STDOUT_FILENO) == -1)
 			ft_error_exec(cmd->command, code, "Failed to dup STDOUT", state);
 		close(cmd->fd_out);
