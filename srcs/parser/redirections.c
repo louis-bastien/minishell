@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/05 14:29:56 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:00:33 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,7 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 
 	if (cmd->fd_in > 1)
 		close(cmd->fd_in);
-	fd = open(".heredoc", O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (fd < 0)
-		ft_error("(parser) could not open tmp file for heredoc", state);
+	open_fd(&fd, ".heredoc", O_WRONLY | O_CREAT | O_TRUNC, state);
 	while (1)
 	{
 		write(1, "> ", 2);
@@ -96,10 +94,10 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 			break ;
 		expnvar(&buffer, 0, ft_strlen(buffer), state);
 		write(fd, buffer, ft_strlen(buffer));
-		write(fd, "\n", 1);
 		free(buffer);
 	}
-	cmd->fd_in = fd;
+	close(fd);
+	open_fd(&cmd->fd_in, ".heredoc", O_RDONLY, state);
 	free(buffer);
 }
 

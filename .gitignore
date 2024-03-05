@@ -1,6 +1,6 @@
 Executable
 minishell
-
+.heredoc
 # Prerequisites
 *.d
 

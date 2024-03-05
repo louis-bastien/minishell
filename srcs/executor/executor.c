@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/05 13:47:57 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:00:58 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	ft_child(t_command *cmd, t_state *state, char ***env)
 	int		status;
 
 	status = 0;
-	//printf("%s child process created\n", cmd->command);
+//	printf("%s child process created\n", cmd->command);
 	make_dup(cmd, state);
-	//printf("%s executing...\n", cmd->command);
+//	printf("%s executing...\n", cmd->command);
 	if (cmd->is_builtin == true)
 	{
 		status = ft_exec_builtin(cmd, state, env);
