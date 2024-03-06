@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/06 13:20:42 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:56:15 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ void	ft_executor(t_state *state, char ***env)
 
 void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 {
-	char	*path;
 	int		pid;
 
-	path = NULL;
 	if (state->error)
 		return ;
 	pid = fork();
