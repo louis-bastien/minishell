@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:08:26 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/04 16:43:38 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/06 10:19:24 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	mini_echo(t_command *cmd)
 		ft_putstr_fd("\n", STDOUT_FILENO);
 		return (0);
 	}
-	if (cmd->args && cmd->args[i][0] == '-'
+	while (cmd->args && cmd->args[i][0] == '-'
 		&& cmd->args[i][1] == 'n')
 	{
 		flag = 1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/05 11:39:05 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/06 13:20:20 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 
 //Main
 void		run_shell(t_state *state, char ***env);
+void		pre_shell(t_state *state, char *input);
 t_state		*init_state(t_state *state);
-t_data		*init_data(t_state *state);
+t_data		*init_data(t_state *state, char **envp);
 
 //Signals
 void		ft_signals(void);
@@ -102,8 +103,8 @@ void		free_env(char ***env);
 void		ft_error(char *str, t_state *state);
 void		ft_error_exec(char *cmd, int exit_code, char *str, t_state *state);
 void		print_err(t_state *state);
-void		ft_error_sms(char *str);
 void		ft_error_perm(int perm, char *str);
+void		clear_heredoc(t_state *state);
 
 //Init
 char		**copy_env(char **env);
@@ -115,7 +116,7 @@ int			minicd(t_command *cmd, char ***env);
 int			mini_pwd(void);
 int			mini_env(t_command *cmd, char ***env);
 int			mini_echo(t_command *cmd);
-int			mini_exit(t_state *state, t_command *cmd, char ***env);
+int			mini_exit(t_state *state, t_command *cmd);
 int			mini_export(t_command *cmd, char ***env);
 int			mini_unset(t_command *cmd, char ***env);
 

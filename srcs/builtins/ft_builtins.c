@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:34:12 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/04 16:32:14 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/06 10:21:17 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_exec_builtin(t_command *cmd, t_state *state, char ***env)
 	else if (!ft_strncmp(cmd->command, "env", 4))
 		exit_status = mini_env(cmd, env);
 	else if (!ft_strncmp(cmd->command, "exit", 5))
-		exit_status = mini_exit(state, cmd, env);
+		exit_status = mini_exit(state, cmd);
 	else
 		ft_error_exec(cmd->command, NOCMD, "Invalid builtin", state);
 	if (exit_status)

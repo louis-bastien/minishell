@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:04:09 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/05 11:38:48 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/06 10:54:06 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ void	print_err(t_state *state)
 	}
 	ft_putstr_fd(state->error, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
-	ft_putstr_fd("Exit code: ", STDERR_FILENO);
-	ft_putstr_fd(ft_itoa(state->data->exit_status), STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
+	//ft_putstr_fd("Exit code: ", STDERR_FILENO);
+	//ft_putstr_fd(ft_itoa(state->data->exit_status), STDERR_FILENO);
+	//ft_putstr_fd("\n", STDERR_FILENO);
 	free(state->error);
 	state->error = NULL;
 	free(state->data->cmd_error);

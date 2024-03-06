@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:05:46 by agusheredia       #+#    #+#             */
-/*   Updated: 2024/03/05 13:48:54 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:10:47 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_execve(t_command *cmd, t_state *state, char **env)
 	if (is_absolute(cmd))
 	{
 		path = ft_strdup(cmd->command);
-//		printf("%s\n", path);
 		tmp = ft_split(cmd->command, '/');
 		i = ft_sizesplit(tmp);
 		cmd->args[0] = ft_strdup(tmp[i - 1]);
@@ -49,7 +48,6 @@ void	ft_execve(t_command *cmd, t_state *state, char **env)
 
 int	is_absolute(t_command *cmd)
 {
-
 	if (cmd->command[0] == '/')
 		return (1);
 	else if (cmd->command[0] == '.' && cmd->command[1] == '/')

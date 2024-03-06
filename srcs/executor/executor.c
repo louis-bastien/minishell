@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/05 18:34:50 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/06 13:20:42 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	ft_child(t_command *cmd, t_state *state, char ***env)
 	int		status;
 
 	status = 0;
-//	printf("%s child process created\n", cmd->command);
+//	printf("%s child process created\n", cmd->command);	
 	make_dup(cmd, state);
-//	printf("%s executing...\n", cmd->command);
+//	printf("%s executing...\n", cmd->command);	
 	if (cmd->is_builtin == true)
 	{
 		status = ft_exec_builtin(cmd, state, env);
@@ -66,7 +66,7 @@ void	ft_child(t_command *cmd, t_state *state, char ***env)
 
 void	ft_parent(t_command *cmd, int pid, t_state *state)
 {
-//:e	printf("%s parent pid=%d fd_in=%d fd_out=%d\n", cmd->command, pid, cmd->fd_in, cmd->fd_out);
+//	printf("%s parent pid=%d fd_in=%d fd_out=%d\n", cmd->command, pid, cmd->fd_in, cmd->fd_out);
 	if (is_last(cmd, state))
 		state->data->last_pid = pid;
 	if (cmd->fd_out != STDOUT_FILENO)
@@ -87,7 +87,7 @@ void	ft_waitpid(t_state *state)
 	while (state->data->childs > 0)
 	{
 		wait_pid = waitpid(-1, &status, 0);
-//		printf("%d process closed. Exit_status=%d\n", wait_pid, WEXITSTATUS(status));
+//		printf("%d process closed. Exit_status=%d\n", wait_pid, WEXITSTATUS(status));		
 		if (wait_pid == state->data->last_pid)
 		{
 			if (WIFEXITED(status))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:16:02 by lbastien          #+#    #+#             */
-/*   Updated: 2024/02/19 18:04:33 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:06:10 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,3 @@ void	check_builtins(t_command *cmd)
 	else
 		cmd->is_builtin = false;
 }
-

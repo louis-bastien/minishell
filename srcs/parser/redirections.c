@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/05 18:33:05 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/06 13:19:08 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,20 @@ void	parse_fd(t_token *token, t_command *cmd, t_state *state)
 		O_WRONLY | O_CREAT | O_APPEND, state);
 	else if (token->type == HEREDOC)
 		handle_heredoc(file_token, cmd, state);
-//	printf("heredoc fd3=%d\n", cmd->fd_in);
 }
 
 void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 {
 	int		fd;
-	char	*buffer; 
-	char	*filename;
+	char	*buffer;
+	char	*file;
 
 	fd = -1;
-	filename= ft_strjoin(".heredoc", ft_itoa(cmd->index));
+	state->heredoc++;
+	file = ft_strjoin(".heredoc", ft_itoa(state->heredoc));
 	if (cmd->fd_in > 1)
 		close(cmd->fd_in);
-	open_fd(&fd, filename, O_WRONLY | O_CREAT | O_TRUNC, state);
+	open_fd(&fd, file, O_WRONLY | O_CREAT | O_TRUNC, state);
 //	printf("heredoc fd1=%d\n", fd);
 	while (1)
 	{
@@ -102,8 +102,8 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 		free(buffer);
 	}
 	close(fd);
-	open_fd(&cmd->fd_in, filename, O_RDONLY, state);
-//	printf("heredoc fd2=%d\n", cmd->fd_in);
+	open_fd(&cmd->fd_in, file, O_RDONLY, state);
+//	printf("heredoc fd2=%d\n", cmd->fd_in);	
 	free(buffer);
 }
 
@@ -115,5 +115,3 @@ void	open_fd(int *fd, const char *filename, int flags, t_state *state)
 	if (*fd < 0)
 		ft_error("(parser) could not open tmp file for heredoc", state);
 }
-
-

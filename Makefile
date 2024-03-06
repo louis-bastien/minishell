@@ -3,20 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
+#    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/03/05 10:55:22 by lbastien         ###   ########.fr        #
+#    Updated: 2024/03/06 11:35:48 by agheredi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-FLAGS = -Wall -Werror -Wextra -g -fsanitize='address,undefined'
+FLAGS = -Wall -Werror -Wextra -g #-fsanitize='address,undefined'
 SRC = srcs/main.c \
 	srcs/minishell.c \
+	srcs/init.c \
 	srcs/error/error.c \
 	srcs/error/reset.c \
 	srcs/error/free.c \
+	srcs/error/close_heredoc.c \
 	srcs/lexer/lexer.c \
 	srcs/lexer/char_checker.c \
 	srcs/lexer/char_handler.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/05 17:22:16 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/06 13:19:28 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_data
 	int		exit_status;
 	int		childs;
 	int		last_pid;
+	char	**env;
 }	t_data;
 
 typedef struct s_state
@@ -64,6 +65,7 @@ typedef struct s_state
 	t_token		*token_list;
 	t_command	*cmd_list;
 	t_data		*data;
+	int			heredoc;
 	int			num_cmds;
 }	t_state;
 

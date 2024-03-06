@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/05 16:01:05 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/06 13:24:50 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,52 +25,28 @@ void	run_shell(t_state *state, char ***env)
 			ft_error("(Input) EOF reached or input error from Readline", state);
 		else
 		{
-			g_command_running = 1;
-			add_history(input);
-			ft_lexer(input, state);
-			if (!state->error)
-				ft_expander(state);
-//			print_tokens(state->token_list);
+			pre_shell(state, input);
 			if (!state->token_list)
 				continue ;
 			if (!state->error)
 				ft_parser(state);
 			if (!state->error)
 				ft_executor(state, env);
-//			ft_print_cmds(state->cmd_list);
+			//ft_print_cmds(state->cmd_list);
 		}
 		reset_all(state);
 		free(input);
 	}
 }
 
-t_state	*init_state(t_state *state)
+void	pre_shell(t_state *state, char *input)
 {
-	t_state	*new_state;
-
-	new_state = (t_state *)malloc(sizeof(t_state));
-	if (!new_state)
-		ft_exit("Failed to malloc t_state", state);
-	new_state->error = NULL;
-	new_state->token_list = NULL;
-	new_state->cmd_list = NULL;
-	new_state->data = NULL;
-	new_state->num_cmds = 0;
-	return (new_state);
-}
-
-t_data	*init_data(t_state *state)
-{
-	t_data	*new_data;
-
-	new_data = malloc(sizeof(t_data));
-	if (!new_data)
-		ft_exit("Failed to malloc t_data", state);
-	new_data->cmd_error = NULL;
-	new_data->exit_status = 0;
-	new_data->last_pid = -1;
-	new_data->childs = 0;
-	return (new_data);
+	g_command_running = 1;
+	add_history(input);
+	ft_lexer(input, state);
+	if (!state->error)
+		ft_expander(state);
+	//print_tokens(state->token_list);
 }
 
 void	ft_signals(void)

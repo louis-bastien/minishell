@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:10:31 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/04 16:41:08 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/06 11:08:24 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,8 @@ int	determine_exit_code(char **str)
 	return (exit_code);
 }
 
-int	mini_exit(t_state *state, t_command *cmd, char ***env)
+int	mini_exit(t_state *state, t_command *cmd)
 {
-	(void)env;
-	//ft_putendl_fd("exit", STDERR_FILENO);
 	if (cmd->args[1] && cmd->args[2])
 	{
 		ft_putstr_fd("Minishell: exit: to many argumnets\n", 2);

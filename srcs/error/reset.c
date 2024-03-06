@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/04 13:26:38 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:26:48 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	reset_all(t_state *state)
 			state->cmd_list = NULL;
 		}
 		state->num_cmds = 0;
+		clear_heredoc(state);
 		state->data->last_pid = -1;
 		state->data->childs = 0;
 	}
@@ -36,6 +37,7 @@ void	reset_all(t_state *state)
 
 void	free_data(t_data *data)
 {
+	free_doubleptr(data->env);
 	free(data);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:50:48 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/05 11:54:42 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/06 13:02:24 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_ttype	parse_type(char *token)
 		return (PIPE);
 	else if (*str == '<')
 	{
-		if (str[1])
+		if (str[1])	
 			return (HEREDOC);
 		else
 			return (INPUT);

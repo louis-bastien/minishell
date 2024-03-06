@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:18:17 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/05 14:32:29 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:39:45 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,28 @@ void	quote_wrapper(t_token *token, t_state *state)
 	}
 }
 
+char	*expand_env_variable(char **str, int env_pos, int *len, t_state *state)
+{
+	char	*current;
+	char	*name;
+	char	*value;
+	char	*new_str;
+
+	name = get_env_name(*str + env_pos + 1, *len);
+	*len -= ft_strlen(name);
+	value = get_env_value(name, state);
+	new_str = replace_env(*str, env_pos, value, name);
+	if (!new_str)
+		ft_error("Failed to generate expanded string", state);
+	*str = new_str;
+	current = new_str + env_pos + ft_strlen(value);
+	return (current);
+}
+
 char	*expnvar(char **str, int start_pos, int len, t_state *state)
 {
 	char	*current;
 	int		env_pos;
-	char	*value;
-	char	*new_str;
-	char	*name;
 
 	current = *str + start_pos;
 //	printf("str=%s, start_pos=%d, len=%d, current_char=%c\n", *str, start_pos, len, *current);
@@ -66,19 +81,12 @@ char	*expnvar(char **str, int start_pos, int len, t_state *state)
 		if (*current == '$' && is_valid_env(*(current + 1)))
 		{
 			env_pos = current - *str;
-			name = get_env_name(current + 1, len);
-			len -= ft_strlen(name);
-			value = get_env_value(name, state);
-			new_str = replace_env(*str, env_pos, value, name);
-			if (!new_str)
-				ft_error("Failed to generate expanded string", state);
-			*str = new_str;
-			current = new_str + env_pos + ft_strlen(value);
+			current = expand_env_variable(str, env_pos, &len, state);
 		}
 		else
 		{
 			current++;
-			len--;		
+			len--;
 		}
 	}
 	return (current);
