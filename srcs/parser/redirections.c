@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/06 13:19:08 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:57:15 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 	if (cmd->fd_in > 1)
 		close(cmd->fd_in);
 	open_fd(&fd, file, O_WRONLY | O_CREAT | O_TRUNC, state);
-//	printf("heredoc fd1=%d\n", fd);
 	while (1)
 	{
 		write(1, "> ", 2);
@@ -103,7 +102,7 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 	}
 	close(fd);
 	open_fd(&cmd->fd_in, file, O_RDONLY, state);
-//	printf("heredoc fd2=%d\n", cmd->fd_in);	
+	printf("hdname=%s, hdfd=%d\n", file, cmd->fd_in);
 	free(buffer);
 }
 
