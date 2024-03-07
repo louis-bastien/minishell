@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/06 13:19:28 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:04:56 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ typedef enum s_ttype
 	APPEND,
 	WORD
 }	t_ttype;
+
+typedef enum s_mode
+{
+	EXEC,
+	NON_EXEC,
+	HDOC
+}	t_mode;
 
 typedef struct s_token
 {
@@ -65,6 +72,7 @@ typedef struct s_state
 	t_token		*token_list;
 	t_command	*cmd_list;
 	t_data		*data;
+	bool		cmd_running;
 	int			heredoc;
 	int			num_cmds;
 }	t_state;

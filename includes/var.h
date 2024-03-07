@@ -6,13 +6,13 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 10:51:16 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/05 11:01:49 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:45:42 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VAR_H
 # define VAR_H
 
-volatile sig_atomic_t	g_command_running;
+volatile sig_atomic_t	signal_received;
 
 #endif

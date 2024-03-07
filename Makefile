@@ -6,7 +6,7 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/03/07 12:05:53 by lbastien         ###   ########.fr        #
+#    Updated: 2024/03/07 15:57:18 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ FLAGS = -Wall -Werror -Wextra -g #-fsanitize='address,undefined'
 SRC = srcs/main.c \
 	srcs/minishell.c \
 	srcs/init.c \
+	srcs/signals.c \
 	srcs/error/error.c \
 	srcs/error/reset.c \
 	srcs/error/free.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:35:13 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/06 13:22:23 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:16:43 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_state	*init_state(t_state *state)
 	new_state->token_list = NULL;
 	new_state->cmd_list = NULL;
 	new_state->data = NULL;
+	new_state->cmd_running = false;
 	new_state->heredoc = 0;
 	new_state->num_cmds = 0;
 	return (new_state);

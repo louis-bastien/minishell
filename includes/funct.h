@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/07 12:05:12 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:41:42 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ t_state		*init_state(t_state *state);
 t_data		*init_data(t_state *state, char **envp);
 
 //Signals
-void		ft_signals(void);
-void		signal_handler(int sign);
+void		ft_signals(t_mode mode);
+void		heredoc_sig_handler(int sign);;
+void		exec_sig_handler(int sign);
+void		nexec_sig_handler(int sign);
+void		handle_signal_on_exit(t_state *state);
+
 
 //Lexer
 void		ft_lexer(char *input, t_state *state);
