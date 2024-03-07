@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
+#    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/03/07 12:05:53 by lbastien         ###   ########.fr        #
+#    Updated: 2024/03/07 13:28:11 by agheredi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC = srcs/main.c \
 	srcs/error/reset.c \
 	srcs/error/free.c \
 	srcs/error/close_heredoc.c \
+	srcs/error/error_builtins.c \
 	srcs/lexer/lexer.c \
 	srcs/lexer/char_checker.c \
 	srcs/lexer/char_handler.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/07 12:05:12 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:52:56 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ void		ft_error_exec(char *cmd, int exit_code, char *str, t_state *state);
 void		print_err(t_state *state);
 void		ft_error_perm(int perm, char *str);
 void		clear_heredoc(t_state *state);
+void		ft_error_builtin(int perm, char *cmd, char *arg);
+void		ft_error_exit(int perm, char *arg);
 
 //Init
 char		**copy_env(char **env);

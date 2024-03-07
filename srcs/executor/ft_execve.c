@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:05:46 by agusheredia       #+#    #+#             */
-/*   Updated: 2024/03/06 11:10:47 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:27:10 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,22 @@ int	ft_sizesplit(char **split)
 void	ft_execve(t_command *cmd, t_state *state, char **env)
 {
 	char	*path;
-	char	**tmp;
-	int		i;
+	char	*tmp;
+	//int		i;
 
 	tmp = NULL;
 	if (is_absolute(cmd))
 	{
 		path = ft_strdup(cmd->command);
-		tmp = ft_split(cmd->command, '/');
-		i = ft_sizesplit(tmp);
-		cmd->args[0] = ft_strdup(tmp[i - 1]);
+		tmp = ft_strrchr(cmd->command, '/');
+		printf("%s\n", tmp);
+		//i = ft_sizesplit(tmp);
+		cmd->args[0] = ft_strdup(tmp);
 		cmd->args[1] = NULL;
 	}
 	else
 		path = get_path(cmd, state, env);
-	free_darray(tmp);
+	//free_darray(tmp);
 	execve(path, cmd->args, env);
 	free(path);
 	ft_error_exec(cmd->command, EXIT_FAILURE, "Execution Failed", state);

@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/06 15:51:23 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:33:53 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,26 +63,38 @@ char	**update_env(char **var_value, t_command *cmd, char ***env, int j)
 	return (nenv);
 }
 
-void	is_var_to_update(char *arg, t_command *cmd, char ***env, int i)
+int	is_var_to_update(char *arg, t_command *cmd, char ***env, int i)
 {
+	int		status;
 	char	**var_value;
+	char	*str;
 
+	status = 0;
+	str = NULL;
 	var_value = ft_split(arg, '=');
 	if (is_env_var_valid(var_value[0]) == 1)
-		ft_error_perm(42, "export: not a valid identifier\n");
+	{
+		status = 1;
+		ft_error_builtin(1, cmd->command, var_value[0]);
+	}
 	else if (double_array_size(var_value) > 2)
-		ft_error_perm(42, "export: format incorrect\n");
+	{
+		str = ft_memchr(arg, '=', ft_strlen(arg));
+		var_value[1] = ft_strdup(str++);
+		*env = update_env(var_value, cmd, env, i);
+	}
 	else
 		*env = update_env(var_value, cmd, env, i);
-	free(var_value);
+	free_darray(var_value);
+	return (status);
 }
 
 int	mini_export(t_command *cmd, char ***env)
 {
-	//char	**var_value;
-	int		i;
+	int	i;
+	int	status;
 
-	//var_value = NULL;
+	status = 0;
 	if (cmd->args_count == 1)
 		export_no_arg(env);
 	else
@@ -92,19 +104,14 @@ int	mini_export(t_command *cmd, char ***env)
 		{
 			if (ft_strchr(cmd->args[i], '=') != NULL)
 			{
-				is_var_to_update(cmd->args[i], cmd, env, i);
-				/*var_value = ft_split(cmd->args[i], '=');
-				if (is_env_var_valid(var_value[0]) == 1)
-					ft_error_perm(42, "export: not a valid identifier\n");
-				else if (double_array_size(var_value) > 2)
-					ft_error_perm(42, "export: format incorrect\n");
-				else
-					*env = update_env(var_value, cmd, env, i);
-				free(var_value);*/
+				status = is_var_to_update(cmd->args[i], cmd, env, i);
 			}
 			else if (is_env_var_valid(cmd->args[i]) == 1)
-				ft_error_perm(42, "export: not a valid identifier\n");
+			{
+				status = 1;
+				ft_error_builtin(1, cmd->command, cmd->args[i]);
+			}
 		}
 	}
-	return (0);
+	return (status);
 }
