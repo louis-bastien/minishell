@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_darray.c                                      :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 19:54:48 by agusheredia       #+#    #+#             */
-/*   Updated: 2024/03/07 12:04:50 by lbastien         ###   ########.fr       */
+/*   Created: 2024/03/07 11:58:40 by lbastien          #+#    #+#             */
+/*   Updated: 2024/03/07 12:16:55 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	free_darray(char **d_array)
+int	ft_strcmp(const char *str1, const char *str2)
 {
-	int	i;
-	int	size;
-
-	i = 0;
-	size = double_array_size(d_array);
-	while (i < size)
+	if (ft_strlen(str1) == ft_strlen(str2))
 	{
-		free(d_array[i]);
-		i++;
+		printf("same sizes str\n");
+		printf("diff=%d\n", ft_strncmp(str1, str2, ft_strlen(str1)));
+		if (!ft_strncmp(str1, str2, ft_strlen(str1)))
+			return (0);
 	}
-	free(d_array);
+	return (1);
 }

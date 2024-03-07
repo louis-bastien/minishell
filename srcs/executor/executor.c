@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/06 17:07:52 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/07 11:46:15 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_child(t_command *cmd, t_state *state, char ***env)
 
 void	ft_parent(t_command *cmd, int pid, t_state *state)
 {
-	printf("%s parent pid=%d fd_in=%d fd_out=%d\n", cmd->command, pid, cmd->fd_in, cmd->fd_out);
+//	printf("%s parent pid=%d fd_in=%d fd_out=%d\n", cmd->command, pid, cmd->fd_in, cmd->fd_out);
 	if (is_last(cmd, state))
 		state->data->last_pid = pid;
 	if (cmd->fd_out != STDOUT_FILENO)

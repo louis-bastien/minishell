@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
+#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/03/06 11:35:48 by agheredi         ###   ########.fr        #
+#    Updated: 2024/03/07 12:05:53 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC = srcs/main.c \
 	srcs/utils/get_var_envp.c \
 	srcs/utils/env.c \
 	srcs/utils/free_darray.c \
+	srcs/utils/ft_strcmp.c \
 	srcs/executor/pipes.c \
 	srcs/executor/executor.c \
 	srcs/executor/ft_execve.c \

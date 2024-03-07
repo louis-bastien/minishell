@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/06 17:59:07 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/07 11:46:51 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	run_shell(t_state *state, char ***env)
 				continue ;
 			if (!state->error)
 				ft_parser(state);
-			ft_print_cmds(state->cmd_list);
+			//ft_print_cmds(state->cmd_list);
 			if (!state->error)
 				ft_executor(state, env);
 		}
