@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/07 12:15:33 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:27:08 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 	}
 	close(fd);
 	open_fd(&cmd->fd_in, file, O_RDONLY, state);
-	printf("hdname=%s, hdfd=%d\n", file, cmd->fd_in);
+//	printf("hdname=%s, hdfd=%d\n", file, cmd->fd_in);
 	free(buffer);
 }
 
