@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:04:09 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/06 10:54:06 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:22:40 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	ft_error_exec(char *cmd, int exit_code, char *str, t_state *state)
 	if (!state->data->exit_status)
 	{
 		state->data->exit_status = exit_code;
-		printf("ERRORSET=%d\n", exit_code);
+		ft_error_perm(NOCMD, cmd);
+		//printf("ERRORSET=%d\n", exit_code);
 	}
 	if (!state->data->cmd_error)
 		state->data->cmd_error = ft_strdup(cmd);
