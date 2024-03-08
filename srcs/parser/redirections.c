@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/08 15:23:45 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/08 19:46:40 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,16 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 	if (cmd->fd_in > 1)
 		close(cmd->fd_in);
 	open_fd(&fd, file, O_WRONLY | O_CREAT | O_TRUNC, state);
-	ft_signals(HDOC);
+	ft_signals(NON_EXEC);
 	while (!signal_received)
 	{
 		write(1, "> ", 2);
 		buffer = get_next_line(STDIN_FILENO);
 		if (!buffer)
+		{
 			ft_error("(parser) empty buffer for heredoc", state);
+			break ;
+		}
 		printf("senal=%d\n", signal_received);
 		if (!ft_strcmp(token->str, buffer))
 			break ;
@@ -104,7 +107,7 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 	}
 	close(fd);
 	if (signal_received)
-		reset_all(state);
+		return ;
 	open_fd(&cmd->fd_in, file, O_RDONLY, state);
 	printf("hdname=%s, hdfd=%d\n", file, cmd->fd_in);
 	free(buffer);
