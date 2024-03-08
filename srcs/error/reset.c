@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/06 14:26:48 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:53:36 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ void	reset_all(t_state *state)
 		clear_heredoc(state);
 		state->data->last_pid = -1;
 		state->data->childs = 0;
+	}
+	handle_signal_on_exit(state);
+}
+
+void	handle_signal_on_exit(t_state *state)
+{
+	if (signal_received)
+	{
+		state->data->exit_status = 128 + signal_received;
+		signal_received = 0;
 	}
 }
 

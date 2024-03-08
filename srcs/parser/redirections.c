@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/07 12:27:08 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:04:54 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 	if (cmd->fd_in > 1)
 		close(cmd->fd_in);
 	open_fd(&fd, file, O_WRONLY | O_CREAT | O_TRUNC, state);
-	while (1)
+	ft_signals(HDOC);
+	while (!signal_received)
 	{
 		write(1, "> ", 2);
 		buffer = get_next_line(STDIN_FILENO);
@@ -101,9 +102,12 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 		free(buffer);
 	}
 	close(fd);
+	if (signal_received)
+		reset_all(state);
 	open_fd(&cmd->fd_in, file, O_RDONLY, state);
 //	printf("hdname=%s, hdfd=%d\n", file, cmd->fd_in);
 	free(buffer);
+	ft_signals(EXEC);
 }
 
 void	open_fd(int *fd, const char *filename, int flags, t_state *state)
