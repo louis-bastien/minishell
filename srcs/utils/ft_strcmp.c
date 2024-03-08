@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:58:40 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/07 12:26:36 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:22:59 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	ft_strcmp(const char *str1, const char *str2)
 {
+	if (!str1 || !str2)
+		return (1);
 	if (ft_strlen(str1) == ft_strlen(str2) - 1)
 	{
 		if (!ft_strncmp(str1, str2, ft_strlen(str1)))

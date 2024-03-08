@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/08 09:53:20 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:02:04 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	run_shell(t_state *state, char ***env)
 	{
 		signal_received = 0;
 		ft_signals(NON_EXEC);
-		input = readline("\033[0;32mminishell➜\033[0m ");
+		input = readline("minishell-> ");
 		if (!input)
 			ft_error("(Input) EOF reached or input error from Readline", state);
 		else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/07 15:53:36 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:11:17 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	handle_signal_on_exit(t_state *state)
 
 void	free_data(t_data *data)
 {
-	free_doubleptr(data->env);
+	//free_doubleptr(data->env);
 	free(data);
 }
 
