@@ -51,7 +51,7 @@ bool	to_continue(t_state *state)
 {
 	if (state->error)
 		return (false);
-	if (signal_received)
+	if (g_signal_received)
 		return (false);
 	return (true);
 }

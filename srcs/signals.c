@@ -16,7 +16,7 @@ void	ft_signals(t_mode mode)
 {
 	if (mode == NON_EXEC)
 	{
-		signal_received = 0;
+		g_signal_received = 0;
 		signal(SIGINT, nexec_sig_handler);
 		signal(SIGQUIT, SIG_IGN);
 	}
@@ -27,14 +27,14 @@ void	ft_signals(t_mode mode)
 	}
 	else if (mode == STOP)
 	{
-		signal(SIGINT, SIG_IGN);
+		signal(SIGINT, stop_sig_handler);
 		signal(SIGQUIT, SIG_IGN);
 	}
 }
 
 void	nexec_sig_handler(int sign)
 {
-	signal_received = sign;
+	g_signal_received = sign;
 	if (sign == SIGINT)
 	{
 		write(1, "\n", 1);
@@ -42,4 +42,11 @@ void	nexec_sig_handler(int sign)
 		rl_on_new_line();
 		rl_redisplay();
 	}
+}
+
+void	stop_sig_handler(int sign)
+{
+	write(1, "\n", 1);
+	if (sign == SIGINT)
+		signal(SIGINT, SIG_IGN);
 }

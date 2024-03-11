@@ -33,7 +33,7 @@ void	reset_all(t_state *state)
 		state->data->last_pid = -1;
 		state->data->childs = 0;
 	}
-	signal_received = 0;
+	g_signal_received = 0;
 }
 
 void	free_data(t_data *data)

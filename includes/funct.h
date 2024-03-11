@@ -23,11 +23,8 @@ t_data		*init_data(t_state *state, char **envp);
 
 //Signals
 void		ft_signals(t_mode mode);
-void		child_sig_handler(int sign);
-void		exec_sig_handler(int sign);
 void		nexec_sig_handler(int sign);
-void		handle_signal_on_exit(t_state *state);
-
+void		stop_sig_handler(int sign);
 
 //Lexer
 void		ft_lexer(char *input, t_state *state);

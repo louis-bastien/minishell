@@ -84,11 +84,14 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 	int		fd;
 	char	*file;
 	int		pid;
+	char	*numhd;
 
 	ft_signals(STOP);
 	fd = -1;
 	state->heredoc++;
-	file = ft_strjoin(".heredoc", ft_itoa(state->heredoc));
+	numhd = ft_itoa(state->heredoc);
+	file = ft_strjoin(".heredoc", numhd);
+	free(numhd);
 	if (cmd->fd_in > 1)
 		close(cmd->fd_in);
 	open_fd(&fd, file, O_WRONLY | O_CREAT | O_TRUNC, state);
@@ -106,7 +109,7 @@ void	ft_hd_child(char *str, int fd, t_state *state)
 	char	*buffer;
 
 	ft_signals(EXEC);
-	while (!signal_received)
+	while (!g_signal_received)
 	{
 		write(1, "> ", 2);
 		buffer = get_next_line(STDIN_FILENO);
@@ -133,13 +136,14 @@ void	ft_hd_parent(char *file, t_command *cmd, t_state *state)
 
 	waitpid(-1, &status, 0);
 	open_fd(&cmd->fd_in, file, O_RDONLY, state);
+	free(file);
 }
 
-void	open_fd(int *fd, const char *filename, int flags, t_state *state)
+void	open_fd(int *fd, const char *file, int flags, t_state *state)
 {
 	if (*fd > 1)
 		close(*fd);
-	*fd = open(filename, flags, 0644);
+	*fd = open(file, flags, 0644);
 	if (*fd < 0)
 		ft_error("(parser) could not open tmp file for heredoc", state);
 }
