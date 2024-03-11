@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:05:46 by agusheredia       #+#    #+#             */
-/*   Updated: 2024/03/11 07:46:15 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/11 14:10:38 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,10 @@ void	ft_execve(t_command *cmd, t_state *state, char **env)
 	{
 		path = ft_strdup(cmd->command);
 		tmp = ft_strrchr(cmd->command, '/');
-		printf("%s\n", tmp);
-		//i = ft_sizesplit(tmp);
 		cmd->args[0] = ft_strdup(tmp);
-		cmd->args[1] = NULL;
 	}
 	else
 		path = get_path(cmd, state, env);
-	//free_darray(tmp);
 	execve(path, cmd->args, env);
 	free(path);
 	ft_error_exec(cmd->command, EXIT_FAILURE, "Execution Failed", state);
