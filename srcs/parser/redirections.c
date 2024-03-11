@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/08 19:46:40 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/11 07:45:59 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 			ft_error("(parser) empty buffer for heredoc", state);
 			break ;
 		}
-		printf("senal=%d\n", signal_received);
+//		printf("senal=%d\n", signal_received);
 		if (!ft_strcmp(token->str, buffer))
 			break ;
 		expnvar(&buffer, 0, ft_strlen(buffer), state);
@@ -109,7 +109,7 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 	if (signal_received)
 		return ;
 	open_fd(&cmd->fd_in, file, O_RDONLY, state);
-	printf("hdname=%s, hdfd=%d\n", file, cmd->fd_in);
+//	printf("hdname=%s, hdfd=%d\n", file, cmd->fd_in);
 	free(buffer);
 	ft_signals(EXEC);
 }

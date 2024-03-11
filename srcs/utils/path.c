@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/06 11:05:22 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/11 07:32:31 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,21 +76,4 @@ char	*get_path(t_command *cmd, t_state *state, char **env)
 	}
 	ft_error_exec(cmd->command, NOCMD, "Command does not exist", state);
 	return (NULL);
-}
-
-int	check_absolute_path(t_command *cmd)
-{
-	char	*last_slash;
-	char	*relative_cmd;
-
-	if (is_absolute(cmd))
-	{
-		last_slash = ft_strrchr(cmd->command, '/');
-		relative_cmd = last_slash + 1;
-		if (cmd->args[0])
-			free(cmd->args[0]);
-		cmd->args[0] = ft_strdup(relative_cmd);
-		return (1);
-	}
-	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:05:46 by agusheredia       #+#    #+#             */
-/*   Updated: 2024/03/07 15:22:42 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/11 07:46:15 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	ft_execve(t_command *cmd, t_state *state, char **env)
 {
 	char	*path;
 	char	*tmp;
-	//int		i;
 
 	tmp = NULL;
 	if (is_absolute(cmd))

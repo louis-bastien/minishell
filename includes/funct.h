@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/08 09:52:23 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/11 07:32:21 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,6 @@ void		ft_execve(t_command *cmd, t_state *state, char **env);
 //Path
 char		**ft_parse_path(char **envp);
 char		*get_path(t_command *cmd, t_state *state, char **env);
-int			check_absolute_path(t_command *cmd);
 int			is_absolute(t_command *cmd);
 
 //env_utils
