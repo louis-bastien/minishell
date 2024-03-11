@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/11 10:45:44 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:35:14 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	reset_all(t_state *state)
 {
-	handle_signal_on_exit(state);
 	if (state)
 	{
 		if (state->error || state->data->cmd_error)
@@ -34,15 +33,7 @@ void	reset_all(t_state *state)
 		state->data->last_pid = -1;
 		state->data->childs = 0;
 	}
-}
-
-void	handle_signal_on_exit(t_state *state)
-{
-	if (signal_received)
-	{
-		state->data->exit_status = 128 + signal_received;
-		signal_received = 0;
-	}
+	signal_received = 0;
 }
 
 void	free_data(t_data *data)

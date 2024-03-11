@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/11 07:32:21 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:18:39 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@
 //Main
 void		run_shell(t_state *state, char ***env);
 void		pre_shell(t_state *state, char *input);
+bool		to_continue(t_state *state);
 t_state		*init_state(t_state *state);
 t_data		*init_data(t_state *state, char **envp);
 
 //Signals
 void		ft_signals(t_mode mode);
-void		heredoc_sig_handler(int sign);;
+void		child_sig_handler(int sign);
 void		exec_sig_handler(int sign);
 void		nexec_sig_handler(int sign);
 void		handle_signal_on_exit(t_state *state);
@@ -68,6 +69,9 @@ t_command	*create_cmd(t_token *tokens, int numtok, int numcmd);
 int			count_upto_pipe(t_token *tokens);
 void		handle_redirections(t_command *cmd, t_state *state);
 void		handle_heredoc(t_token *token, t_command *cmd, t_state *state);
+void		ft_hd_child(char *str, int fd, t_state *state);
+void		ft_hd_parent(char *file, t_command *cmd, t_state *state);
+
 void		parse_fd(t_token *token, t_command *cmd, t_state *state);
 void		open_fd(int *fd, const char *filename, int flags, t_state *state);
 void		handle_command(t_command *cmd, t_state *state);

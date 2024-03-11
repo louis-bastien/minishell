@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/07 16:04:56 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:51:43 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ typedef enum s_mode
 {
 	EXEC,
 	NON_EXEC,
-	HDOC
+	HDOC,
+	STOP
 }	t_mode;
 
 typedef struct s_token

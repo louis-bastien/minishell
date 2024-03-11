@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/11 10:29:44 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:20:51 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,42 +73,66 @@ void	parse_fd(t_token *token, t_command *cmd, t_state *state)
 		open_fd(&cmd->fd_out, file_token->str, \
 		O_WRONLY | O_CREAT | O_APPEND, state);
 	else if (token->type == HEREDOC)
+	{
 		handle_heredoc(file_token, cmd, state);
+		ft_signals(NON_EXEC);
+	}
 }
 
 void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 {
 	int		fd;
-	char	*buffer;
 	char	*file;
+	int		pid;
 
+	ft_signals(STOP);
 	fd = -1;
 	state->heredoc++;
 	file = ft_strjoin(".heredoc", ft_itoa(state->heredoc));
 	if (cmd->fd_in > 1)
 		close(cmd->fd_in);
 	open_fd(&fd, file, O_WRONLY | O_CREAT | O_TRUNC, state);
-	ft_signals(NON_EXEC);
+	pid = fork();
+	if (pid < 0)
+		ft_error_exec(cmd->command, -1, "Error forking heredoc process", state);
+	else if (pid == 0)
+		ft_hd_child(token->str, fd, state);
+	else
+		ft_hd_parent(file, cmd, state);
+}
+
+void	ft_hd_child(char *str, int fd, t_state *state)
+{
+	char	*buffer;
+
+	ft_signals(EXEC);
 	while (!signal_received)
 	{
 		write(1, "> ", 2);
 		buffer = get_next_line(STDIN_FILENO);
 		if (!buffer)
+		{
+			printf("Heredoc no buffer\n");
 			break ;
-//		printf("senal=%d\n", signal_received);
-		if (!ft_strcmp(token->str, buffer))
+		}
+		if (!ft_strcmp(str, buffer))
 			break ;
 		expnvar(&buffer, 0, ft_strlen(buffer), state);
 		write(fd, buffer, ft_strlen(buffer));
+		printf("buffer=%s\n", buffer);
 		free(buffer);
 	}
-	close(fd);
-	if (signal_received)
-		return ;
-	open_fd(&cmd->fd_in, file, O_RDONLY, state);
-//	printf("hdname=%s, hdfd=%d\n", file, cmd->fd_in);
 	free(buffer);
-	ft_signals(EXEC);
+	close(fd);
+	exit(0);
+}
+
+void	ft_hd_parent(char *file, t_command *cmd, t_state *state)
+{
+	int	status;
+
+	waitpid(-1, &status, 0);
+	open_fd(&cmd->fd_in, file, O_RDONLY, state);
 }
 
 void	open_fd(int *fd, const char *filename, int flags, t_state *state)
