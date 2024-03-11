@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_variables.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:19:28 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/04 14:49:58 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/11 14:56:43 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,17 @@ char	*get_env_name(char *name, int len)
 char	*get_env_value(char *name, t_state *state)
 {
 	char	*value;
+	char	*tmp;
 
+	tmp = NULL;
 	if (ft_strlen(name) == 1 && name[0] == '?')
 		value = ft_itoa(state->data->exit_status);
 	else
-		value = getenv(name);
+	{
+		tmp = ft_strjoin(name, "=");
+		value = get_var_env(tmp, state->data->env);
+		free(tmp);
+	}
 	if (!value)
 		value = "";
 	return (value);
