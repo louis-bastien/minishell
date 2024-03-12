@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/11 17:20:51 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/12 11:25:09 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	ft_hd_child(char *str, int fd, t_state *state)
 			break ;
 		expnvar(&buffer, 0, ft_strlen(buffer), state);
 		write(fd, buffer, ft_strlen(buffer));
-		printf("buffer=%s\n", buffer);
+//		printf("buffer=%s\n", buffer);
 		free(buffer);
 	}
 	free(buffer);
