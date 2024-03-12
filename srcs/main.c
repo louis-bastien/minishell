@@ -11,11 +11,11 @@
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+volatile sig_atomic_t g_signal_received = 0;
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_state	*state;
-
 	(void)argv;
 	state = NULL;
 	state = init_state(state);

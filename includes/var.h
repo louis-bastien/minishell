@@ -13,6 +13,6 @@
 #ifndef VAR_H
 # define VAR_H
 
-volatile sig_atomic_t	signal_received;
+extern volatile sig_atomic_t    g_signal_received;
 
 #endif
