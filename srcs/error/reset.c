@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/11 16:35:14 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:31:39 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,10 @@ void	free_env(char ***env)
 {
 	free_doubleptr(*env);
 	free(env);
+}
+
+void	put_exit_code(int error_num, t_state *state)
+{
+	if (!state->data->exit_status)
+		state->data->exit_status = error_num;
 }

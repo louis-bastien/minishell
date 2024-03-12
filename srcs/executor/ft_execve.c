@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:05:46 by agusheredia       #+#    #+#             */
-/*   Updated: 2024/03/11 15:07:03 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:33:50 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,8 @@ int	ft_sizesplit(char **split)
 	return (i);
 }
 
-void	ft_execve(t_command *cmd, t_state *state, char **env)
+void	ft_execve(t_command *cmd, char *path, t_state *state, char **env)
 {
-	char	*path;
-	char	*tmp;
-
-	tmp = NULL;
-	if (is_absolute(cmd))
-	{
-		path = ft_strdup(cmd->command);
-		tmp = ft_strrchr(cmd->command, '/');
-		cmd->args[0] = ft_strdup(tmp);
-	}
-	else
-		path = get_path(cmd, state, env);
 	execve(path, cmd->args, env);
 	free(path);
 	ft_error_exec(cmd->command, EXIT_FAILURE, "Execution Failed", state);

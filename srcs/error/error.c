@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:04:09 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/11 15:32:01 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:33:09 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,14 @@ void	ft_error(char *str, t_state *state)
 void	ft_error_exec(char *cmd, int exit_code, char *str, t_state *state)
 {
 	if (!state->error)
+	{
 		state->error = ft_strdup(str);
+		printf("Put up error %s\n", state->error);
+	}
 	if (!state->data->exit_status)
 	{
 		state->data->exit_status = exit_code;
-		ft_error_perm(NOCMD, cmd);
-		//printf("ERRORSET=%d\n", exit_code);
+		printf("Put up exit code: %d\n", state->data->exit_status);
 	}
 	if (!state->data->cmd_error)
 		state->data->cmd_error = ft_strdup(cmd);

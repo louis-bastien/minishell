@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/11 14:11:50 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:22:49 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ char	*get_path(t_command *cmd, t_state *state, char **env)
 		free(exec);
 		i++;
 	}
-	ft_error_exec(cmd->command, NOCMD, "Command does not exist", state);
+	printf("NO_CMD\n");
+	ft_error_exec(cmd->command, NOCMD, "Command not found", state);
 	return (NULL);
 }

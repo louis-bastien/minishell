@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_variables.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:19:28 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/11 14:56:43 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:17:50 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ char	*get_env_name(char *name, int len)
 	int		i;
 
 	i = 0;
-	while (is_valid_env(name[i]) && len)
+	if (name[i] == '?')
 		i++;
+	else
+		while (is_valid_env(name[i]) && len)
+			i++;
 	value = ft_strndup(name, i);
 	if (!value)
 		return (NULL);

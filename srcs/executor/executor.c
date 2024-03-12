@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/11 16:36:24 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:35:28 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,20 @@ void	ft_executor(t_state *state, char ***env)
 void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 {
 	int		pid;
+	char	*path;
+	char	*tmp;
 
+	tmp = NULL;
+	if (is_absolute(cmd))
+	{
+		path = ft_strdup(cmd->command);
+		tmp = ft_strrchr(cmd->command, '/') + 1;
+		free(cmd->args[0]);
+		cmd->args[0] = ft_strdup(tmp);
+		printf("args0=%s\n", cmd->args[0]);
+	}
+	else
+		path = get_path(cmd, state, *env);
 	if (state->error)
 		return ;
 	ft_signals(STOP);
@@ -41,12 +54,12 @@ void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 	if (pid < 0)
 		ft_error_exec(cmd->command, -1, "Error forking process", state);
 	else if (pid == 0)
-		ft_child(cmd, state, env);
+		ft_child(cmd, path, state, env);
 	else
 		ft_parent(cmd, pid, state);
 }
 
-void	ft_child(t_command *cmd, t_state *state, char ***env)
+void	ft_child(t_command *cmd, char *path, t_state *state, char ***env)
 {
 	int		status;
 
@@ -61,7 +74,7 @@ void	ft_child(t_command *cmd, t_state *state, char ***env)
 		exit (status);
 	}
 	else
-		ft_execve(cmd, state, *env);
+		ft_execve(cmd, path, state, *env);
 }
 
 void	ft_parent(t_command *cmd, int pid, t_state *state)
@@ -91,13 +104,14 @@ void	ft_waitpid(t_state *state)
 		if (wait_pid == state->data->last_pid)
 		{
 			if (WIFEXITED(status))
-				state->data->exit_status = WEXITSTATUS(status);
+				put_exit_code(WEXITSTATUS(status), state);
 			else if (WIFSIGNALED(status))
-				state->data->exit_status = 128 + WTERMSIG(status);
+				put_exit_code(128 + WTERMSIG(status), state);
 			else
-				state->data->exit_status = 0;
+				put_exit_code(0, state);
 		}
 		state->data->childs--;
 //		printf("Childs remaining=%d\n", state->data->childs);
 	}
 }
+

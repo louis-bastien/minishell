@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/11 17:18:39 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:33:32 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void		ft_error_perm(int perm, char *str);
 void		clear_heredoc(t_state *state);
 void		ft_error_builtin(int perm, char *cmd, char *arg);
 void		ft_error_exit(int perm, char *arg);
+void		put_exit_code(int error_num, t_state *state);
 
 //Init
 char		**copy_env(char **env);
@@ -144,13 +145,13 @@ char		*get_var_env(char *var, char **envp);
 void		ft_executor(t_state *state, char ***env);
 void		make_dup(t_command *cmd, t_state *state);
 void		exec_cmd(t_command *cmd, t_state *state, char ***env);
-void		ft_child(t_command *cmd, t_state *state, char ***env);
+void		ft_child(t_command *cmd, char *path, t_state *state, char ***env);
 void		ft_parent(t_command *cmd, int pid, t_state *state);
 void		ft_waitpid(t_state *state);
 void		ft_init_pipes(t_state *state);
 int			needs_pipe(t_command *cmd);
 int			assign_pipes(t_command *cmd);
-void		ft_execve(t_command *cmd, t_state *state, char **env);
+void		ft_execve(t_command *cmd, char *path, t_state *state, char **env);
 
 //Path
 char		**ft_parse_path(char **envp);
