@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/13 12:51:10 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:26:14 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int			is_first(t_command *cmd);
 int			is_last(t_command *cmd, t_state *state);
 void		free_darray(char **d_array);
 int			ft_strcmp(const char *str1, const char *str2);
+int			ft_strcmp_ignore_nl(const char *str1, const char *str2);
 int			ft_export_apend(t_command *cmd, char ***env, char **var_value);
 
 //Exit

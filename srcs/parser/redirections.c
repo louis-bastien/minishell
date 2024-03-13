@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/13 13:40:09 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:26:14 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_parse_tokens(t_state *state)
 			check_builtins(command);
 		command = command->next;
 	}
-	
+
 }
 
 void	handle_redirections(t_command *cmd, t_state *state)
@@ -119,7 +119,7 @@ void	ft_hd_child(char *str, int fd, t_state *state)
 			printf("Heredoc no buffer\n");
 			break ;
 		}
-		if (!ft_strcmp(str, buffer))
+		if (!ft_strcmp_ignore_nl(str, buffer))
 			break ;
 		expnvar(&buffer, 0, ft_strlen(buffer), state);
 		write(fd, buffer, ft_strlen(buffer));
