@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minicd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:48:46 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/28 20:19:54 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/13 13:34:36 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*get_dir_var(t_command *cmd, char ***env)
 
 	dir = NULL;
 	if (cmd->args_count == 1
-		|| (ft_strncmp(cmd->args[1], "~", 2) == 0))
+		|| (ft_strcmp(cmd->args[1], "~") == 0))
 	{
 		dir = get_var_env("HOME=", *env);
 		if (!dir)
@@ -33,12 +33,16 @@ char	**update_cd(char ***env)
 {
 	char	**nenv;
 	char	*pwd;
+	char	*tmp;
 	int		index_pwd;
 
 	index_pwd = get_var_index("PWD", *env);
 	pwd = NULL;
-	pwd = ft_strjoin("PWD=", getcwd(pwd, sizeof(pwd)));
+	tmp = getcwd(pwd, sizeof(pwd));
+	pwd = ft_strjoin("PWD=", tmp);
 	nenv = set_darray(*env, pwd, index_pwd);
+	free(tmp);
+	free(pwd);
 	return (nenv);
 }
 
@@ -47,6 +51,7 @@ int	minicd(t_command *cmd, char ***env)
 	char	*var;
 
 	var = get_dir_var(cmd, env);
+	printf("VAR ES %s\n", var);
 	if (!var)
 		return (1);
 	if (chdir(var) == -1)

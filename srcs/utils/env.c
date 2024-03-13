@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:41:27 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/13 11:41:15 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:33:38 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	double_array_size(char **d_str)
 char	**set_darray(char **d_str, char *n_str, int index)
 {
 	free(d_str[index]);
-	d_str[index] = ft_strdup(n_str);
+	d_str[index] = n_str;
 	return (d_str);
 }
 
@@ -42,7 +42,7 @@ int	get_var_index(char *var, char **envp)
 	len_var = ft_strlen(tmp);
 	while (envp[index] != NULL)
 	{
-		if (ft_strncmp(envp[index], tmp, len_var) == 0)
+		if (ft_strcmp(envp[index], tmp) == 0)
 		{
 			free(tmp);
 			return (index);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:18:17 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/12 16:31:53 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:46:06 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ char	*expand_env_variable(char **str, int env_pos, int *len, t_state *state)
 		ft_error("Failed to generate expanded string", state);
 	*str = new_str;
 	current = new_str + env_pos + ft_strlen(value);
+	free(value);
 	return (current);
 }
 
