@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 00:52:41 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/07 16:11:20 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/13 14:29:11 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,12 @@ void	make_dup(t_command *cmd, t_state *state)
 	code = 0;
 	if (cmd->fd_in != STDIN_FILENO)
 	{
-//		printf("%s : dupping fd_in\n", cmd->command);
 		if (dup2(cmd->fd_in, STDIN_FILENO) == -1)
 			ft_error_exec(cmd->command, code, "Failed to dup STDIN", state);
 		close(cmd->fd_in);
 	}
 	if (cmd->fd_out != STDOUT_FILENO)
 	{
-//		printf("%s : dupping fd_out\n", cmd->command);
 		if (dup2(cmd->fd_out, STDOUT_FILENO) == -1)
 			ft_error_exec(cmd->command, code, "Failed to dup STDOUT", state);
 		close(cmd->fd_out);

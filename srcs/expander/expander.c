@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:18:17 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/13 12:46:06 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/13 14:29:43 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	quote_wrapper(t_token *token, t_state *state)
 	str = &token->str;
 	while (current && *current)
 	{
-//		printf("quote_wrapper char=%c, str=%s\n", *current, current);
 		if (*current == '\'')
 			single_quotes(str, &current, state);
 		else if (*current == '\"')
@@ -75,10 +74,8 @@ char	*expnvar(char **str, int start_pos, int len, t_state *state)
 	int		env_pos;
 
 	current = *str + start_pos;
-//	printf("str=%s, start_pos=%d, len=%d, current_char=%c\n", *str, start_pos, len, *current);
 	while (*current && len)
 	{
-//		printf("expnvar char=%c\n", *current);
 		if (*current == '$' && is_valid_env(*(current + 1)))
 		{
 			env_pos = current - *str;
