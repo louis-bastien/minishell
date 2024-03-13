@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
+#    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/03/13 16:10:03 by lbastien         ###   ########.fr        #
+#    Updated: 2024/03/13 16:39:48 by agheredi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC = srcs/main.c \
 	srcs/parser/parser.c \
 	srcs/parser/redirections.c \
 	srcs/parser/args.c \
+	srcs/parser/redirecheredoc.c \
 	srcs/utils/path.c \
 	srcs/utils/cmd.c \
 	srcs/utils/print.c \

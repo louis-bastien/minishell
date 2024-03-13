@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/12 16:35:28 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:58:21 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 		tmp = ft_strrchr(cmd->command, '/') + 1;
 		free(cmd->args[0]);
 		cmd->args[0] = ft_strdup(tmp);
-		printf("args0=%s\n", cmd->args[0]);
 	}
 	else
 		path = get_path(cmd, state, *env);
@@ -65,9 +64,7 @@ void	ft_child(t_command *cmd, char *path, t_state *state, char ***env)
 
 	status = 0;
 	ft_signals(EXEC);
-//	printf("%s child process created\n", cmd->command);
 	make_dup(cmd, state);
-//	printf("%s executing...\n", cmd->command);	
 	if (cmd->is_builtin == true)
 	{
 		status = ft_exec_builtin(cmd, state, env);
@@ -79,7 +76,6 @@ void	ft_child(t_command *cmd, char *path, t_state *state, char ***env)
 
 void	ft_parent(t_command *cmd, int pid, t_state *state)
 {
-//	printf("%s parent pid=%d fd_in=%d fd_out=%d\n", cmd->command, pid, cmd->fd_in, cmd->fd_out);
 	if (is_last(cmd, state))
 		state->data->last_pid = pid;
 	if (cmd->fd_out != STDOUT_FILENO)
@@ -94,13 +90,11 @@ void	ft_waitpid(t_state *state)
 	int	status;
 	int	wait_pid;
 
-//	printf("Waitpid - childs=%d last_pid=%d\n", state->data->childs, state->data->last_pid);
 	wait_pid = 1;
 	status = 0;
 	while (state->data->childs > 0)
 	{
 		wait_pid = waitpid(-1, &status, 0);
-//		printf("%d process closed. Exit_status=%d\n", wait_pid, WEXITSTATUS(status));		
 		if (wait_pid == state->data->last_pid)
 		{
 			if (WIFEXITED(status))
@@ -111,7 +105,5 @@ void	ft_waitpid(t_state *state)
 				put_exit_code(0, state);
 		}
 		state->data->childs--;
-//		printf("Childs remaining=%d\n", state->data->childs);
 	}
 }
-

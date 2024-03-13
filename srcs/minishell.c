@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/13 13:07:55 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/13 14:27:07 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	run_shell(t_state *state, char ***env)
 				continue ;
 			if (to_continue(state))
 				ft_parser(state);
-//			ft_print_cmds(state->cmd_list);
-//			printf("postparse_signal=%d\n", g_signal_received);
 			if (to_continue(state))
 				ft_executor(state, env);
 		}
@@ -49,7 +47,6 @@ void	pre_shell(t_state *state, char *input)
 	ft_lexer(input, state);
 	if (to_continue(state))
 		ft_expander(state);
-	//print_tokens(state->token_list);
 }
 
 bool	to_continue(t_state *state)
