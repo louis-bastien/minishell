@@ -6,11 +6,11 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:48:46 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/13 13:34:36 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:19:06 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 char	*get_dir_var(t_command *cmd, char ***env)
 {
@@ -37,6 +37,8 @@ char	**update_cd(char ***env)
 	int		index_pwd;
 
 	index_pwd = get_var_index("PWD", *env);
+	if (index_pwd == -1)
+		return (*env);
 	pwd = NULL;
 	tmp = getcwd(pwd, sizeof(pwd));
 	pwd = ft_strjoin("PWD=", tmp);
@@ -51,7 +53,6 @@ int	minicd(t_command *cmd, char ***env)
 	char	*var;
 
 	var = get_dir_var(cmd, env);
-	printf("VAR ES %s\n", var);
 	if (!var)
 		return (1);
 	if (chdir(var) == -1)

@@ -6,11 +6,11 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:41:27 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/13 13:33:38 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:18:08 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 int	double_array_size(char **d_str)
 {
@@ -24,11 +24,11 @@ int	double_array_size(char **d_str)
 	return (i);
 }
 
-char	**set_darray(char **d_str, char *n_str, int index)
+char	**set_darray(char **env_str, char *n_str, int index)
 {
-	free(d_str[index]);
-	d_str[index] = n_str;
-	return (d_str);
+	free(env_str[index]);
+	env_str[index] = n_str;
+	return (env_str);
 }
 
 int	get_var_index(char *var, char **envp)
@@ -50,8 +50,7 @@ int	get_var_index(char *var, char **envp)
 		index++;
 	}
 	free(tmp);
-	index = -1;
-	return (index);
+	return (-1);
 }
 
 char	**add_str_darry(char **d_array, char *nwstr)

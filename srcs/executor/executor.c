@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/13 14:35:48 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:58:21 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 		tmp = ft_strrchr(cmd->command, '/') + 1;
 		free(cmd->args[0]);
 		cmd->args[0] = ft_strdup(tmp);
-		printf("args0=%s\n", cmd->args[0]);
 	}
 	else
 		path = get_path(cmd, state, *env);
