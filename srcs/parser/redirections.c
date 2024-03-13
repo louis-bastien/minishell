@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/12 17:15:59 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:09:02 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_parse_tokens(t_state *state)
 			check_builtins(command);
 		command = command->next;
 	}
+	
 }
 
 void	handle_redirections(t_command *cmd, t_state *state)
@@ -101,7 +102,7 @@ void	handle_heredoc(t_token *token, t_command *cmd, t_state *state)
 	else if (pid == 0)
 		ft_hd_child(token->str, fd, state);
 	else
-		ft_hd_parent(file, cmd, state);
+		ft_hd_parent(file, fd, cmd, state);
 }
 
 void	ft_hd_child(char *str, int fd, t_state *state)
@@ -130,12 +131,17 @@ void	ft_hd_child(char *str, int fd, t_state *state)
 	exit(0);
 }
 
-void	ft_hd_parent(char *file, t_command *cmd, t_state *state)
+void	ft_hd_parent(char *file, int fd, t_command *cmd, t_state *state)
 {
 	int	status;
 
 	waitpid(-1, &status, 0);
-	if (!g_signal_received)
+	if (WIFSIGNALED(status))
+	{
+			close(fd);
+			g_signal_received = status;
+	}
+	else
 		open_fd(&cmd->fd_in, file, O_RDONLY, state);
 	free(file);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/13 11:05:43 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:51:10 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ int			count_upto_pipe(t_token *tokens);
 void		handle_redirections(t_command *cmd, t_state *state);
 void		handle_heredoc(t_token *token, t_command *cmd, t_state *state);
 void		ft_hd_child(char *str, int fd, t_state *state);
-void		ft_hd_parent(char *file, t_command *cmd, t_state *state);
-
+void		ft_hd_parent(char *file, int fd, t_command *cmd, t_state *state);
 void		parse_fd(t_token *token, t_command *cmd, t_state *state);
 void		open_fd(int *fd, const char *filename, int flags, t_state *state);
 void		handle_command(t_command *cmd, t_state *state);

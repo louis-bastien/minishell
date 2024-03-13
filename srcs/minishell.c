@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/12 17:12:19 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:07:55 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	run_shell(t_state *state, char ***env)
 			if (to_continue(state))
 				ft_parser(state);
 //			ft_print_cmds(state->cmd_list);
-			printf("postparse_signal=%d\n", g_signal_received);
+//			printf("postparse_signal=%d\n", g_signal_received);
 			if (to_continue(state))
 				ft_executor(state, env);
 		}
@@ -56,7 +56,7 @@ bool	to_continue(t_state *state)
 {
 	if (state->error)
 		return (false);
-	// if (g_signal_received)
-	// 	return (false);
+	if (g_signal_received)
+		return (false);
 	return (true);
 }
