@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
+#    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/03/11 09:59:08 by lbastien         ###   ########.fr        #
+#    Updated: 2024/03/13 11:42:26 by agheredi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-FLAGS = -Wall -Werror -Wextra -g -fsanitize='address,undefined'
+FLAGS = -Wall -Werror -Wextra -g #-fsanitize='address,undefined'
 SRC = srcs/main.c \
 	srcs/minishell.c \
 	srcs/init.c \
@@ -38,6 +38,7 @@ SRC = srcs/main.c \
 	srcs/utils/env.c \
 	srcs/utils/free_darray.c \
 	srcs/utils/ft_strcmp.c \
+	srcs/utils/miniexport_utils.c \
 	srcs/executor/pipes.c \
 	srcs/executor/executor.c \
 	srcs/executor/ft_execve.c \

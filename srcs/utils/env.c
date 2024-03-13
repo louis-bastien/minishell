@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:41:27 by agheredi          #+#    #+#             */
-/*   Updated: 2024/02/28 10:30:39 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/13 11:41:15 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,23 @@ char	**set_darray(char **d_str, char *n_str, int index)
 
 int	get_var_index(char *var, char **envp)
 {
-	int	index;
-	int	len_var;
+	int		index;
+	int		len_var;
+	char	*tmp;
 
-	len_var = ft_strlen(var);
 	index = 0;
+	tmp = ft_strjoin(var, "=");
+	len_var = ft_strlen(tmp);
 	while (envp[index] != NULL)
 	{
-		if (ft_strncmp(envp[index], var, len_var) == 0)
+		if (ft_strncmp(envp[index], tmp, len_var) == 0)
+		{
+			free(tmp);
 			return (index);
+		}
 		index++;
 	}
+	free(tmp);
 	index = -1;
 	return (index);
 }

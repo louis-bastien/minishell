@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/07 13:33:53 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:07:16 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ int	is_var_to_update(char *arg, t_command *cmd, char ***env, int i)
 	var_value = ft_split(arg, '=');
 	if (is_env_var_valid(var_value[0]) == 1)
 	{
-		status = 1;
-		ft_error_builtin(1, cmd->command, var_value[0]);
+		status = ft_export_apend(cmd, env, var_value);
 	}
 	else if (double_array_size(var_value) > 2)
 	{
@@ -103,9 +102,7 @@ int	mini_export(t_command *cmd, char ***env)
 		while (cmd->args[++i])
 		{
 			if (ft_strchr(cmd->args[i], '=') != NULL)
-			{
 				status = is_var_to_update(cmd->args[i], cmd, env, i);
-			}
 			else if (is_env_var_valid(cmd->args[i]) == 1)
 			{
 				status = 1;

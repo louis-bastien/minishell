@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/12 16:33:32 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:05:43 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int			is_first(t_command *cmd);
 int			is_last(t_command *cmd, t_state *state);
 void		free_darray(char **d_array);
 int			ft_strcmp(const char *str1, const char *str2);
+int			ft_export_apend(t_command *cmd, char ***env, char **var_value);
 
 //Exit
 void		ft_exit(char *str, t_state *state);
