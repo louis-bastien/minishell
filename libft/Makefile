@@ -6,7 +6,7 @@
 #    By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/08 10:23:30 by agheredi          #+#    #+#              #
-#    Updated: 2024/01/30 15:09:16 by agheredi         ###   ########.fr        #
+#    Updated: 2024/03/14 13:42:12 by agheredi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ FLAGS = -Wall -Werror -Wextra
 
 SRCS = ft_atoi.c \
 	   ft_bzero.c \
+	   ft_atol.c \
 	   ft_calloc.c \
 	   ft_isalnum.c \
 	   ft_isalpha.c \

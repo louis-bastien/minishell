@@ -6,11 +6,11 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/13 12:07:16 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:47:15 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	print_var_res(int outfd, const char *var)
 {
@@ -74,7 +74,7 @@ int	is_var_to_update(char *arg, t_command *cmd, char ***env, int i)
 	var_value = ft_split(arg, '=');
 	if (is_env_var_valid(var_value[0]) == 1)
 	{
-		status = ft_export_apend(cmd, env, var_value);
+		status = ft_export_apend(cmd, env, var_value, i);
 	}
 	else if (double_array_size(var_value) > 2)
 	{
@@ -106,6 +106,7 @@ int	mini_export(t_command *cmd, char ***env)
 			else if (is_env_var_valid(cmd->args[i]) == 1)
 			{
 				status = 1;
+				printf("ARG %s\n", cmd->args[i]);
 				ft_error_builtin(1, cmd->command, cmd->args[i]);
 			}
 		}

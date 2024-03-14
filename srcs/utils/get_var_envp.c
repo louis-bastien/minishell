@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_var_envp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:24:37 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/12 13:27:14 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:08:22 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 char	*get_var_env(char *var, char **envp)
 {

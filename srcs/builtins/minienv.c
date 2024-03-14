@@ -6,11 +6,11 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 12:10:07 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/04 16:41:47 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:06:49 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 int	mini_env(t_command *cmd, char ***env)
 {

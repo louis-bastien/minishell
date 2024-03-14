@@ -6,11 +6,11 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:12:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/13 12:19:00 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:48:08 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	free_dos(char *s1, char *s2)
 {
@@ -66,14 +66,14 @@ char	**ft_apend_var(char ***env, char **var_value)
 	return (nenv);
 }
 
-int	ft_export_apend(t_command *cmd, char ***env, char **var_value)
+int	ft_export_apend(t_command *cmd, char ***env, char **var_value, int i)
 {
 	if (var_value[0][ft_strlen(var_value[0]) - 1] == '+')
 	{
 		var_value[0] = ft_strdupapend(var_value[0]);
 		if (is_env_var_valid(var_value[0]) == 1)
 		{
-			ft_error_builtin(1, cmd->command, var_value[0]);
+			ft_error_builtin(1, cmd->command, cmd->args[i]);
 			return (1);
 		}
 		else
@@ -81,7 +81,7 @@ int	ft_export_apend(t_command *cmd, char ***env, char **var_value)
 	}
 	else
 	{
-		ft_error_builtin(1, cmd->command, var_value[0]);
+		ft_error_builtin(1, cmd->command, cmd->args[i]);
 		return (1);
 	}
 	return (0);

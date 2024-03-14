@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free_darray.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:54:48 by agusheredia       #+#    #+#             */
-/*   Updated: 2024/03/07 12:04:50 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:08:13 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	free_darray(char **d_array)
 {

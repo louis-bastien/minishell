@@ -6,11 +6,11 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:14:59 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/04 15:52:52 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:07:12 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 int	is_env_var_valid(char *word)
 {

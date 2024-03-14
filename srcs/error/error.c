@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:04:09 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/13 16:28:08 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:14:22 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,12 @@ void	ft_exit(char *str, t_state *state)
 
 	exit_code = state->data->exit_status;
 	if (!state->error)
-		state->error = ft_strdup(str);
+	{
+		if (!str)
+			state->error = NULL;
+		else
+			state->error = ft_strdup(str);
+	}
 	reset_all(state);
 	if (state->data)
 	{

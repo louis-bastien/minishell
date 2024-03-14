@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 11:24:48 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/14 12:15:25 by agheredi         ###   ########.fr       */
+/*   Created: 2024/03/14 13:41:40 by agheredi          #+#    #+#             */
+/*   Updated: 2024/03/14 13:42:45 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+long long	ft_atol(const char *str)
 {
-	int		i;
+	long long	i;
+	long long	nbr;
+	int			flag;
 
 	i = 0;
-	if (!s)
-		return ;
-	while (s[i] != '\0')
+	nbr = 0;
+	flag = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '-')
+		flag = -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		write(fd, &s[i], 1);
+		nbr = (str[i] - '0') + nbr * 10;
 		i++;
 	}
+	if (flag == -1)
+		nbr = nbr * flag;
+	return (nbr);
 }
