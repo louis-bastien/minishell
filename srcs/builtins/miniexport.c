@@ -3,33 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   miniexport.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/14 17:47:15 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/14 22:45:37 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	print_var_res(int outfd, const char *var)
+void	print_var_res(const char *var)
 {
 	int	i;
 
 	i = 0;
 	while (var[i] != '=')
 	{
-		write(outfd, &var[i], 1);
+		write(STDOUT_FILENO, &var[i], 1);
 		i++;
 	}
 	write(1, "=\"", 2);
 	i++;
 	while (var[i])
 	{
-		write(outfd, &var[i], 1);
+		write(STDOUT_FILENO, &var[i], 1);
 		i++;
 	}
-	write(outfd, "\"\n", 2);
+	write(STDOUT_FILENO, "\"\n", 2);
 }
 
 void	export_no_arg(char ***env)
@@ -42,7 +42,7 @@ void	export_no_arg(char ***env)
 		if (ft_strchr((*env)[i], '='))
 		{
 			ft_putstr_fd("declare -x ", STDOUT_FILENO);
-			print_var_res(STDOUT_FILENO, (*env)[i]);
+			print_var_res((*env)[i]);
 		}
 		i++;
 	}
@@ -106,7 +106,6 @@ int	mini_export(t_command *cmd, char ***env)
 			else if (is_env_var_valid(cmd->args[i]) == 1)
 			{
 				status = 1;
-				printf("ARG %s\n", cmd->args[i]);
 				ft_error_builtin(1, cmd->command, cmd->args[i]);
 			}
 		}

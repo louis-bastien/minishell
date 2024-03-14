@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/14 17:46:58 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/14 22:42:41 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int			add_token(t_token **token_list, char *str, t_ttype type);
 t_token		*create_token(char *str, t_ttype type);
 int			count_token(t_token *token);
 
-
 //Utils 
 void		ft_print_cmds(t_command *commands);
 void		print_args(t_command *command);
@@ -92,7 +91,8 @@ int			is_last(t_command *cmd, t_state *state);
 void		free_darray(char **d_array);
 int			ft_strcmp(const char *str1, const char *str2);
 int			ft_strcmp_ignore_nl(const char *str1, const char *str2);
-int			ft_export_apend(t_command *cmd, char ***env, char **var_value, int i);
+int			ft_export_apend(t_command *cmd, char ***env,
+				char **var_value, int i);
 
 //Exit
 void		ft_exit(char *str, t_state *state);
@@ -131,7 +131,7 @@ int			mini_export(t_command *cmd, char ***env);
 int			mini_unset(t_command *cmd, char ***env);
 
 //utils builtins
-void		print_var_res(int outfd, const char *var);
+void		print_var_res(const char *var);
 int			is_env_var_valid(char *word);
 char		*get_dir_var(t_command *cmd, char ***env);
 void		export_no_arg(char ***env);

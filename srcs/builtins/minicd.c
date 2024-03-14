@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minicd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:48:46 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/13 16:19:06 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/14 22:59:38 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	minicd(t_command *cmd, char ***env)
 	if (!var)
 		return (1);
 	if (chdir(var) == -1)
-		ft_error_perm(404, var);
+		ft_error_builtin(404, "cd", cmd->args[1]);
 	*env = update_cd(env);
 	free(var);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/13 15:49:24 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/14 23:11:26 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,5 @@ void	open_fd(int *fd, const char *file, int flags, t_state *state)
 		close(*fd);
 	*fd = open(file, flags, 0644);
 	if (*fd < 0)
-		ft_error("(parser) could not open tmp file for heredoc", state);
+		ft_error(": No such file or directory", state);
 }
