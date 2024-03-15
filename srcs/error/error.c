@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:04:09 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/15 13:00:12 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/15 14:33:38 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	ft_error_exec(char *cmd, int exit_code, char *str, t_state *state)
 	if (!state->data->exit_status)
 	{
 		state->data->exit_status = exit_code;
-		//printf("ERRORSET=%d\n", exit_code);
 	}
 	if (!state->data->cmd_error)
 		state->data->cmd_error = ft_strdup(cmd);
@@ -60,6 +59,7 @@ void	ft_error_exec(char *cmd, int exit_code, char *str, t_state *state)
 
 void	print_err(t_state *state)
 {
+	ft_putstr_fd("Minishell: ", STDERR_FILENO);
 	if (state->data->cmd_error)
 	{
 		ft_putstr_fd(state->data->cmd_error, STDERR_FILENO);

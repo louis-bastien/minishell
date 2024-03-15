@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:10:31 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/14 17:36:59 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/15 14:56:55 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	determine_exit_code(t_state *state)
 		exit_code = 0;
 	else if (is_str_digit(state->cmd_list->args[1]))
 	{
-		if (ft_strlen(state->cmd_list->args[1]) > 16)
+		if (ft_strlen(state->cmd_list->args[1]) > 17)
 		{
 			ft_error_exit(55, state->cmd_list->args[1]);
 			state->data->exit_status = 255;
