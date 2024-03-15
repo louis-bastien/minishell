@@ -6,27 +6,27 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/15 11:53:09 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:24:50 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	print_var_res(const char *var)
+void	print_var_res(const char *var, int fd_out)
 {
 	int		i;
 	char	**var_print;
 
 	i = 0;
 	var_print = ft_split(var, '=' );
-	ft_putstr_fd(var_print[0], STDOUT_FILENO);
-	ft_putstr_fd("=\"", STDOUT_FILENO);
-	ft_putstr_fd(var_print[1], STDOUT_FILENO);
-	ft_putstr_fd("\"\n", STDOUT_FILENO);
+	ft_putstr_fd(var_print[0], fd_out);
+	ft_putstr_fd("=\"", fd_out);
+	ft_putstr_fd(var_print[1], fd_out);
+	ft_putstr_fd("\"\n", fd_out);
 	free_darray(var_print);
 }
 
-void	export_no_arg(char ***env)
+void	export_no_arg(char ***env, int fd_out)
 {
 	int	i;
 
@@ -35,8 +35,8 @@ void	export_no_arg(char ***env)
 	{
 		if (ft_strchr((*env)[i], '='))
 		{
-			ft_putstr_fd("declare -x ", STDOUT_FILENO);
-			print_var_res((*env)[i]);
+			ft_putstr_fd("declare -x ", fd_out);
+			print_var_res((*env)[i], fd_out);
 		}
 		i++;
 	}
@@ -82,14 +82,14 @@ int	is_var_to_update(char *arg, t_command *cmd, char ***env, int i)
 	return (status);
 }
 
-int	mini_export(t_command *cmd, char ***env)
+int	mini_export(t_command *cmd, char ***env, int fd_out)
 {
 	int	i;
 	int	status;
 
 	status = 0;
 	if (cmd->args_count == 1)
-		export_no_arg(env);
+		export_no_arg(env, fd_out);
 	else
 	{
 		i = 0;

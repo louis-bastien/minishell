@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/14 22:42:41 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/15 15:25:49 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,18 +123,18 @@ char		**copy_env(char **env);
 void		check_builtins(t_command *cmd);
 int			ft_exec_builtin(t_command *cmd, t_state *state, char ***env);
 int			minicd(t_command *cmd, char ***env);
-int			mini_pwd(char ***env);
-int			mini_env(t_command *cmd, char ***env);
-int			mini_echo(t_command *cmd);
+int			mini_pwd(char ***env, int fd_out);
+int			mini_env(t_command *cmd, char ***env, int fd_out);
+int			mini_echo(t_command *cmd, int fd_out);
 int			mini_exit(t_state *state, t_command *cmd);
-int			mini_export(t_command *cmd, char ***env);
+int			mini_export(t_command *cmd, char ***env, int fd_out);
 int			mini_unset(t_command *cmd, char ***env);
 
 //utils builtins
-void		print_var_res(const char *var);
+void		print_var_res(const char *var, int fd_out);
 int			is_env_var_valid(char *word);
 char		*get_dir_var(t_command *cmd, char ***env);
-void		export_no_arg(char ***env);
+void		export_no_arg(char ***env, int fd_out);
 char		**update_env(char **var_value, t_command *cmd, char ***env, int i);
 int			determine_exit_code(t_state *state);
 int			is_str_digit(char *str);
