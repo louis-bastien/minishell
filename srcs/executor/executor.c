@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/13 15:58:21 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:23:24 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_executor(t_state *state, char ***env)
 
 	cmd = state->cmd_list;
 	ft_init_pipes(state);
-	while (cmd && !state->error)
+	while (cmd && to_continue(state))
 	{
 		if (cmd->is_builtin && state->num_cmds == 1)
 			state->data->exit_status = ft_exec_builtin(cmd, state, env);
@@ -46,7 +46,7 @@ void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 	}
 	else
 		path = get_path(cmd, state, *env);
-	if (state->error)
+	if (!to_continue(state))
 		return ;
 	ft_signals(STOP);
 	pid = fork();

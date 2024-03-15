@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/11 16:51:43 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:20:13 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_state
 	t_token		*token_list;
 	t_command	*cmd_list;
 	t_data		*data;
+	bool		to_stop;
 	bool		cmd_running;
 	int			heredoc;
 	int			num_cmds;

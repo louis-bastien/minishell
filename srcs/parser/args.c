@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:16:02 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/11 10:17:20 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:19:33 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	handle_command(t_command *cmd, t_state *state)
 
 	current = cmd->tokens;
 	if (!current || current->type != WORD)
-		ft_error("(parser) Could not find a command", state);
+		state->to_stop = true;
 	else
 	{
 		cmd->command = ft_strdup(current->str);

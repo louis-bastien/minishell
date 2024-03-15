@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:04:09 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/14 16:14:22 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:00:12 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,16 @@ void	ft_error(char *str, t_state *state)
 void	ft_error_exec(char *cmd, int exit_code, char *str, t_state *state)
 {
 	if (!state->error)
-	{
 		state->error = ft_strdup(str);
-		//printf("Put up error %s\n", state->error);
-	}
 	if (!state->data->exit_status)
 	{
 		state->data->exit_status = exit_code;
-		//printf("Put up exit code: %d\n", state->data->exit_status);
+		//printf("ERRORSET=%d\n", exit_code);
 	}
 	if (!state->data->cmd_error)
 		state->data->cmd_error = ft_strdup(cmd);
 }
+
 
 void	print_err(t_state *state)
 {

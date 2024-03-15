@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/06 10:30:22 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:23:44 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_parser(t_state *state)
 {
 	init_cmd_list(state->token_list, state);
-	if (!state->error)
+	if (to_continue(state))
 		ft_parse_tokens(state);
 }
 

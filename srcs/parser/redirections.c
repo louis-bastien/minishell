@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/14 23:11:26 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/15 11:23:22 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	ft_parse_tokens(t_state *state)
 	command = state->cmd_list;
 	while (command)
 	{
-		if (!state->error)
+		if (to_continue(state))
 			handle_redirections(command, state);
-		if (!state->error)
+		if (to_continue(state))
 			handle_command(command, state);
-		if (!state->error)
+		if (to_continue(state))
 			handle_args(command, state);
-		if (!state->error)
+		if (to_continue(state))
 			check_builtins(command);
 		command = command->next;
 	}

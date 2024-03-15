@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/14 12:06:28 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:59:21 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ char	*get_path(t_command *cmd, t_state *state, char **env)
 		free(exec);
 		i++;
 	}
-	ft_error_exec(cmd->command, NOCMD, "command not found", state);
+	if (!cmd->is_builtin)
+		ft_error_exec(cmd->command, NOCMD, "command not found", state);
 	return (NULL);
 }

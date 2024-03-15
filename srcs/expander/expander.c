@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:18:17 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/13 14:29:43 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:24:35 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_expander(t_state *state)
 
 	token = state->token_list;
 	next_token = NULL;
-	while (token && !state->error)
+	while (token && to_continue(state))
 	{
 		next_token = token->next;
 		quote_wrapper(token, state);

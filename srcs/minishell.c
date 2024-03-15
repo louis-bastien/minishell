@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/14 12:09:48 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:43:33 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,14 @@ void	pre_shell(t_state *state, char *input)
 	ft_lexer(input, state);
 	if (to_continue(state))
 		ft_expander(state);
+	print_tokens(state->token_list);
 }
 
 bool	to_continue(t_state *state)
 {
 	if (state->error)
+		return (false);
+	if (state->to_stop)
 		return (false);
 	if (g_signal_received)
 		return (false);

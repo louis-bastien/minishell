@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:33:04 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/13 15:50:16 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/15 10:45:27 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,10 @@ void	ft_hd_child(char *str, int fd, t_state *state)
 			printf("Heredoc no buffer\n");
 			break ;
 		}
-		if (!ft_strcmp(str, buffer))
+		if (!ft_strcmp_ignore_nl(str, buffer))
 			break ;
 		expnvar(&buffer, 0, ft_strlen(buffer), state);
 		write(fd, buffer, ft_strlen(buffer));
-//		printf("buffer=%s\n", buffer);
 		free(buffer);
 	}
 	free(buffer);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniexport.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/14 22:45:37 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/15 11:53:09 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,16 @@
 
 void	print_var_res(const char *var)
 {
-	int	i;
+	int		i;
+	char	**var_print;
 
 	i = 0;
-	while (var[i] != '=')
-	{
-		write(STDOUT_FILENO, &var[i], 1);
-		i++;
-	}
-	write(1, "=\"", 2);
-	i++;
-	while (var[i])
-	{
-		write(STDOUT_FILENO, &var[i], 1);
-		i++;
-	}
-	write(STDOUT_FILENO, "\"\n", 2);
+	var_print = ft_split(var, '=' );
+	ft_putstr_fd(var_print[0], STDOUT_FILENO);
+	ft_putstr_fd("=\"", STDOUT_FILENO);
+	ft_putstr_fd(var_print[1], STDOUT_FILENO);
+	ft_putstr_fd("\"\n", STDOUT_FILENO);
+	free_darray(var_print);
 }
 
 void	export_no_arg(char ***env)
