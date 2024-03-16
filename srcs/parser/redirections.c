@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/15 11:23:22 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/16 19:47:15 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	handle_redirections(t_command *cmd, t_state *state)
 			file_token = current->next;
 			if (!file_token || file_token->type != WORD)
 			{
-				ft_error("Missing file after redirection", state);
+				ft_error("syntax error near unexpected token `newline'", state);
 				break ;
 			}
 			else
@@ -81,9 +81,28 @@ void	parse_fd(t_token *token, t_command *cmd, t_state *state)
 
 void	open_fd(int *fd, const char *file, int flags, t_state *state)
 {
+	struct stat	file_stat;
+
 	if (*fd > 1)
 		close(*fd);
 	*fd = open(file, flags, 0644);
 	if (*fd < 0)
-		ft_error(": No such file or directory", state);
+	{
+		state->to_stop = false;
+		if (stat(file, &file_stat) == 0 && S_ISDIR(file_stat.st_mode))
+		{
+			state->data->exit_status = 1;
+			ft_error_open(55, (char *)file);
+		}
+		else if (errno == EACCES)
+		{
+			state->data->exit_status = 1;
+			ft_error_open(1, (char *)file);
+		}
+		else
+		{
+			state->data->exit_status = 1;
+			ft_error_open(404, (char *)file);
+		}
+	}
 }

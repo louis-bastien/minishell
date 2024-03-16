@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/15 12:23:24 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/16 20:43:54 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 	char	*tmp;
 
 	tmp = NULL;
-	if (is_absolute(cmd))
+	if (is_absolute(cmd) == 1)
 	{
 		path = ft_strdup(cmd->command);
 		tmp = ft_strrchr(cmd->command, '/') + 1;

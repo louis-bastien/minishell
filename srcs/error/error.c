@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:04:09 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/15 14:33:38 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/16 15:37:27 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_error(char *str, t_state *state)
 	if (!state->error)
 		state->error = ft_strdup(str);
 	if (!state->data->exit_status)
-		state->data->exit_status = 1;
+		state->data->exit_status = 2;
 }
 
 void	ft_error_exec(char *cmd, int exit_code, char *str, t_state *state)

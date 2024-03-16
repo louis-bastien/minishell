@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniexport.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/15 15:24:50 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/16 11:42:13 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void	print_var_res(const char *var, int fd_out)
 {
-	int		i;
 	char	**var_print;
 
-	i = 0;
 	var_print = ft_split(var, '=' );
 	ft_putstr_fd(var_print[0], fd_out);
 	ft_putstr_fd("=\"", fd_out);

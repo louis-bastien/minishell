@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/15 12:59:21 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/16 16:58:23 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ char	*get_path(t_command *cmd, t_state *state, char **env)
 		i++;
 	}
 	if (!cmd->is_builtin)
-		ft_error_exec(cmd->command, NOCMD, "command not found", state);
+		exit_error(NOCMD, cmd->command, state);
 	return (NULL);
 }
