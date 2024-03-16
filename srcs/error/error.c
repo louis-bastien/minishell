@@ -6,7 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:04:09 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/16 15:37:27 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/16 20:52:11 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	ft_error_exec(char *cmd, int exit_code, char *str, t_state *state)
 	if (!state->data->cmd_error)
 		state->data->cmd_error = ft_strdup(cmd);
 }
-
 
 void	print_err(t_state *state)
 {

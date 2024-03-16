@@ -6,7 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/16 19:59:51 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/16 20:51:25 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	run_shell(t_state *state, char ***env)
 				continue ;
 			if (to_continue(state))
 				ft_parser(state);
-			//ft_print_cmds(state->cmd_list);
 			if (to_continue(state))
 				ft_executor(state, env);
 		}
@@ -48,7 +47,6 @@ void	pre_shell(t_state *state, char *input)
 	ft_lexer(input, state);
 	if (to_continue(state))
 		ft_expander(state);
-	//print_tokens(state->token_list);
 }
 
 bool	to_continue(t_state *state)

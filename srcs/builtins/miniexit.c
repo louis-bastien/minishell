@@ -6,7 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:10:31 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/16 13:54:30 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/16 20:51:52 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	mini_exit(t_state *state, t_command *cmd)
 	}
 	free_darray(state->data->env);
 	state->data->exit_status = determine_exit_code(state);
-	//ft_putstr_fd("exit\n", 1);
+	ft_putstr_fd("exit\n", 1);
 	ft_exit(NULL, state);
 	return (0);
 }
