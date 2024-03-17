@@ -6,7 +6,7 @@
 /*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:20:02 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/16 20:40:48 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/16 21:35:00 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_error_open(int perm, char *arg)
 	{
 		ft_putstr_fd("Minishell: ", 2);
 		ft_putstr_fd(arg, 2);
-		ft_putstr_fd(": No such file or directory\n", 2);
+		ft_putstr_fd(": No such file or directory**\n", 2);
 	}
 }
 
