@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/19 19:01:07 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:36:11 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,6 @@ void	reset_all(t_state *state)
 	g_signal_received = 0;
 }
 
-void	free_data(t_data *data)
-{
-	free(data);
-}
-
 void	free_doubleptr(char **dptr)
 {
 	int	i;
@@ -59,4 +54,3 @@ void	free_env(char ***env)
 	free_doubleptr(*env);
 	free(env);
 }
-

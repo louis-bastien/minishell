@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirecheredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:33:04 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/19 18:41:29 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:29:21 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_hd_child(char *str, int fd, t_state *state)
 	char	*buffer;
 
 	ft_signals(EXEC);
-	while (!g_signal_received)
+	while (1)
 	{
 		write(1, "> ", 2);
 		buffer = get_next_line(STDIN_FILENO);
@@ -70,7 +70,8 @@ void	ft_hd_parent(char *file, int fd, t_command *cmd, t_state *state)
 	if (WIFSIGNALED(status))
 	{
 		close(fd);
-		g_signal_received = status;
+		state->data->exit_status = WTERMSIG(status) + 128;
+		state->to_stop = true;
 	}
 	else
 		open_fd(&cmd->fd_in, file, O_RDONLY, state);

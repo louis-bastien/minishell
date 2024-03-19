@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:04:09 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/19 19:06:57 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:30:22 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_exit(char *str, t_state *state)
 	reset_all(state);
 	if (state->data)
 	{
-		free_data(state->data);
+		free(state->data);
 		state->data = NULL;
 	}
 	free(state);
