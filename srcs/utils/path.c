@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/19 12:58:26 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:52:25 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,16 @@ char	*get_path(t_command *cmd, t_state *state, char **env)
 	if (!cmd->is_builtin)
 		exit_error(NOCMD, cmd->command, state);
 	return (NULL);
+}
+
+int	path_valid(char *path)
+{
+	struct stat	file_stat;
+	int			num;
+
+	num = stat(path, &file_stat);
+	if (num == -1)
+		return (0);
+	else
+		return (1);
 }

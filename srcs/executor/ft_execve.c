@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:05:46 by agusheredia       #+#    #+#             */
-/*   Updated: 2024/03/19 15:04:07 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:53:44 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,11 @@ void	ft_execve(t_command *cmd, char *path, t_state *state, char **env)
 
 int	is_absolute(t_command *cmd)
 {
-	if (ft_strnstr(cmd->command, "/bin/", 5))
+	if (cmd->command[0] == '/' || \
+		(cmd->command[0] == '.' && cmd->command[1] == '/'))
 	{
-		if (cmd->command[0] == '/')
-			return (1);
-		else if (cmd->command[0] == '.' && cmd->command[1] == '/')
+		if (path_valid(cmd->command))
 			return (1);
 	}
-	else if (!ft_strnstr(cmd->command, "/bin/", 5))
-		return (-1);
 	return (0);
 }

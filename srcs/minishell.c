@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/19 15:09:45 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:47:41 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ void	run_shell(t_state *state, char ***env)
 		input = readline("minishell-> ");
 		if (!input)
 		{
-			if (isatty(STDIN_FILENO))
-				write(2, "exit\n", 6);
-			exit (state->data->exit_status);
+			write(1, "exit\n", 5);
+			exit(state->data->exit_status);
 		}
 		else
 		{

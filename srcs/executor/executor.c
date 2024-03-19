@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/19 15:27:13 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:53:14 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 	char	*path;
 	char	*tmp;
 
+	path = NULL;
 	tmp = NULL;
 	if (is_absolute(cmd) == 1)
 	{
