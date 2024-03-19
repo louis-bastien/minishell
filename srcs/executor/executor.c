@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/19 11:58:07 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:04:10 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	ft_child(t_command *cmd, char *path, t_state *state, char ***env)
 	int		status;
 
 	status = 0;
+	if (!path)
+		ft_error_perm(NOCMD, cmd->command);
 	ft_signals(EXEC);
 	make_dup(cmd, state);
 	if (cmd->is_builtin == true)
