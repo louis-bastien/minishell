@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/19 16:52:25 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:52:40 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,21 @@ char	*get_path(t_command *cmd, t_state *state, char **env)
 	char	*path_part;
 
 	i = 0;
-	if (!get_var_env("PATH", env))
-		return (NULL);
-	all_path = ft_parse_path(env);
-	if (all_path == NULL || cmd == NULL)
-		ft_error_exec(cmd->command, -1, "Error Parsing Path", state);
-	while (all_path[i] != NULL)
+	if (get_var_env("PATH", env))
 	{
-		path_part = ft_strjoin(all_path[i], "/");
-		exec = ft_strjoin(path_part, cmd->command);
-		free(path_part);
-		if (access(exec, F_OK) == 0)
-			return (exec);
-		free(exec);
-		i++;
+		all_path = ft_parse_path(env);
+		if (all_path == NULL || cmd == NULL)
+			ft_error_exec(cmd->command, -1, "Error Parsing Path", state);
+		while (all_path[i] != NULL)
+		{
+			path_part = ft_strjoin(all_path[i], "/");
+			exec = ft_strjoin(path_part, cmd->command);
+			free(path_part);
+			if (access(exec, F_OK) == 0)
+				return (exec);
+			free(exec);
+			i++;
+		}
 	}
 	if (!cmd->is_builtin)
 		exit_error(NOCMD, cmd->command, state);

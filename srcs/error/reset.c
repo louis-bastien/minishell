@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/16 11:39:50 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/19 19:01:07 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,3 @@ void	free_env(char ***env)
 	free(env);
 }
 
-void	put_exit_code(int error_num, t_state *state)
-{
-	if (!state->data->exit_status)
-		state->data->exit_status = error_num;
-}

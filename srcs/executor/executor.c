@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/19 16:53:14 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 19:03:29 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,11 @@ void	ft_waitpid(t_state *state)
 		if (wait_pid == state->data->last_pid)
 		{
 			if (WIFEXITED(status))
-				put_exit_code(WEXITSTATUS(status), state);
+				state->data->exit_status = status;
 			else if (WIFSIGNALED(status))
-				put_exit_code(128 + WTERMSIG(status), state);
+				state->data->exit_status = status + 128;
 			else
-				put_exit_code(0, state);
+				state->data->exit_status = 0;
 		}
 		state->data->childs--;
 	}

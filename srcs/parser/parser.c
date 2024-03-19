@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:23:00 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/16 13:54:39 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/19 19:08:59 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ void	init_cmd_list(t_token *tokens, t_state *state)
 		}
 	}
 	else
+	{
 		ft_error("syntax error near unexpected token `|'", state);
+		state->data->exit_status = 258;
+	}
 }
 
 int	add_cmd(t_command **cmd_list, t_token *tokens, int numtok, int numcmd)

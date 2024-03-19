@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:32:10 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/14 12:09:49 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 19:09:00 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	nexec_sig_handler(int sign)
 {
 	if (sign == SIGINT)
 	{
+		g_signal_received = SIGINT;
 		write(1, "\n", 1);
 		rl_replace_line("", 1);
 		rl_on_new_line();

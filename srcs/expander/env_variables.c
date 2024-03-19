@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:19:28 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/13 16:02:58 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:31:27 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,12 @@ char	*get_env_value(char *name, t_state *state)
 
 	tmp = NULL;
 	if (ft_strlen(name) == 1 && name[0] == '?')
-		value = ft_itoa(state->data->exit_status);
+	{
+		if (g_signal_received)
+			value = ft_itoa(g_signal_received + 128);
+		else
+			value = ft_itoa(state->data->exit_status);
+	}
 	else
 	{
 		tmp = ft_strjoin(name, "=");
