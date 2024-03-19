@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:48:46 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/15 15:20:10 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:26:17 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ char	**update_cd(char ***env)
 	pwd = ft_strjoin("PWD=", tmp);
 	nenv = set_darray(*env, pwd, index_pwd);
 	free(tmp);
-	free(pwd);
 	return (nenv);
 }
 
