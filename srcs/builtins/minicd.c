@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:48:46 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/19 11:26:17 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:48:37 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_dir_var(t_command *cmd, char ***env)
 	{
 		dir = get_var_env("HOME=", *env);
 		if (!dir)
-			ft_error_perm(42, "cd HOME not set");
+			ft_error_perm(42, "cd HOME not set\n");
 	}
 	else
 		dir = ft_strdup(cmd->args[1]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/16 16:58:23 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/19 12:05:51 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,35 @@ char	**ft_parse_path(char **envp)
 	return (all_path);
 }
 
+char	*ft_join_path(char *strpath, t_command *cmd)
+{
+	char	*path_part;
+	char	*exec;
+
+	path_part = ft_strjoin(strpath, "/");
+	exec = ft_strjoin(path_part, cmd->command);
+	free(path_part);
+	return (NULL);
+}
+
 char	*get_path(t_command *cmd, t_state *state, char **env)
 {
 	char	**all_path;
 	int		i;
 	char	*exec;
-	char	*path_part;
 
 	i = 0;
 	if (!get_var_env("PATH", env))
+	{
+		ft_error_perm(NOCMD, cmd->command);
 		return (NULL);
+	}
 	all_path = ft_parse_path(env);
 	if (all_path == NULL || cmd == NULL)
 		ft_error_exec(cmd->command, -1, "Error Parsing Path", state);
-	while (all_path[i] != NULL)
+	while (all_path[i++] != NULL)
 	{
-		path_part = ft_strjoin(all_path[i], "/");
-		exec = ft_strjoin(path_part, cmd->command);
-		free(path_part);
+		exec = ft_join_path(all_path[i], cmd);
 		if (access(exec, F_OK) == 0)
 			return (exec);
 		free(exec);
