@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:16:02 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/15 11:19:33 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:01:09 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	handle_command(t_command *cmd, t_state *state)
 
 	current = cmd->tokens;
 	if (!current || current->type != WORD)
-		state->to_stop = true;
+		return ;
 	else
 	{
 		cmd->command = ft_strdup(current->str);
@@ -57,7 +57,9 @@ void	handle_args(t_command *cmd, t_state *state)
 
 void	check_builtins(t_command *cmd)
 {
-	if (!ft_strncmp(cmd->command, "cd", 3))
+	if (!cmd->command)
+		return ;
+	else if (!ft_strncmp(cmd->command, "cd", 3))
 		cmd->is_builtin = true;
 	else if (!ft_strncmp(cmd->command, "pwd", 4))
 		cmd->is_builtin = true;

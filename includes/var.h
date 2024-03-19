@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   var.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 10:51:16 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/07 15:45:42 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:29:33 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VAR_H
 # define VAR_H
 
-extern volatile sig_atomic_t    g_signal_received;
+extern volatile sig_atomic_t	g_signal_received;
 
 #endif

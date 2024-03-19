@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_builtins.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:20:02 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/16 21:35:00 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/19 15:16:59 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,5 @@ void	exit_error(int perm, char *cmd, t_state *state)
 {
 	if (perm == NOCMD || perm == 404)
 		state->data->exit_status = 127;
-	state->to_stop = true;
 	ft_error_perm(perm, cmd);
 }

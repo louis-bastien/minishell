@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/19 13:04:10 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:27:13 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_executor(t_state *state, char ***env)
 	{
 		if (cmd->is_builtin && state->num_cmds == 1)
 			state->data->exit_status = ft_exec_builtin(cmd, state, env);
-		else
+		else if (cmd->command)
 			exec_cmd(cmd, state, env);
 		cmd = cmd->next;
 	}
@@ -46,7 +46,7 @@ void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 	}
 	else
 		path = get_path(cmd, state, *env);
-	if (!to_continue(state))
+	if (!path)
 		return ;
 	ft_signals(STOP);
 	pid = fork();
@@ -64,7 +64,10 @@ void	ft_child(t_command *cmd, char *path, t_state *state, char ***env)
 
 	status = 0;
 	if (!path)
+	{
 		ft_error_perm(NOCMD, cmd->command);
+		exit (NOCMD);
+	}
 	ft_signals(EXEC);
 	make_dup(cmd, state);
 	if (cmd->is_builtin == true)
