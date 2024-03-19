@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniexport.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/16 11:42:13 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/19 10:17:11 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,7 @@ int	is_var_to_update(char *arg, t_command *cmd, char ***env, int i)
 	str = NULL;
 	var_value = ft_split(arg, '=');
 	if (is_env_var_valid(var_value[0]) == 1)
-	{
 		status = ft_export_apend(cmd, env, var_value, i);
-	}
 	else if (double_array_size(var_value) > 2)
 	{
 		str = ft_memchr(arg, '=', ft_strlen(arg));
@@ -90,8 +88,8 @@ int	mini_export(t_command *cmd, char ***env, int fd_out)
 		export_no_arg(env, fd_out);
 	else
 	{
-		i = 0;
-		while (cmd->args[++i])
+		i = 1;
+		while (cmd->args[i])
 		{
 			if (ft_strchr(cmd->args[i], '=') != NULL)
 				status = is_var_to_update(cmd->args[i], cmd, env, i);
@@ -100,6 +98,7 @@ int	mini_export(t_command *cmd, char ***env, int fd_out)
 				status = 1;
 				ft_error_builtin(1, cmd->command, cmd->args[i]);
 			}
+			i++;
 		}
 	}
 	return (status);

@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:12:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/14 17:48:08 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/19 10:16:42 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ char	*ft_strdupapend(char *var)
 	return (nwvar);
 }
 
-char	**ft_apend_var(char ***env, char **var_value)
+char	**ft_apend_var(char **env, char **var_value)
 {
 	char	**nenv;
 	char	*exist_value;
 	char	*new_value;
 	int		i;
 
-	i = get_var_index(var_value[0], *env);
+	i = get_var_index(var_value[0], env);
 	if (i == -1)
 	{
 		if (!var_value[1])
@@ -52,17 +52,17 @@ char	**ft_apend_var(char ***env, char **var_value)
 		else
 			exist_value = ft_strjoin("=", var_value[1]);
 		new_value = ft_strjoin(var_value[0], exist_value);
-		nenv = add_str_darry(*env, new_value);
+		nenv = add_str_darry(env, new_value);
 	}
 	else
 	{
-		exist_value = ft_strdup((*env)[i]);
+		exist_value = ft_strdup(env[i]);
 		new_value = ft_strjoin(exist_value, var_value[1]);
-		free((*env)[i]);
-		(*env)[i] = new_value;
-		nenv = *env;
+		free(env[i]);
+		env[i] = new_value;
+		nenv = env;
 	}
-	free_dos(exist_value, new_value);
+	free(exist_value);
 	return (nenv);
 }
 
@@ -77,7 +77,7 @@ int	ft_export_apend(t_command *cmd, char ***env, char **var_value, int i)
 			return (1);
 		}
 		else
-			*env = ft_apend_var(env, var_value);
+			*env = ft_apend_var(*env, var_value);
 	}
 	else
 	{

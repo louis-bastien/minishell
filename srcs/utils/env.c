@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:41:27 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/14 22:26:59 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/18 17:42:36 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	get_var_index(char *var, char **envp)
 	tmp = ft_strjoin(var, "=");
 	while (envp[index] != NULL)
 	{
-		if (ft_strcmp(envp[index], tmp) == 0)
+		if (ft_strncmp(envp[index], tmp, ft_strlen(tmp)) == 0)
 		{
 			free(tmp);
 			return (index);

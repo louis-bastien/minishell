@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniexit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:10:31 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/17 20:21:02 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/19 10:05:34 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,15 @@ int	mini_exit(t_state *state, t_command *cmd)
 {
 	if (cmd->args[1] && cmd->args[2])
 	{
+		if (valid_numeric_argv(state->cmd_list->args[1]))
+		{
+			ft_putstr_fd("exit\n", 1);
+			ft_putstr_fd("Minishell: exit: too many arguments\n", 2);
+			free_darray(state->data->env);
+			state->data->exit_status = 1;
+			ft_exit(NULL, state);
+			return (1);
+		}
 		ft_putstr_fd("Minishell: exit: too many arguments\n", 2);
 		return (1);
 	}
