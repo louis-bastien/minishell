@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:10:31 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/19 15:34:06 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:48:01 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static bool	valid_numeric_argv(char *data)
 	return (0);
 }
 
-int	determine_exit_code(t_state *state)
+int	determine_exit_code(t_state *state, int fd_out)
 {
 	int			exit_code;
 
@@ -66,7 +66,7 @@ int	determine_exit_code(t_state *state)
 		exit_code = ft_atol(state->cmd_list->args[1]);
 	else
 	{
-		ft_putstr_fd("exit\n", 1);
+		ft_putstr_fd("exit\n", fd_out);
 		ft_error_exit(55, state->cmd_list->args[1]);
 		state->data->exit_status = 255;
 		ft_exit(NULL, state);
@@ -76,11 +76,11 @@ int	determine_exit_code(t_state *state)
 
 int	mini_exit(t_state *state, t_command *cmd)
 {
-	if (cmd->args_count > 1)
+	if (cmd->args_count > 2)
 	{
 		if (valid_numeric_argv(state->cmd_list->args[1]))
 		{
-			ft_putstr_fd("exit\n", 1);
+			ft_putstr_fd("exit\n", cmd->fd_out);
 			ft_putstr_fd("Minishell: exit: too many arguments\n", 2);
 			free_darray(state->data->env);
 			state->data->exit_status = 1;
@@ -89,8 +89,8 @@ int	mini_exit(t_state *state, t_command *cmd)
 		}
 	}
 	free_darray(state->data->env);
-	state->data->exit_status = determine_exit_code(state);
-	ft_putstr_fd("exit\n", 1);
+	state->data->exit_status = determine_exit_code(state, cmd->fd_out);
+	ft_putstr_fd("exit\n", cmd->fd_out);
 	ft_exit(NULL, state);
 	return (0);
 }

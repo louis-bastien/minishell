@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/19 19:07:17 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:36:27 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	handle_redirections(t_command *cmd, t_state *state)
 			if (!file_token || file_token->type != WORD)
 			{
 				ft_error("syntax error near unexpected token `newline'", state);
-				state->data->exit_status = 258;
+				state->data->exit_status = 2;
 				break ;
 			}
 			else

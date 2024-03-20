@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/19 19:03:29 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:24:02 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_executor(t_state *state, char ***env)
 	while (cmd && to_continue(state))
 	{
 		if (cmd->is_builtin && state->num_cmds == 1)
-			state->data->exit_status = ft_exec_builtin(cmd, state, env);
+			state->data->exit_status = handle_builtin(cmd, state, env);
 		else if (cmd->command)
 			exec_cmd(cmd, state, env);
 		cmd = cmd->next;
@@ -45,9 +45,9 @@ void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 		free(cmd->args[0]);
 		cmd->args[0] = ft_strdup(tmp);
 	}
-	else
+	else if (!cmd->is_builtin)
 		path = get_path(cmd, state, *env);
-	if (!path)
+	if (!path && !cmd->is_builtin)
 		return ;
 	ft_signals(STOP);
 	pid = fork();
@@ -64,16 +64,13 @@ void	ft_child(t_command *cmd, char *path, t_state *state, char ***env)
 	int		status;
 
 	status = 0;
-	if (!path)
-	{
-		ft_error_perm(NOCMD, cmd->command);
-		exit (NOCMD);
-	}
 	ft_signals(EXEC);
+	if (cmd->fd_in == -1 || cmd->fd_out == -1)
+		exit (1);
 	make_dup(cmd, state);
 	if (cmd->is_builtin == true)
 	{
-		status = ft_exec_builtin(cmd, state, env);
+		status = handle_builtin(cmd, state, env);
 		exit (status);
 	}
 	else

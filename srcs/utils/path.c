@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/19 18:52:40 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:06:13 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ char	*get_path(t_command *cmd, t_state *state, char **env)
 			i++;
 		}
 	}
-	if (!cmd->is_builtin)
-		exit_error(NOCMD, cmd->command, state);
+	exit_error(NOCMD, cmd->command, state);
 	return (NULL);
 }
 

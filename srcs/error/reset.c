@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/19 21:36:11 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:33:39 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	reset_all(t_state *state)
 		state->data->childs = 0;
 	}
 	g_signal_received = 0;
+	if (state->data->exit_status >= 256)
+		state->data->exit_status /= 256;
 }
 
 void	free_doubleptr(char **dptr)

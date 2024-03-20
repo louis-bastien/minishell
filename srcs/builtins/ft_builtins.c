@@ -6,22 +6,33 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:34:12 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/15 15:27:01 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:21:55 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_exec_builtin(t_command *cmd, t_state *state, char ***env)
+int	handle_builtin(t_command *cmd, t_state *state, char ***env)
 {
 	int	exit_status;
 	int	fd_out;
 
 	exit_status = 0;
+	if (cmd->fd_in == -1 || cmd->fd_out == -1)
+		return (1);
 	if (state->num_cmds == 1)
 		fd_out = cmd->fd_out;
 	else
 		fd_out = STDOUT_FILENO;
+	exit_status = exec_builtin(fd_out, cmd, state, env);
+	return (exit_status);
+}
+
+int	exec_builtin(int fd_out, t_command *cmd, t_state *state, char ***env)
+{
+	int	exit_status;
+
+	exit_status = 0;
 	if (!ft_strncmp(cmd->command, "cd", 3))
 		exit_status = minicd(cmd, env);
 	else if (!ft_strncmp(cmd->command, "pwd", 4))

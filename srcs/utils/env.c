@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:41:27 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/19 16:38:32 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:04:27 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	double_array_size(char **d_str)
 char	**set_darray(char **env_str, char *n_str, int index)
 {
 	free(env_str[index]);
-	env_str[index] = n_str;
+	env_str[index] = ft_strdup(n_str);
 	return (env_str);
 }
 

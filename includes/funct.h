@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/19 21:42:25 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:23:25 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,9 @@ char		**copy_env(char **env);
 
 //Builtins
 void		check_builtins(t_command *cmd);
-int			ft_exec_builtin(t_command *cmd, t_state *state, char ***env);
+int			handle_builtin(t_command *cmd, t_state *state, char ***env);
+int			exec_builtin(int fd_out, t_command *cmd, \
+			t_state *state, char ***env);
 int			minicd(t_command *cmd, char ***env);
 int			mini_pwd(char ***env, int fd_out);
 int			mini_env(t_command *cmd, char ***env, int fd_out);
@@ -137,7 +139,7 @@ int			is_env_var_valid(char *word);
 char		*get_dir_var(t_command *cmd, char ***env);
 void		export_no_arg(char ***env, int fd_out);
 char		**update_env(char **var_value, t_command *cmd, char ***env, int i);
-int			determine_exit_code(t_state *state);
+int			determine_exit_code(t_state *state, int fd_out);
 int			is_str_digit(char *str);
 
 //utils data
