@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:32:10 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/19 21:24:55 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/20 21:00:00 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_signals(t_mode mode)
 	else if (mode == EXEC)
 	{
 		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_IGN);
+		signal(SIGQUIT, SIG_DFL);
 	}
 	else if (mode == STOP)
 	{

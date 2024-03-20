@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:33:04 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/19 21:29:21 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/20 21:21:11 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_hd_child(char *str, int fd, t_state *state)
 		buffer = get_next_line(STDIN_FILENO);
 		if (!buffer)
 		{
-			printf("Heredoc no buffer\n");
+			write(1, "\n", 1);
 			break ;
 		}
 		if (!ft_strcmp_ignore_nl(str, buffer))

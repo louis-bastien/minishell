@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniecho.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:08:26 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/15 15:22:22 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/20 21:31:26 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,22 @@ void	print_argecho(char **args, int i, int fd_out)
 	}
 }
 
+int	is_flag(char *arg)
+{
+	int	i;
+
+	i = 1;
+	if (arg[0] != '-')
+		return (0);
+	while (arg[i])
+	{
+		if (arg[i] != 'n')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	mini_echo(t_command *cmd, int fd_out)
 {
 	int	i;
@@ -35,11 +51,11 @@ int	mini_echo(t_command *cmd, int fd_out)
 		ft_putstr_fd("\n", fd_out);
 		return (0);
 	}
-	if (cmd->args[i][0] == '-' && cmd->args[i][1] == 'n')
+	while (cmd->args[i] && is_flag(cmd->args[i]))
+	{
 		flag = 1;
-	while (cmd->args[i] && cmd->args[i][0] == '-'
-		&& cmd->args[i][1] == 'n')
 		i++;
+	}
 	print_argecho(cmd->args, i, fd_out);
 	if (flag == 0)
 		ft_putstr_fd("\n", fd_out);

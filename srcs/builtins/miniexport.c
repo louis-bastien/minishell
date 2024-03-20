@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniexport.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/20 12:08:44 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/20 21:19:17 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	export_no_arg(char ***env, int fd_out)
 	int	i;
 
 	i = 0;
-	printf("Export no arg\n");
 	while ((*env)[i])
 	{
 		if (ft_strchr((*env)[i], '='))

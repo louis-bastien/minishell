@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:42:06 by agusheredia       #+#    #+#             */
-/*   Updated: 2024/03/14 12:09:47 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/20 21:22:34 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv, char **envp)
 	state = NULL;
 	state = init_state(state);
 	state->data = init_data(state, envp);
+	rl_catch_signals = 0;
 	if (argc != 1 && argv[1])
 		ft_exit("Minishell does not take any argument.", state);
 	else

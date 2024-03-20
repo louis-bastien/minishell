@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/20 13:24:02 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/20 21:07:01 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,11 @@ void	ft_waitpid(t_state *state)
 			if (WIFEXITED(status))
 				state->data->exit_status = status;
 			else if (WIFSIGNALED(status))
+			{
+				if (status == SIGQUIT)
+					write(1, "\n", 1);
 				state->data->exit_status = status + 128;
+			}
 			else
 				state->data->exit_status = 0;
 		}
