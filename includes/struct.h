@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/15 11:20:13 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:06:19 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_data
 	int		childs;
 	int		last_pid;
 	char	**env;
+	char	**var_export;
 }	t_data;
 
 typedef struct s_state

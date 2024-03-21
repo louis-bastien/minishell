@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:34:12 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/20 13:21:55 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:05:03 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	exec_builtin(int fd_out, t_command *cmd, t_state *state, char ***env)
 	else if (!ft_strncmp(cmd->command, "echo", 5))
 		exit_status = mini_echo(cmd, fd_out);
 	else if (!ft_strncmp(cmd->command, "export", 7))
-		exit_status = mini_export(cmd, env, fd_out);
+		exit_status = mini_export(cmd, state, env, fd_out);
 	else if (!ft_strncmp(cmd->command, "unset", 6))
 		exit_status = mini_unset(cmd, env);
 	else if (!ft_strncmp(cmd->command, "env", 4))

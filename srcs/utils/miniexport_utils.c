@@ -6,17 +6,11 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:12:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/19 10:16:42 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:56:19 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	free_dos(char *s1, char *s2)
-{
-	free(s1);
-	free(s2);
-}
 
 char	*ft_strdupapend(char *var)
 {

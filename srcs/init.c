@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:35:13 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/15 11:17:04 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:11:40 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ t_data	*init_data(t_state *state, char **envp)
 	new_data->exit_status = 0;
 	new_data->last_pid = -1;
 	new_data->childs = 0;
+	new_data->var_export = (char **)malloc(sizeof(char *) * 1);
+	new_data->var_export[0] = NULL;
 	return (new_data);
 }
