@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/20 21:07:01 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/21 22:55:36 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,29 @@ void	ft_executor(t_state *state, char ***env)
 void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 {
 	int		pid;
-	char	*path;
 	char	*tmp;
 
-	path = NULL;
 	tmp = NULL;
 	if (is_absolute(cmd) == 1)
 	{
-		path = ft_strdup(cmd->command);
+		cmd->path = ft_strdup(cmd->command);
 		tmp = ft_strrchr(cmd->command, '/') + 1;
 		free(cmd->args[0]);
 		cmd->args[0] = ft_strdup(tmp);
 	}
 	else if (!cmd->is_builtin)
-		path = get_path(cmd, state, *env);
-	if (!path && !cmd->is_builtin)
+		cmd->path = get_path(cmd, state, *env);
+	if (!cmd->path && !cmd->is_builtin)
 		return ;
 	ft_signals(STOP);
 	pid = fork();
 	if (pid < 0)
 		ft_error_exec(cmd->command, -1, "Error forking process", state);
 	else if (pid == 0)
-		ft_child(cmd, path, state, env);
+		ft_child(cmd, cmd->path, state, env);
 	else
 		ft_parent(cmd, pid, state);
+	free(cmd->path);
 }
 
 void	ft_child(t_command *cmd, char *path, t_state *state, char ***env)

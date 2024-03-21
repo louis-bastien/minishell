@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:41:27 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/20 12:04:27 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/21 23:15:54 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	get_var_index(char *var, char **envp)
 	return (-1);
 }
 
-char	**add_str_darry(char **d_array, char *nwstr)
+char	**addarray(char **d_array, char *nwstr)
 {
 	char	**nw_darray;
 	int		sizeold;

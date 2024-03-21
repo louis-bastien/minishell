@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:28:07 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/21 13:06:19 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/21 23:02:20 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_command
 	int					fd_in;
 	int					fd_out;
 	bool				is_builtin;
+	char				*path;
 	struct s_command	*next;
 }	t_command;
 
@@ -65,7 +66,8 @@ typedef struct s_data
 	int		childs;
 	int		last_pid;
 	char	**env;
-	char	**var_export;
+	char	**vexp;
+	char	**all_path;
 }	t_data;
 
 typedef struct s_state

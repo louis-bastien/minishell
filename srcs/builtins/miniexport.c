@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniexport.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/21 13:56:00 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/21 23:16:19 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,14 @@ void	export_no_arg(char ***env, char **var_export, int fd_out)
 		i++;
 	}
 	i = 0;
-	while (var_export[i])
+	if (var_export)
 	{
-		ft_putstr_fd("declare -x ", fd_out);
-		print_var_res(var_export[i], fd_out);
-		i++;
+		while (var_export[i])
+		{
+			ft_putstr_fd("declare -x ", fd_out);
+			ft_putendl_fd(var_export[i], fd_out);
+			i++;
+		}
 	}
 }
 
@@ -55,7 +58,7 @@ char	**update_env(char **var_value, t_command *cmd, char ***env, int j)
 	i = get_var_index(var_value[0], *env);
 	if (i == -1)
 	{
-		nenv = add_str_darry(*env, cmd->args[j]);
+		nenv = addarray(*env, cmd->args[j]);
 	}
 	else
 		nenv = set_darray(*env, cmd->args[j], i);
@@ -92,7 +95,7 @@ int	mini_export(t_command *cmd, t_state *state, char ***env, int fd_out)
 
 	status = 1;
 	if (cmd->args_count == 1)
-		export_no_arg(env, state->data->var_export, fd_out);
+		export_no_arg(env, state->data->vexp, fd_out);
 	else
 	{
 		i = 1;
@@ -101,7 +104,7 @@ int	mini_export(t_command *cmd, t_state *state, char ***env, int fd_out)
 			if (ft_strchr(cmd->args[i], '=') != NULL)
 				status = is_var_to_update(cmd->args[i], cmd, env, i);
 			else if (is_env_var_valid(cmd->args[i]) == 0)
-				state->data->var_export = add_str_darry(state->data->var_export, cmd->args[i]);
+				state->data->vexp = addarray(state->data->vexp, cmd->args[i]);
 			else if (is_env_var_valid(cmd->args[i]) == 1)
 				ft_error_builtin(1, cmd->command, cmd->args[i]);
 			i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/21 13:47:25 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/21 23:15:49 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int			ft_export_apend(t_command *cmd, char ***env,
 
 //Exit
 void		ft_exit(char *str, t_state *state);
+void		reset_part(t_state *state);
 void		reset_all(t_state *state);
 void		free_tokens(t_token	*tokens);
 void		free_token(t_token *node);
@@ -169,7 +170,7 @@ int			path_valid(char *path);
 int			double_array_size(char **d_str);
 char		**set_darray(char **d_str, char *n_str, int index);
 int			get_var_index(char *var, char **envp);
-char		**add_str_darry(char **d_array, char *nwstr);
+char		**addarray(char **d_array, char *nwstr);
 char		**rm_d_array(char **d_array, int i);
 
 #endif

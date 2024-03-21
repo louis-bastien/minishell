@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniexit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:10:31 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/21 13:46:14 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/21 23:02:41 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	mini_exit(t_state *state, t_command *cmd)
 		}
 	}
 	free_darray(state->data->env);
-	free_darray(state->data->var_export);
+	free_darray(state->data->vexp);
 	state->data->exit_status = determine_exit_code(state, cmd->fd_out);
 	ft_putstr_fd("exit\n", cmd->fd_out);
 	ft_exit(NULL, state);

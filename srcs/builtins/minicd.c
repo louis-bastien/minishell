@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minicd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:48:46 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/20 12:55:56 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/21 09:22:42 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	**update_cd(char ***env)
 		return (*env);
 	pwd = ft_strjoin("PWD=", tmp);
 	nenv = set_darray(*env, pwd, index_pwd);
+	free(pwd);
 	free(tmp);
 	return (nenv);
 }

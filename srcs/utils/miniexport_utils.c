@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniexport_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:12:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/21 13:56:19 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/21 23:16:10 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	**ft_apend_var(char **env, char **var_value)
 		else
 			exist_value = ft_strjoin("=", var_value[1]);
 		new_value = ft_strjoin(var_value[0], exist_value);
-		nenv = add_str_darry(env, new_value);
+		nenv = addarray(env, new_value);
 	}
 	else
 	{

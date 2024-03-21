@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:05:46 by agusheredia       #+#    #+#             */
-/*   Updated: 2024/03/19 16:53:44 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:06:19 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	ft_sizesplit(char **split)
 void	ft_execve(t_command *cmd, char *path, t_state *state, char **env)
 {
 	execve(path, cmd->args, env);
-	free(path);
 	ft_error_exec(cmd->command, EXIT_FAILURE, "Execution Failed", state);
 	exit(EXIT_FAILURE);
 }
