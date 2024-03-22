@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/21 23:07:45 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/22 14:26:25 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	reset_all(t_state *state)
 			state->cmd_list = NULL;
 		}
 		if (state->data->all_path)
-			free_doubleptr(state->data->all_path);
+			free(state->data->all_path);
 		reset_part(state);
 	}
 	g_signal_received = 0;

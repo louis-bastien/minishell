@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/21 23:15:49 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/22 12:09:33 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ void		ft_error_perm(int perm, char *str);
 void		clear_heredoc(t_state *state);
 void		ft_error_builtin(int perm, char *cmd, char *arg);
 void		ft_error_exit(int perm, char *arg);
-void		put_exit_code(int error_num, t_state *state);
 void		ft_error_open(int perm, char *arg);
 void		exit_error(int perm, char *cmd, t_state *state);
 
@@ -142,8 +141,7 @@ char		*get_dir_var(t_command *cmd, char ***env);
 void		export_no_arg(char ***env, char **var_export, int fd_out);
 char		**update_env(char **var_value, t_command *cmd, char ***env, int i);
 int			determine_exit_code(t_state *state, int fd_out);
-int			is_str_digit(char *str);
-char		**get_varexport(char *var, t_state *state);
+char		**addexport(char **d_array, char *nwstr);
 
 //utils data
 char		*get_var_env(char *var, char **envp);
@@ -156,7 +154,6 @@ void		ft_child(t_command *cmd, char *path, t_state *state, char ***env);
 void		ft_parent(t_command *cmd, int pid, t_state *state);
 void		ft_waitpid(t_state *state);
 void		ft_init_pipes(t_state *state);
-int			needs_pipe(t_command *cmd);
 int			assign_pipes(t_command *cmd);
 void		ft_execve(t_command *cmd, char *path, t_state *state, char **env);
 

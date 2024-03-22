@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniexport_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:12:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/21 23:16:10 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/22 13:07:41 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,31 @@ int	ft_export_apend(t_command *cmd, char ***env, char **var_value, int i)
 		return (1);
 	}
 	return (0);
+}
+
+char	**addexport(char **d_array, char *nwstr)
+{
+	char	**nw_darray;
+	int		sizeold;
+	int		i;
+	int		flag;
+
+	flag = 0;
+	sizeold = double_array_size(d_array);
+	nw_darray = (char **)malloc(sizeof(char *) * (sizeold + 2));
+	if (!nw_darray)
+		ft_error_perm(42, "Error al asignar memori con Malloc\n");
+	i = 0;
+	while (i < sizeold)
+	{
+		if (ft_strncmp(d_array[i], nwstr, ft_strlen(d_array[i])) == 0)
+			flag = 1;
+		nw_darray[i] = ft_strdup(d_array[i]);
+		i++;
+	}
+	if (flag == 0)
+		nw_darray[i++] = ft_strdup(nwstr);
+	nw_darray[i] = NULL;
+	free_darray(d_array);
+	return (nw_darray);
 }
