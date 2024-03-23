@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/23 15:55:17 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:41:57 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 //Main
 void		run_shell(t_state *state, char ***env);
-void		pre_shell(t_state *state, char *input);
+void		quick_exit(int code);
 bool		to_continue(t_state *state);
 t_state		*init_state(t_state *state);
 t_data		*init_data(t_state *state, char **envp);
@@ -160,6 +160,7 @@ void		ft_execve(t_command *cmd, char *path, t_state *state, char **env);
 //Path
 char		**ft_parse_path(char **envp);
 char		*get_path(t_command *cmd, t_state *state, char **env);
+char		*find_executable(t_command *cmd, t_state *state);
 int			is_absolute(t_command *cmd);
 int			path_valid(char *path);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/23 14:02:04 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:46:08 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ char	**ft_parse_path(char **envp)
 char	*get_path(t_command *cmd, t_state *state, char **env)
 {
 	int		i;
-	char	*exec;
-	char	*path_part;
 
 	i = 0;
 	if (get_var_index("PATH", env) != -1)
@@ -65,23 +63,35 @@ char	*get_path(t_command *cmd, t_state *state, char **env)
 		state->data->all_path = ft_parse_path(env);
 		if (state->data->all_path == NULL || cmd == NULL)
 			ft_error_exec(cmd->command, -1, "Error Parsing Path", state);
-		while (state->data->all_path[i] != NULL)
-		{
-			path_part = ft_strjoin(state->data->all_path[i], "/");
-			exec = ft_strjoin(path_part, cmd->command);
-			free(path_part);
-			if (access(exec, F_OK) == 0)
-			{
-				free_doubleptr(state->data->all_path);
-				state->data->all_path = NULL;
-				return (exec);
-			}
-			free(exec);
-			i++;
-		}
-		free_doubleptr(state->data->all_path);
-		state->data->all_path = NULL;
+		return (find_executable(cmd, state));
 	}
+	exit_error(NOCMD, cmd->command, state);
+	return (NULL);
+}
+
+char	*find_executable(t_command *cmd, t_state *state)
+{
+	char	*exec;
+	char	*path_part;
+	int		i;
+
+	i = 0;
+	while (state->data->all_path[i] != NULL)
+	{
+		path_part = ft_strjoin(state->data->all_path[i], "/");
+		exec = ft_strjoin(path_part, cmd->command);
+		free(path_part);
+		if (access(exec, F_OK) == 0)
+		{
+			free_doubleptr(state->data->all_path);
+			state->data->all_path = NULL;
+			return (exec);
+		}
+		free(exec);
+		i++;
+	}
+	free_doubleptr(state->data->all_path);
+	state->data->all_path = NULL;
 	exit_error(NOCMD, cmd->command, state);
 	return (NULL);
 }

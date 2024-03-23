@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 00:52:41 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/23 15:56:46 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:29:18 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,23 @@ void	make_dup(t_command *cmd, t_state *state)
 	}
 }
 
-void close_open_fds(t_state *state) 
+void	close_open_fds(t_state *state)
 {
-    t_command *cmd;
-	
+	t_command	*cmd;
+
 	cmd = state->cmd_list;
-    while (cmd) {
-        if (cmd->fd_out != STDOUT_FILENO && cmd->fd_out > 0) {
-            close(cmd->fd_out);
-            cmd->fd_out = STDOUT_FILENO;
-        }
-        if (cmd->fd_in != STDIN_FILENO && cmd->fd_in > 0) {
-            close(cmd->fd_in);
-            cmd->fd_in = STDIN_FILENO;
-        }
-        cmd = cmd->next;
-    }
+	while (cmd)
+	{
+		if (cmd->fd_out != STDOUT_FILENO && cmd->fd_out > 0)
+		{
+			close(cmd->fd_out);
+			cmd->fd_out = STDOUT_FILENO;
+		}
+		if (cmd->fd_in != STDIN_FILENO && cmd->fd_in > 0)
+		{
+			close(cmd->fd_in);
+			cmd->fd_in = STDIN_FILENO;
+		}
+		cmd = cmd->next;
+	}
 }

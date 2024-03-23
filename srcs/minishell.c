@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/23 14:08:19 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:42:44 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,15 @@ void	run_shell(t_state *state, char ***env)
 		ft_signals(NON_EXEC);
 		input = readline("minishell-> ");
 		if (!input)
-		{
-			write(1, "exit\n", 5);
-			exit(state->data->exit_status);
-		}
+			quick_exit(state->data->exit_status);
 		else
 		{
 			ft_lexer(input, state);
 			if (!state->token_list)
-				continue;
+				continue ;
 			add_history(input);
 			if (to_continue(state))
 				ft_expander(state);
-			//pre_shell(state, input);
 			if (to_continue(state))
 				ft_parser(state);
 			if (to_continue(state))
@@ -44,10 +40,11 @@ void	run_shell(t_state *state, char ***env)
 	}
 }
 
-//void	pre_shell(t_state *state, char *input)
-//{
-
-//}
+void	quick_exit(int code)
+{
+	write(1, "exit\n", 5);
+	exit(code);
+}
 
 bool	to_continue(t_state *state)
 {
