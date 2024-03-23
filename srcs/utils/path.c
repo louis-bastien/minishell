@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/22 14:33:06 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:02:04 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ char	*get_path(t_command *cmd, t_state *state, char **env)
 	i = 0;
 	if (get_var_index("PATH", env) != -1)
 	{
-		if (state->data->all_path)
-			free(state->data->all_path);
 		state->data->all_path = ft_parse_path(env);
 		if (state->data->all_path == NULL || cmd == NULL)
 			ft_error_exec(cmd->command, -1, "Error Parsing Path", state);
@@ -75,12 +73,14 @@ char	*get_path(t_command *cmd, t_state *state, char **env)
 			if (access(exec, F_OK) == 0)
 			{
 				free_doubleptr(state->data->all_path);
+				state->data->all_path = NULL;
 				return (exec);
 			}
 			free(exec);
 			i++;
 		}
 		free_doubleptr(state->data->all_path);
+		state->data->all_path = NULL;
 	}
 	exit_error(NOCMD, cmd->command, state);
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 22:08:26 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/22 14:26:25 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:02:37 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,5 @@ void	free_doubleptr(char **dptr)
 		free(dptr[i]);
 		i++;
 	}
-}
-
-void	free_env(char ***env)
-{
-	free_doubleptr(*env);
-	free(env);
+	free(dptr);
 }

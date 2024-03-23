@@ -6,7 +6,7 @@
 /*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/22 12:09:33 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:03:00 by agheredi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ void		free_cmds(t_command *cmds);
 void		free_cmd(t_command *cmd);
 void		free_args(t_command *cmd);
 void		free_doubleptr(char **dptr);
-void		free_env(char ***env);
 
 //Errors
 void		ft_error(char *str, t_state *state);
