@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   funct.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/23 14:03:00 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/23 15:55:17 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,8 @@ void		ft_child(t_command *cmd, char *path, t_state *state, char ***env);
 void		ft_parent(t_command *cmd, int pid, t_state *state);
 void		ft_waitpid(t_state *state);
 void		ft_init_pipes(t_state *state);
-int			assign_pipes(t_command *cmd);
+int			assign_pipes(t_command *cmd, t_state *state);
+void		close_open_fds(t_state *state);
 void		ft_execve(t_command *cmd, char *path, t_state *state, char **env);
 
 //Path
