@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:50:25 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/23 18:46:08 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/23 19:16:50 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ char	**ft_parse_path(char **envp)
 
 char	*get_path(t_command *cmd, t_state *state, char **env)
 {
-	int		i;
-
-	i = 0;
 	if (get_var_index("PATH", env) != -1)
 	{
 		state->data->all_path = ft_parse_path(env);

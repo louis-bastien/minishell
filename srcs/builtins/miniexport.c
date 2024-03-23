@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniexport.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:12:36 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/23 17:24:22 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/23 19:23:14 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	mini_export(t_command *cmd, t_state *state, char ***env, int fd_out)
 	int		i;
 	int		status;
 
-	status = 1;
+	status = 0;
 	if (cmd->args_count == 1)
 		export_no_arg(env, state->data->vexp, fd_out);
 	else
@@ -106,7 +106,10 @@ int	mini_export(t_command *cmd, t_state *state, char ***env, int fd_out)
 			else if (is_env_var_valid(cmd->args[i]) == 0)
 				state->data->vexp = addexport(state->data->vexp, cmd->args[i]);
 			else if (is_env_var_valid(cmd->args[i]) == 1)
+			{
+				status = 1;
 				ft_error_builtin(1, cmd->command, cmd->args[i]);
+			}
 			i++;
 		}
 	}

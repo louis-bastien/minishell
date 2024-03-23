@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniunset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:14:59 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/23 16:07:21 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/23 19:22:19 by agusheredia      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int	mini_unset(t_command *cmd, char ***env)
 {
 	int	index_var;
 	int	i;
+	int	exit_code;
 
+	exit_code = 0;
 	if (cmd->args_count == 1)
 		return (0);
 	i = 1;
@@ -44,7 +46,12 @@ int	mini_unset(t_command *cmd, char ***env)
 		if (cmd->args_count >= 2
 			&& index_var != -1)
 			*env = rm_d_array(*env, index_var);
+		else if (index_var == -1)
+		{
+			exit_code = 1;
+			ft_error_builtin(1, cmd->args[0], cmd->args[i]);
+		}
 		i++;
 	}
-	return (0);
+	return (exit_code);
 }
