@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/25 12:49:50 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:48:02 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int			is_env_var_valid(char *word);
 char		*get_dir_var(t_command *cmd, char ***env);
 void		export_no_arg(char ***env, char **var_export, int fd_out);
 char		**update_env(char **var_value, t_command *cmd, char ***env, int i);
-int			determine_exit_code(t_state *state, int fd_out);
+int			determine_exit_code(t_state *state, t_command *cmd, int fd_out);
 char		**addexport(char **d_array, char *nwstr);
 
 //utils data

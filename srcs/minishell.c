@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:10:27 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/23 18:42:44 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:02:41 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@ void	run_shell(t_state *state, char ***env)
 		else
 		{
 			ft_lexer(input, state);
-			if (!state->token_list)
-				continue ;
-			add_history(input);
-			if (to_continue(state))
-				ft_expander(state);
-			if (to_continue(state))
-				ft_parser(state);
-			if (to_continue(state))
-				ft_executor(state, env);
+			if (state->token_list)
+			{
+				add_history(input);
+				if (to_continue(state))
+					ft_expander(state);
+				if (to_continue(state))
+					ft_parser(state);
+				if (to_continue(state))
+					ft_executor(state, env);
+			}
 		}
 		reset_all(state);
 		free(input);

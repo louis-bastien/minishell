@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniexit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:10:31 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/21 23:02:41 by agusheredia      ###   ########.fr       */
+/*   Updated: 2024/03/25 14:47:43 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,19 @@ static bool	valid_numeric_argv(char *data)
 	return (0);
 }
 
-int	determine_exit_code(t_state *state, int fd_out)
+int	determine_exit_code(t_state *state, t_command *cmd, int fd_out)
 {
 	int			exit_code;
 
 	exit_code = 1;
-	if (!state->cmd_list->args[1])
+	if (!cmd->args[1])
 		exit_code = 0;
-	else if (valid_numeric_argv(state->cmd_list->args[1]))
-		exit_code = ft_atol(state->cmd_list->args[1]);
+	else if (valid_numeric_argv(cmd->args[1]))
+		exit_code = ft_atol(cmd->args[1]);
 	else
 	{
 		ft_putstr_fd("exit\n", fd_out);
-		ft_error_exit(55, state->cmd_list->args[1]);
+		ft_error_exit(55, cmd->args[1]);
 		state->data->exit_status = 255;
 		ft_exit(NULL, state);
 	}
@@ -78,7 +78,7 @@ int	mini_exit(t_state *state, t_command *cmd)
 {
 	if (cmd->args_count > 2)
 	{
-		if (valid_numeric_argv(state->cmd_list->args[1]))
+		if (valid_numeric_argv(cmd->args[1]))
 		{
 			ft_putstr_fd("exit\n", cmd->fd_out);
 			ft_putstr_fd("Minishell: exit: too many arguments\n", 2);
@@ -88,7 +88,7 @@ int	mini_exit(t_state *state, t_command *cmd)
 	}
 	free_darray(state->data->env);
 	free_darray(state->data->vexp);
-	state->data->exit_status = determine_exit_code(state, cmd->fd_out);
+	state->data->exit_status = determine_exit_code(state, cmd, cmd->fd_out);
 	ft_putstr_fd("exit\n", cmd->fd_out);
 	ft_exit(NULL, state);
 	return (0);
