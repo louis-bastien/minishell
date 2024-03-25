@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agusheredia <agusheredia@student.42.fr>    +#+  +:+       +#+         #
+#    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/03/23 19:31:20 by agusheredia      ###   ########.fr        #
+#    Updated: 2024/03/25 12:47:46 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,9 +40,9 @@ SRC = srcs/main.c \
 	srcs/utils/free_darray.c \
 	srcs/utils/ft_strcmp.c \
 	srcs/utils/miniexport_utils.c \
+	srcs/utils/is_absolute.c \
 	srcs/executor/pipes.c \
 	srcs/executor/executor.c \
-	srcs/executor/ft_execve.c \
 	srcs/builtins/ft_builtins.c \
 	srcs/builtins/minicd.c \
 	srcs/builtins/minipwd.c \

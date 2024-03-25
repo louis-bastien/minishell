@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/23 18:44:16 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:49:07 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_executor(t_state *state, char ***env)
 
 void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 {
-	int		pid;
 	char	*tmp;
 
 	tmp = NULL;
@@ -46,7 +45,17 @@ void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 	else if (!cmd->is_builtin)
 		cmd->path = get_path(cmd, state, *env);
 	if (!cmd->path && !cmd->is_builtin)
+	{
+		close_cmd_fds(cmd);
 		return ;
+	}
+	fork_cmd(cmd, state, env);
+}
+
+void	fork_cmd(t_command *cmd, t_state *state, char ***env)
+{
+	int	pid;
+
 	ft_signals(STOP);
 	pid = fork();
 	if (pid < 0)
@@ -54,7 +63,12 @@ void	exec_cmd(t_command *cmd, t_state *state, char ***env)
 	else if (pid == 0)
 		ft_child(cmd, cmd->path, state, env);
 	else
-		ft_parent(cmd, pid, state);
+	{
+		if (is_last(cmd, state))
+			state->data->last_pid = pid;
+		close_cmd_fds(cmd);
+		state->data->childs++;
+	}
 	free(cmd->path);
 }
 
@@ -73,18 +87,11 @@ void	ft_child(t_command *cmd, char *path, t_state *state, char ***env)
 		exit (status);
 	}
 	else
-		ft_execve(cmd, path, state, *env);
-}
-
-void	ft_parent(t_command *cmd, int pid, t_state *state)
-{
-	if (is_last(cmd, state))
-		state->data->last_pid = pid;
-	if (cmd->fd_out != STDOUT_FILENO)
-		close(cmd->fd_out);
-	if (cmd->fd_in != STDIN_FILENO)
-		close(cmd->fd_in);
-	state->data->childs++;
+	{
+		execve(path, cmd->args, *env);
+		ft_error_exec(cmd->command, EXIT_FAILURE, "Execution Failed", state);
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	ft_waitpid(t_state *state)

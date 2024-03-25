@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 00:52:41 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/23 18:29:18 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:49:35 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,12 @@ void	close_open_fds(t_state *state)
 		}
 		cmd = cmd->next;
 	}
+}
+
+void	close_cmd_fds(t_command *cmd)
+{
+	if (cmd->fd_out != STDOUT_FILENO)
+		close(cmd->fd_out);
+	if (cmd->fd_in != STDIN_FILENO)
+		close(cmd->fd_in);
 }

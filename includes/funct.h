@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/23 18:41:57 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/25 12:49:50 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,13 +149,13 @@ char		*get_var_env(char *var, char **envp);
 void		ft_executor(t_state *state, char ***env);
 void		make_dup(t_command *cmd, t_state *state);
 void		exec_cmd(t_command *cmd, t_state *state, char ***env);
+void		fork_cmd(t_command *cmd, t_state *state, char ***env);
 void		ft_child(t_command *cmd, char *path, t_state *state, char ***env);
-void		ft_parent(t_command *cmd, int pid, t_state *state);
 void		ft_waitpid(t_state *state);
 void		ft_init_pipes(t_state *state);
 int			assign_pipes(t_command *cmd, t_state *state);
 void		close_open_fds(t_state *state);
-void		ft_execve(t_command *cmd, char *path, t_state *state, char **env);
+void		close_cmd_fds(t_command *cmd);
 
 //Path
 char		**ft_parse_path(char **envp);
