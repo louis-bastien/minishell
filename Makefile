@@ -6,12 +6,12 @@
 #    By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 14:39:27 by agheredi          #+#    #+#              #
-#    Updated: 2024/03/25 14:51:02 by lbastien         ###   ########.fr        #
+#    Updated: 2024/03/25 15:39:55 by lbastien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-FLAGS = -Wall -Werror -Wextra #-g -fsanitize='address,undefined'
+FLAGS = -Wall -Werror -Wextra -g -fsanitize='address,undefined'
 SRC = srcs/main.c \
 	srcs/minishell.c \
 	srcs/init.c \
