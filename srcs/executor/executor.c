@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/25 12:49:07 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:19:42 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	fork_cmd(t_command *cmd, t_state *state, char ***env)
 		close_cmd_fds(cmd);
 		state->data->childs++;
 	}
-	free(cmd->path);
+	if (!cmd->is_builtin)
+		free(cmd->path);
 }
 
 void	ft_child(t_command *cmd, char *path, t_state *state, char ***env)
