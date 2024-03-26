@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 00:52:41 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/26 18:08:12 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:22:51 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,20 @@ void	make_dup(t_command *cmd, t_state *state)
 {
 	int	code;
 
+	printf("%s fd_in=%d fd_out=%d", cmd->command, cmd->fd_in, cmd->fd_out);
 	code = 0;
 	if (cmd->fd_in != STDIN_FILENO)
 	{
 		if (dup2(cmd->fd_in, STDIN_FILENO) == -1)
 			ft_error_exec(cmd->command, code, "Failed to dup STDIN", state);
+		printf("%s dupped fd_in and closing it (%d)", cmd->command, cmd->fd_in);
 		close(cmd->fd_in);
 	}
 	if (cmd->fd_out != STDOUT_FILENO)
 	{
 		if (dup2(cmd->fd_out, STDOUT_FILENO) == -1)
 			ft_error_exec(cmd->command, code, "Failed to dup STDOUT", state);
+		printf("%s dupped fd_out and closing it (%d)", cmd->command, cmd->fd_out);
 		close(cmd->fd_out);
 	}
 }
