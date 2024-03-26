@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 00:52:41 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/25 12:49:35 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:08:12 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	assign_pipes(t_command *cmd, t_state *state)
 
 	if (pipe(pipe_fds) == -1)
 		return (0);
-	if (pipe_fds[0] > 255)
+	printf("cmd=%s pipe0=%d, pipe1=%d\n", cmd->command, pipe_fds[0], pipe_fds[1]);
+	if (pipe_fds[0] > 256)
 	{
 		ft_error_exec(cmd->command, 1, "Too many Pipes", state);
 		close_open_fds(state);
@@ -74,12 +75,12 @@ void	close_open_fds(t_state *state)
 	cmd = state->cmd_list;
 	while (cmd)
 	{
-		if (cmd->fd_out != STDOUT_FILENO && cmd->fd_out > 0)
+		if (cmd->fd_out != STDOUT_FILENO && cmd->fd_out >= 0)
 		{
 			close(cmd->fd_out);
 			cmd->fd_out = STDOUT_FILENO;
 		}
-		if (cmd->fd_in != STDIN_FILENO && cmd->fd_in > 0)
+		if (cmd->fd_in != STDIN_FILENO && cmd->fd_in >= 0)
 		{
 			close(cmd->fd_in);
 			cmd->fd_in = STDIN_FILENO;
