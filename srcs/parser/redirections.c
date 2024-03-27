@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agheredi <agheredi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:33:53 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/20 13:36:27 by agheredi         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:42:01 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void	open_fd(int *fd, const char *file, int flags, t_state *state)
 	*fd = open(file, flags, 0644);
 	if (*fd < 0)
 	{
-		state->to_stop = false;
 		if (stat(file, &file_stat) == 0 && S_ISDIR(file_stat.st_mode))
 		{
 			state->data->exit_status = 1;

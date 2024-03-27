@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:23 by lbastien          #+#    #+#             */
-/*   Updated: 2024/03/27 12:08:37 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:46:08 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ void		ft_child(t_command *cmd, char *path, t_state *state, char ***env);
 void		ft_waitpid(t_state *state);
 void		ft_init_pipes(t_state *state);
 int			assign_pipes(t_command *cmd, t_state *state);
-void		close_open_fds(t_command *cmd, t_state *state);
+void		close_next_fds(t_command *cmd);
 void		close_cmd_fds(t_command *cmd);
 
 //Path
