@@ -6,7 +6,7 @@
 /*   By: lbastien <lbastien@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:28:05 by agheredi          #+#    #+#             */
-/*   Updated: 2024/03/26 18:26:51 by lbastien         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:09:12 by lbastien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_executor(t_state *state, char ***env)
 
 	cmd = state->cmd_list;
 	ft_init_pipes(state);
-	ft_print_cmds(state->cmd_list);
+//	ft_print_cmds(state->cmd_list);
 	while (cmd && to_continue(state))
 	{
 		if (cmd->is_builtin && state->num_cmds == 1)
@@ -65,6 +65,7 @@ void	fork_cmd(t_command *cmd, t_state *state, char ***env)
 		ft_child(cmd, cmd->path, state, env);
 	else
 	{
+		printf("(parent) %s(%d) forked successfully\n", cmd->command, cmd->index);
 		if (is_last(cmd, state))
 			state->data->last_pid = pid;
 		close_cmd_fds(cmd);
