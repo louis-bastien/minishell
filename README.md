@@ -32,4 +32,4 @@ The goal of the project was to deepen understanding of low-level UNIX system cal
 
 ## 📬 Contact
 
-Built by [@lulubas](https://github.com/lulubas)
+Built and maintainced by [@lulubas](https://github.com/lulubas)
