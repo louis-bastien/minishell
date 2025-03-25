@@ -15,8 +15,6 @@ The goal of the project was to deepen understanding of low-level UNIX system cal
 - Forking and execve for external binaries  
 - Exit code handling and shell loop management
 
----
-
 ## 🛠 Tech Stack
 
 **Language & Libraries**
